@@ -1,5 +1,7 @@
 'use strict';
 const {Model,Validator } = require('sequelize');
+const bcrypt = require('bcryptjs');
+
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
     /**
@@ -7,6 +9,40 @@ module.exports = (sequelize, DataTypes) => {
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
+     toSafeObject() {
+      const { id, email } = this;
+      return { id, email };
+    }
+    validatePassword(rawPassword) {
+      return bcrypt.compareSync(rawPassword, this.password.toString());
+    }
+
+    static getCurrentUserById(id) {
+      return User.scope("currentUser").findByPk(id);
+    }
+
+    static async login({ email, rawPassword }) {
+      const user = await User.scope('loginUser').findOne({
+        where: {
+          email
+        }
+      });
+      if (user && user.validatePassword(rawPassword)) {
+        return await User.scope('currentUser').findByPk(user.id);
+      }
+    }
+
+    static async signup({ firstName,lastName, email, rawPassword }) {
+      const password = bcrypt.hashSync(rawPassword);
+      const user = await User.create({
+        firstName,
+        lastName,
+        email,
+        password
+      });
+      return await User.scope('currentUser').findByPk(user.id);
+    }
+
     static associate(models) {
       // define association here
     }
@@ -26,7 +62,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     lastName: {
       type:DataTypes.STRING,
-      allowNull:true,
+      allowNull:false,
       validate: {
         len: [2, 30],
         isNotEmail(value) {
@@ -54,6 +90,21 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'User',
+    defaultScope: {
+      attributes: {
+        exclude: ["password", "createdAt", "updatedAt"]
+      }
+    },
+    scopes: {
+      currentUser: {
+        attributes: {
+          exclude: ["password"]
+        }
+      },
+      loginUser: {
+        attributes: {}
+      }
+    }
   });
   return User;
 };
