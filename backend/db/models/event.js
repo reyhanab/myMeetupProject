@@ -2,6 +2,7 @@
 const {
   Model, Sequelize
 } = require('sequelize');
+
 module.exports = (sequelize, DataTypes) => {
   class Event extends Model {
     /**
@@ -73,20 +74,31 @@ module.exports = (sequelize, DataTypes) => {
     startDate: {
       type:DataTypes.DATE,
       validate:{
-        isAfter: Sequelize.literal('CURRENT_TIMESTAMP')
+        isDate:true,
+        dateValidator(value) {
+          if (new Date(value)< new Date()) {
+            throw new Error("invalid start date");
+          }
+        // isAfter: Sequelize.literal('CURRENT_TIMESTAMP')
       }
     },
     endDate:{
       type:DataTypes.DATE,
       validate:{
-        isAfter:this.startDate
+        isDate:true,
+        dateValidator(value) {
+          if (new Date(value) < new Date(this.startDate)) {
+            throw new Error("invalid end date");
+          }
       }
+    }
     },
     previewImage:{
       type:DataTypes.STRING,
       allowNull:true
     }
-  }, {
+  }
+}, {
     sequelize,
     modelName: 'Event',
   });

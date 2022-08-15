@@ -22,7 +22,7 @@ module.exports = {
         lastName: 'Abddd',
         password: bcrypt.hashSync('password3')
       }
-    ])
+    ], {validate:true})
   },
 
   async down (queryInterface, Sequelize) {
