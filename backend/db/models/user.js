@@ -28,7 +28,7 @@ module.exports = (sequelize, DataTypes) => {
         }
       });
       if (user && user.validatePassword(rawPassword)) {
-        return await User.scope('currentUser').findByPk(user.id);
+        return await User.scope('currentUser', 'defaultScope').findByPk(user.id);
       }
     }
 
@@ -40,7 +40,7 @@ module.exports = (sequelize, DataTypes) => {
         email,
         password
       });
-      return await User.scope('currentUser').findByPk(user.id);
+      return await User.scope('currentUser', 'defaultScope').findByPk(user.id);
     }
 
     static associate(models) {
@@ -103,7 +103,8 @@ module.exports = (sequelize, DataTypes) => {
       },
       loginUser: {
         attributes: {}
-      }
+      },
+      
     }
   });
   return User;
