@@ -10,13 +10,13 @@ const fields = [
     capacity:30,
     price:25,
     startDate:"2022-09-19 20:00:00",
-    endDate:"2022-09-19 22:00:00"
+    endDate:"2022-09-20 22:00:00"
   },
   {
     groupId:3,
     venueId:1,
     name:'Friday Night Brewery Series - Drafting Table Brewing Company',
-    description:"Let’s get together for some drinks.",
+    description:"Let's get together for some drinks.",
     type:'In person',
     capacity:20,
     price:0,
@@ -26,7 +26,7 @@ const fields = [
   {
     groupId:3,
     venueId:3,
-    name:'Book Club! 📚 Midnight Library by Matt Haig',
+    name:'Book Club! Midnight Library by Matt Haig',
     description:"How it works: We just meet once at the end! All are welcome, even if you haven't finished (or started) the book",
     type:'In person',
     capacity:50,
@@ -37,11 +37,11 @@ const fields = [
 ]
 module.exports = {
   async up (queryInterface, Sequelize) {
-    await queryInterface.bulkInsert('Events', fields, {validate:true})
+    await Event.bulkCreate(fields, {validate:true})
 
     // for (let item of fields){
-    //   const {groupId,venueId,name,description,type,capacity,price,startDate,endDate} = item
-    //   await Event.create({groupId,venueId,name,description,type,capacity,price,startDate,endDate })
+    //   // const {groupId,venueId,name,description,type,capacity,price,startDate,endDate} = item
+    //   await Event.create(item)
     // }
   },
 

@@ -1,7 +1,6 @@
 'use strict';
-const {
-  Model, Sequelize
-} = require('sequelize');
+const {Model, Sequelize} = require('sequelize');
+const {validator} = require ('validator')
 
 module.exports = (sequelize, DataTypes) => {
   class Event extends Model {
@@ -74,30 +73,39 @@ module.exports = (sequelize, DataTypes) => {
     startDate: {
       type:DataTypes.DATE,
       validate:{
-        isDate:true,
-        dateValidator(value) {
-          if (new Date(value)< new Date()) {
-            throw new Error("invalid start date");
-          }
-        // isAfter: Sequelize.literal('CURRENT_TIMESTAMP')
+        // dateValidator(value) {
+        //   if (!validator.isAfter(value)) {
+        //     throw new Error("invalid start date");
+        //   }
+        isAfter: new Date().toDateString()
+        // dateValidator(value){
+        //   if (new Date(value).isBefore(new Date())){
+        //     throw new Error("invalid start date");
+        //   }
+        //  }
       }
     },
     endDate:{
       type:DataTypes.DATE,
       validate:{
-        isDate:true,
-        dateValidator(value) {
-          if (new Date(value) < new Date(this.startDate)) {
+        // isAfter: new Date().toDateString()
+        dateValidator(value){
+          if (new Date(value).toISOString() < new Date(this.startDate).toISOString()){
             throw new Error("invalid end date");
           }
-      }
+        }
+      //     dateValidator(value) {
+      //     if (!validator.isAfter(value,this.startDate)) {
+      //       throw new Error("invalid start date");
+      //     }
+      // }
     }
-    },
+  },
     previewImage:{
       type:DataTypes.STRING,
       allowNull:true
     }
-  }
+
 }, {
     sequelize,
     modelName: 'Event',
