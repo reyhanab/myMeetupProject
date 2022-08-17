@@ -33,13 +33,15 @@ module.exports = (sequelize, DataTypes) => {
     }
 
     static async signup({ firstName,lastName, email, rawPassword }) {
+      let user;
       const password = bcrypt.hashSync(rawPassword);
-      const user = await User.create({
-        firstName,
-        lastName,
-        email,
-        password
-      });
+
+        user = await User.create({
+          firstName,
+          lastName,
+          email,
+          password
+        });
       return await User.scope('currentUser', 'defaultScope').findByPk(user.id);
     }
 
@@ -66,33 +68,20 @@ module.exports = (sequelize, DataTypes) => {
     firstName: {
       type:DataTypes.STRING,
       allowNull:false,
-      validate: {
-        len: [2, 30],
-        isNotEmail(value) {
-          if (Validator.isEmail(value)) {
-            throw new Error("Cannot be an email.");
-          }
-        }
-      }
+
     },
     lastName: {
       type:DataTypes.STRING,
       allowNull:false,
-      validate: {
-        len: [2, 30],
-        isNotEmail(value) {
-          if (Validator.isEmail(value)) {
-            throw new Error("Cannot be an email.");
-          }
-        }
-      }
+
     },
     email: {
       type:DataTypes.STRING,
       allowNull:false,
       unique:true,
       validate: {
-        len: [3, 256]
+        len: [3, 256],
+        isEmail:true
       }
     },
     password:{
@@ -119,7 +108,7 @@ module.exports = (sequelize, DataTypes) => {
       loginUser: {
         attributes: {}
       },
-      
+
     }
   });
   return User;

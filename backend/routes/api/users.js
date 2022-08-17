@@ -10,15 +10,13 @@ const validateSignup = [
     check('email')
       .exists({ checkFalsy: true })
       .isEmail()
-      .withMessage('Please provide a valid email.'),
+      .withMessage("Invalid email"),
     check('firstName')
       .exists({ checkFalsy: true })
-      .isLength({ min: 2 })
-      .withMessage('Please provide a firstname with at least 2 characters.'),
+      .withMessage( "First Name is required",),
     check('lastName')
       .exists({ checkFalsy: true })
-      .isLength({ min: 2 })
-      .withMessage('Please provide a lastname with at least 2 characters.'),
+      .withMessage("Last Name is required"),
     check('rawPassword')
       .exists({ checkFalsy: true })
       .isLength({ min: 6 })
@@ -52,7 +50,7 @@ const validateSignup = [
     }
 
     user.dataValues.token = await setTokenCookie(res, user);
-    return res.json({user,token});
+    return res.json({user});
   }
 );
 
@@ -60,22 +58,33 @@ const validateSignup = [
 router.get('/:userId',restoreUser,(req, res) => {
   const { user } = req;
   if (user) {
-    return res.json({
-      user: user.toSafeObject()
-    });
+    const {id, firstName, lastName, email}= user
+    return res.json({id, firstName, lastName, email}
+      // user: user.toSafeObject()
+    );
   } else return res.json({});
 }
 );
 
 
 //signup
-router.post('/signup', validateSignup,async (req, res) => {
+router.post('/signup', validateSignup,async (req, res,next) => {
       const { firstName, lastName, email, rawPassword } = req.body;
+      const checkEmail = await User.findOne({where:{email}})
+      if (checkEmail){
+        const err = new Error("User already exists");
+        err.status = 403;
+        err.title = 'email';
+        err.errors = ["User with that email already exists"];
+        return next(err);
+      }
+      else{
       const user = await User.signup({ firstName, lastName, email, rawPassword});
 
       user.dataValues.token = await setTokenCookie(res, user);
       return res.json({user});
     }
+  }
   );
 
 module.exports = router;
