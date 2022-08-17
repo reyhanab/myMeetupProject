@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router();
 
-const { setTokenCookie,restoreUser, requireAuth } = require('../../utils/auth');
+const { setTokenCookie, requireAuth, restoreUser } = require('../../utils/auth');
 const { User } = require('../../db/models');
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
@@ -37,44 +37,41 @@ const validateSignup = [
     handleValidationErrors
   ];
 
-router.get("/:userId",requireAuth, async (req,res,next)=>{
-  const currentUser = await User.scope('currentUser').findByPk(req.params.userId)
-  if (currentUser){
-    res.json(currentUser)
-  }else{
-    const err = new Error('User not found');
-    err.status = 401;
-    err.title = 'User not found';
-    err.errors = ['The provided userId was invalid.'];
-    return next(err);
+  //log in
+  router.post('/login',validateLogin, async (req, res, next) => {
+    const { email, rawPassword } = req.body;
+
+    const user = await User.login({ email, rawPassword });
+
+    if (!user) {
+      const err = new Error('Login failed');
+      err.status = 401;
+      err.title = 'Login failed';
+      err.errors = ["Invalid credentials"];
+      return next(err);
+    }
+
+    await setTokenCookie(res, user);
+    return res.json({user});
   }
-});
-
-router.post('/login',validateLogin, async (req, res, next) => {
-  const { email, rawPassword } = req.body;
-
-  const user = await User.login({ email, rawPassword });
-
-  if (!user) {
-    const err = new Error('Login failed');
-    err.status = 401;
-    err.title = 'Login failed';
-    err.errors = ["Invalid credentials"];
-    return next(err);
-  }
-
-  await setTokenCookie(res, user);
-  return res.json({user});
-}
 );
+// Get the Current User
+router.get('/:userId', [restoreUser,requireAuth], async (req,res,next)=>{
+  const currentUserId = req.user.id
+  const currentUser = awaiUser.scope('currentUser', 'defaultScope').findByPk(currentUserId)
 
+
+})
+
+//signup
 router.post('/signup', validateSignup,async (req, res) => {
-  const { firstName, lastName, email, rawPassword } = req.body;
-  const user = await User.signup({ firstName, lastName, email, rawPassword});
+      const { firstName, lastName, email, rawPassword } = req.body;
+      const user = await User.signup({ firstName, lastName, email, rawPassword});
 
-  await setTokenCookie(res, user);
+      await setTokenCookie(res, user);
 
-  return res.json({user});
-}
-);
+      return res.json({user});
+    }
+  );
+
 module.exports = router;
