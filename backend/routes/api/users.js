@@ -44,32 +44,36 @@ const validateSignup = [
     const user = await User.login({ email, rawPassword });
 
     if (!user) {
-      const err = new Error('Login failed');
+      const err = new Error("Invalid credentials");
       err.status = 401;
       err.title = 'Login failed';
       err.errors = ["Invalid credentials"];
       return next(err);
     }
 
-    await setTokenCookie(res, user);
-    return res.json({user});
+    user.dataValues.token = await setTokenCookie(res, user);
+    return res.json({user,token});
   }
 );
+
 // Get the Current User
-router.get('/:userId', [restoreUser,requireAuth], async (req,res,next)=>{
-  const currentUserId = req.user.id
-  const currentUser = awaiUser.scope('currentUser', 'defaultScope').findByPk(currentUserId)
+router.get('/:userId',restoreUser,(req, res) => {
+  const { user } = req;
+  if (user) {
+    return res.json({
+      user: user.toSafeObject()
+    });
+  } else return res.json({});
+}
+);
 
-
-})
 
 //signup
 router.post('/signup', validateSignup,async (req, res) => {
       const { firstName, lastName, email, rawPassword } = req.body;
       const user = await User.signup({ firstName, lastName, email, rawPassword});
 
-      await setTokenCookie(res, user);
-
+      user.dataValues.token = await setTokenCookie(res, user);
       return res.json({user});
     }
   );
