@@ -13,28 +13,28 @@ module.exports = (sequelize, DataTypes) => {
       const { id, email } = this;
       return { id, email };
     }
-    validatePassword(rawPassword) {
-      return bcrypt.compareSync(rawPassword, this.password.toString());
+    validatePassword(cPassword) {
+      return bcrypt.compareSync(cPassword, this.password.toString());
     }
 
     static getCurrentUserById(id) {
       return User.scope("currentUser").findByPk(id);
     }
 
-    static async login({ email, rawPassword }) {
+    static async login({ email, password }) {
       const user = await User.scope('loginUser').findOne({
         where: {
           email
         }
       });
-      if (user && user.validatePassword(rawPassword)) {
+      if (user && user.validatePassword(password)) {
         return await User.scope('currentUser', 'defaultScope').findByPk(user.id);
       }
     }
 
-    static async signup({ firstName,lastName, email, rawPassword }) {
+    static async signup({ firstName,lastName, email, password }) {
       let user;
-      const password = bcrypt.hashSync(rawPassword);
+      password = bcrypt.hashSync(password);
 
         user = await User.create({
           firstName,

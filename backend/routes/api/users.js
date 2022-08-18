@@ -13,14 +13,10 @@ const validateSignup = [
       .withMessage("Invalid email"),
     check('firstName')
       .exists({ checkFalsy: true })
-      .withMessage( "First Name is required",),
+      .withMessage("First Name is required"),
     check('lastName')
       .exists({ checkFalsy: true })
       .withMessage("Last Name is required"),
-    check('rawPassword')
-      .exists({ checkFalsy: true })
-      .isLength({ min: 6 })
-      .withMessage('Password must be 6 characters or more.'),
     handleValidationErrors
   ];
 
@@ -29,36 +25,38 @@ const validateSignup = [
       .exists({ checkFalsy: true })
       .notEmpty()
       .withMessage("Email is required"),
-    check('rawPassword')
+    check('password')
       .exists({ checkFalsy: true })
+      .notEmpty()
       .withMessage("Password is required"),
     handleValidationErrors
   ];
 
   //log in
   router.post('/login',validateLogin, async (req, res, next) => {
-    const { email, rawPassword } = req.body;
+    const { email, password } = req.body;
 
-    const user = await User.login({ email, rawPassword });
+    const user = await User.login({ email, password });
 
     if (!user) {
       const err = new Error("Invalid credentials");
       err.status = 401;
       err.title = 'Login failed';
-      err.errors = ["Invalid credentials"];
+      // err.errors = ["Invalid credentials"];
       return next(err);
     }
 
     user.dataValues.token = await setTokenCookie(res, user);
-    return res.json({user});
+    return res.json(user);
   }
 );
 
 // Get the Current User
-router.get('/:userId',restoreUser,(req, res) => {
+router.get('/:userId',[restoreUser,requireAuth],async (req, res,next) => {
   const { user } = req;
   if (user) {
-    const {id, firstName, lastName, email}= user
+    const {id, firstName, lastName, email} = user
+
     return res.json({id, firstName, lastName, email}
       // user: user.toSafeObject()
     );
@@ -69,20 +67,20 @@ router.get('/:userId',restoreUser,(req, res) => {
 
 //signup
 router.post('/signup', validateSignup,async (req, res,next) => {
-      const { firstName, lastName, email, rawPassword } = req.body;
+      const { firstName, lastName, email, password } = req.body;
       const checkEmail = await User.findOne({where:{email}})
       if (checkEmail){
         const err = new Error("User already exists");
         err.status = 403;
         err.title = 'email';
-        err.errors = ["User with that email already exists"];
+        err.errors = {'email':"User with that email already exists"};
         return next(err);
       }
       else{
-      const user = await User.signup({ firstName, lastName, email, rawPassword});
+      const user = await User.signup({ firstName, lastName, email, password});
 
       user.dataValues.token = await setTokenCookie(res, user);
-      return res.json({user});
+      return res.json(user);
     }
   }
   );
