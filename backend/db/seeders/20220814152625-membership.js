@@ -15,6 +15,21 @@ const fields=[
     memberId: 3,
     groupId:1,
     status:'co-host'
+  },
+  {
+    memberId: 1,
+    groupId:3,
+    status:'member'
+  },
+  {
+    memberId: 2,
+    groupId:1,
+    status:'pending'
+  },
+  {
+    memberId: 3,
+    groupId:2,
+    status:'co-host'
   }
 ]
 module.exports = {

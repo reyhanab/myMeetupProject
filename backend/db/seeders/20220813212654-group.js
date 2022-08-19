@@ -7,7 +7,8 @@ const fields = [{
   type:'In person',
   private:true,
   city:'Royal Oak',
-  state:'MI'
+  state:'MI',
+  previewImage: "https://www.google.com/search?sxsrf=ALiCzsYXQVWE49ZfmmDzIVABJaav1aU1TA:1660589040103&q=dog&tbm=isch&sa=X&ved=2ahUKEwinkOmewMn5AhWnlYkEHbZQCwMQ0pQJegQICxAB&biw=877&bih=904&dpr=1#imgrc=btQ8-aZ4x2YyMM"
 },
 {
   organizerId: 2,

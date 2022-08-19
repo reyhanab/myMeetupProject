@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router();
 
 const { setTokenCookie, requireAuth, restoreUser } = require('../../utils/auth');
-const { User } = require('../../db/models');
+const { User,Group, Membership } = require('../../db/models');
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
 
@@ -84,5 +84,27 @@ router.post('/signup', validateSignup,async (req, res,next) => {
     }
   }
   );
+
+  // get groups of current user
+  router.get('/:userId/groups', requireAuth, async (req, res)=>{
+    const { user } = req;
+    if (user) {
+     const Groups = await user.getGroups()
+     const userMemberships = await user.getMemberships()
+     for(let membership of userMemberships){
+      const userGroup = await membership.getGroup()
+      Groups.push(userGroup)
+     }
+
+     for (let group of Groups){
+      const {id} = group
+      const countMembers = await Membership.count({
+        where:{groupId:id}
+      })
+      group.dataValues.numMembers = countMembers
+     }
+     res.json({Groups})
+    }
+  })
 
 module.exports = router;

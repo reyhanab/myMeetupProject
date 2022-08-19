@@ -20,15 +20,20 @@ module.exports = (sequelize, DataTypes) => {
         models.Image,
         {
           foreignKey:'imagableId',
+          as:'Images',
           constraints:false,
           scope: {
-            imageableType: 'Group'
+            imagableType: 'Group'
           }
         }
       ),
       Group.hasMany(
         models.Venue,
-        {foreignKey:'groupId',onDelete:'CASCADE', hooks:true}
+        {foreignKey:'groupId',onDelete:'CASCADE', hooks:true, as:"Venues"}
+      ),
+      Group.belongsTo(
+        models.User,
+        {foreignKey:'organizerId', as:'Organizer'}
       )
     }
   }
