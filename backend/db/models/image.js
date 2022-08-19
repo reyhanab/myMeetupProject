@@ -19,6 +19,10 @@ module.exports = (sequelize, DataTypes) => {
         models.Event,
         {foreignKey:'imagableId',
         constraints:false}
+      ),
+      Image.belongsTo(
+        models.User,
+        {foreignKey:'userId'}
       )
     }
   }
@@ -35,6 +39,11 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'Image',
+    defaultScope: {
+      attributes: {
+        exclude: ["userId",'imagableType', "createdAt", "updatedAt"]
+      }
+    }
   });
   return Image;
 };

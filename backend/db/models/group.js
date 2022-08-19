@@ -86,6 +86,13 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'Group',
+    scopes:{
+      editResponse:{
+        attributes:{
+          exclude:['previewImage']
+        }
+      }
+    }
   });
   return Group;
 };
