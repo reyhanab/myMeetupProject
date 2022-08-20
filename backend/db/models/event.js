@@ -23,11 +23,15 @@ module.exports = (sequelize, DataTypes) => {
         {through:models.Attendee}
       ),
       Event.hasMany(
+        models.Attendee,
+        {foreignKey:'eventId',onDelete:'CASCADE', hooks:true}
+      ),
+      Event.hasMany(
         models.Image,
         { foreignKey:'imagableId',
           constraints:false,
           scope: {
-            imageableType: 'Event'
+            imagableType: 'Event'
           }
         }
       )

@@ -1,14 +1,16 @@
 'use strict';
-const {
-  Model
-} = require('sequelize');
+const {Model} = require('sequelize');
+const uppercaseFirst = str => `${str[0].toUpperCase()}${str.substr(1)}`;
+
 module.exports = (sequelize, DataTypes) => {
   class Image extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
+
+    getImagable(options) {
+      if (!this.imagableType) return Promise.resolve(null);
+      const mixinMethodName = `get${uppercaseFirst(this.imagableType)}`;
+      return this[mixinMethodName](options);
+    }
+
     static associate(models) {
       Image.belongsTo(
         models.Group,
@@ -24,6 +26,7 @@ module.exports = (sequelize, DataTypes) => {
         models.User,
         {foreignKey:'userId'}
       )
+
     }
   }
   Image.init({
@@ -45,5 +48,21 @@ module.exports = (sequelize, DataTypes) => {
       }
     }
   });
+  
+  Image.addHook("afterFind", findResult => {
+    if (!Array.isArray(findResult)) findResult = [findResult];
+    for (const instance of findResult) {
+      if (instance.imagableType === "group" && instance.group !== undefined) {
+        instance.imagable = instance.group;
+      } else if (instance.imagableType === "event" && instance.event !== undefined) {
+        instance.imagable = instance.event;
+      }
+      delete instance.group;
+      delete instance.dataValues.group;
+      delete instance.event;
+      delete instance.dataValues.event;
+    }
+  });
   return Image;
 };
+

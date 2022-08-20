@@ -54,6 +54,10 @@ module.exports = (sequelize, DataTypes) => {
         models.Membership,
         {foreignKey:'memberId',onDelete:'CASCADE', hooks:true}
       ),
+      User.hasMany(
+        models.Attendee,
+        {foreignKey:'userId',onDelete:'CASCADE', hooks:true}
+      ),
       User.belongsToMany(
         models.Event,
         {through:models.Attendee}

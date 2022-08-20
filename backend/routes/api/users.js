@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router();
-
+const sequelize = require("sequelize");
 const { setTokenCookie, requireAuth, restoreUser } = require('../../utils/auth');
 const { User,Group, Membership } = require('../../db/models');
 const { check } = require('express-validator');

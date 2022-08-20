@@ -1,8 +1,8 @@
 const express = require('express')
 const router = express.Router();
-
-const { setTokenCookie, requireAuth} = require('../../utils/auth');
-const { Group, Image, User, Venue,Membership } = require('../../db/models');
+const sequelize = require("sequelize");
+const { requireAuth} = require('../../utils/auth');
+const { Group, Image, User, Venue,Membership, Attendee, Event } = require('../../db/models');
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
 
@@ -55,6 +55,37 @@ const validateGroup = [
     .withMessage("Url is required"),
     handleValidationErrors
   ];
+  const validateEvent = [
+    check('venueId')
+      .exists({ checkFalsy: true })
+      .withMessage("Venue does not exist"),
+    check('name')
+      .exists({ checkFalsy: true })
+      .isLength({min:5})
+      .withMessage("Name must be at least 5 characters"),
+    check('type')
+      .exists({ checkFalsy: true })
+      .isIn(['Online','In person'])
+      .withMessage("Type must be 'Online' or 'In person'"),
+    check('capacity')
+      .exists({ checkFalsy: true })
+      .isInt()
+      .withMessage("Capacity must be an integer"),
+    check('price')
+        .exists({ checkFalsy: true })
+        .isDecimal()
+        .withMessage("Price is invalid"),
+    check('description')
+        .exists({ checkFalsy: true })
+        .withMessage("Description is required"),
+    -check('startDate')
+        .exists({ checkFalsy: true })
+        .withMessage("Start date must be in the future"),
+    check('endDate')
+        .exists({ checkFalsy: true })
+        .withMessage("End date is less than start date"),
+    handleValidationErrors
+  ];
 //get all groups
 router.get('/', async (req,res)=>{
     const Groups = await Group.findAll()
@@ -73,6 +104,7 @@ router.get('/:groupId', async (req,res,next)=>{
             ]],
             exclude:['previewImage']
         },
+        group: ["Images.id", 'Venues.id'],
         include:[
             {   model:Membership,
                 attributes:[]
@@ -251,6 +283,49 @@ router.post('/:groupId/venues', requireAuth,validateVenue, async (req,res,next)=
         err.message = "Group couldn't be found"
         return next(err);
     }
+})
+// get events of a group
+router.get('/:groupId/events', async (req,res,next)=>{
+    const groupId = req.params.groupId
+    const group = await Group.findByPk(groupId)
+    if (group){
+        const Events = await Event.findAll({
+            where:{groupId},
+            group:['Group.id'],
+            attributes:{
+                include:[[
+                    sequelize.fn("COUNT", sequelize.col("Attendees.id")),
+                    "numAttending"
+                ]],
+                exclude:['capacity', 'price', 'description','createdAt','updatedAt']
+            },
+            include:[
+                {
+                    model:Attendee,
+                    attributes:[]
+                },
+                {
+                    model:Group,
+                    attributes:['id','name', 'city','state']
+                },
+                {
+                    model:Venue,
+                    attributes:['id', 'city','state']
+                }
+            ]
+        })
+        res.json({Events})
+    }
+    else{
+        const err = new Error("Group couldn't be found");
+        err.status = 404;
+        err.message = "Group couldn't be found"
+        return next(err);
+    }
+})
+//create an event
+router.post('/:groupId/events', requireAuth, validateEvent, async(req,res,next)=>{
+
 })
 
 module.exports = router;
