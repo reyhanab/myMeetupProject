@@ -31,12 +31,30 @@ const validateGroup = [
         .withMessage("State is required"),
     handleValidationErrors
   ];
+  const validateVenue = [
+    check('address')
+        .exists({ checkFalsy: true })
+        .withMessage("Street address is required"),
+    check('city')
+        .exists({ checkFalsy: true })
+        .withMessage("City is required"),
+    check('state')
+        .exists({ checkFalsy: true })
+        .withMessage("State is required"),
+    check('lat')
+        .exists({ checkFalsy: true })
+        .withMessage("Latitude is not valid"),
+    check('lng')
+        .exists({ checkFalsy: true })
+        .withMessage("Longitude is not valid"),
+    handleValidationErrors
+  ];
   const validateImage = [
     check('url')
     .exists({ checkFalsy: true })
     .withMessage("Url is required"),
     handleValidationErrors
-  ]
+  ];
 //get all groups
 router.get('/', async (req,res)=>{
     const Groups = await Group.findAll()
@@ -88,8 +106,9 @@ router.get('/:groupId', async (req,res,next)=>{
 //create a group
 router.post('/',requireAuth, validateGroup, async (req,res,next)=>{
     const {user}= req
-    const {name,about,type,private,city,state} = req.body
-    const newGroup = await user.createGroup({name,about,type,private,city,state})
+    const newGroup = await user.createGroup(req.body)
+    const {id}= user
+    await newGroup.createMembership({memberId:id, status:'host'})
     res.json(newGroup)
 })
 //add an image to a group
@@ -180,6 +199,58 @@ router.delete('/:groupId', requireAuth, async (req,res,next)=>{
     }
 })
 //get all venues for a group
-// router.get('/:groupId/venues', requireAuth)
+router.get('/:groupId/venues', requireAuth, async (req,res,next)=>{
+    const {user} = req
+    const groupId = req.params.groupId
+    const group = await Group.findByPk(groupId)
+    if (group){
+        const {id} = user
+        const membership = await Membership.findOne({where:{memberId:id, groupId}})
+        if (membership){
+            const {status}= membership
+            if (status === 'host'|| status === "co-host"){
+                const Venues = await group.getVenues()
+                return res.json({Venues})
+            }
+        }
+        const err = new Error("Forbidden");
+        err.status = 403;
+        err.message = "Forbidden"
+        return next(err);
+    }else{
+        const err = new Error("Group couldn't be found");
+        err.status = 404;
+        err.message = "Group couldn't be found"
+        return next(err);
+    }
+})
+// create a venue for a group
+router.post('/:groupId/venues', requireAuth,validateVenue, async (req,res,next)=>{
+    const {user} = req
+    const groupId = req.params.groupId
+    const group = await Group.findByPk(groupId)
+    if (group){
+        const {id} = user
+        const membership = await Membership.findOne({where:{memberId:id, groupId}})
+        if (membership){
+            const {status}= membership
+            if (status === 'host'|| status === "co-host"){
+                const newVenue = await group.createVenue(req.body)
+                const {id} = newVenue
+                const response = await Venue.findByPk(id)
+                return res.json(response)
+            }
+        }
+        const err = new Error("Forbidden");
+        err.status = 403;
+        err.message = "Forbidden"
+        return next(err);
+    }else{
+        const err = new Error("Group couldn't be found");
+        err.status = 404;
+        err.message = "Group couldn't be found"
+        return next(err);
+    }
+})
 
 module.exports = router;

@@ -13,7 +13,7 @@ const fields = [
     endDate:"2022-09-20 22:00:00"
   },
   {
-    groupId:3,
+    groupId:2,
     venueId:1,
     name:'Friday Night Brewery Series - Drafting Table Brewing Company',
     description:"Let's get together for some drinks.",

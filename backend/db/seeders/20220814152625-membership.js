@@ -3,18 +3,18 @@ const {Membership} = require('../models')
 const fields=[
   {
     memberId: 1,
-    groupId:2,
-    status:'member'
+    groupId:1,
+    status:'host'
   },
   {
     memberId: 2,
-    groupId:3,
-    status:'pending'
+    groupId:2,
+    status:'host'
   },
   {
     memberId: 3,
-    groupId:1,
-    status:'co-host'
+    groupId:3,
+    status:'host'
   },
   {
     memberId: 1,
@@ -24,7 +24,7 @@ const fields=[
   {
     memberId: 2,
     groupId:1,
-    status:'pending'
+    status:'member'
   },
   {
     memberId: 3,

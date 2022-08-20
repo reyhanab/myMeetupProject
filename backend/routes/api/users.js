@@ -89,7 +89,8 @@ router.post('/signup', validateSignup,async (req, res,next) => {
   router.get('/:userId/groups', requireAuth, async (req, res)=>{
     const { user } = req;
     if (user) {
-     const Groups = await user.getGroups()
+    //  const Groups = await user.getGroups()
+     let Groups =[]
      const userMemberships = await user.getMemberships()
      for(let membership of userMemberships){
       const userGroup = await membership.getGroup()
