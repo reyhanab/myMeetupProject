@@ -55,9 +55,22 @@ const validateGroup = [
     .withMessage("Url is required"),
     handleValidationErrors
   ];
+  const venueId = Venue.findAll({
+    attributes:['id'],
+    limit: 1,
+    order:[['id', 'DESC']]
+  })
+
   const validateEvent = [
     check('venueId')
       .exists({ checkFalsy: true })
+      .custom(value => {
+        return Venue.findByPk(value).then(venue => {
+          if (!venue) {
+            return Promise.reject("Venue does not exist");
+          }
+        })
+      })
       .withMessage("Venue does not exist"),
     check('name')
       .exists({ checkFalsy: true })
@@ -78,11 +91,18 @@ const validateGroup = [
     check('description')
         .exists({ checkFalsy: true })
         .withMessage("Description is required"),
-    -check('startDate')
+    check('startDate')
         .exists({ checkFalsy: true })
+        .isAfter(new Date().toDateString())
         .withMessage("Start date must be in the future"),
     check('endDate')
         .exists({ checkFalsy: true })
+        .custom((value, {req} )=>{
+            if (new Date(value).toISOString() < new Date(req.body.startDate).toISOString()){
+               return false
+              }
+        })
+        // .isAfter(new Date('startDate').toDateString())
         .withMessage("End date is less than start date"),
     handleValidationErrors
   ];
@@ -324,8 +344,32 @@ router.get('/:groupId/events', async (req,res,next)=>{
     }
 })
 //create an event
-router.post('/:groupId/events', requireAuth, validateEvent, async(req,res,next)=>{
-
+router.post('/:groupId/events', requireAuth,validateEvent, async (req,res,next)=>{
+    const {user} = req
+    const groupId = req.params.groupId
+    const group = await Group.findByPk(groupId)
+    if (group){
+        const {id} = user
+        const membership = await Membership.findOne({where:{memberId:id, groupId}})
+        if (membership){
+            const {status}= membership
+            if (status === 'host'|| status === "co-host"){
+                const newEvent = await group.createEvent(req.body)
+                const {id} = newEvent
+                const response = await Event.scope('createEvent').findByPk(id)
+                return res.json(response)
+            }
+        }
+        const err = new Error("Forbidden");
+        err.status = 403;
+        err.message = "Forbidden"
+        return next(err);
+    }else{
+        const err = new Error("Group couldn't be found");
+        err.status = 404;
+        err.message = "Group couldn't be found"
+        return next(err);
+    }
 })
 
 module.exports = router;

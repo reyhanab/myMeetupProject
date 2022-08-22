@@ -98,11 +98,7 @@ module.exports = (sequelize, DataTypes) => {
             throw new Error("invalid end date");
           }
         }
-      //     dateValidator(value) {
-      //     if (!validator.isAfter(value,this.startDate)) {
-      //       throw new Error("invalid start date");
-      //     }
-      // }
+     
     }
   },
     previewImage:{
@@ -113,6 +109,18 @@ module.exports = (sequelize, DataTypes) => {
 }, {
     sequelize,
     modelName: 'Event',
+    defaultScope:{
+      attributes:{
+        exclude:['createdAt', 'updatedAt']
+      }
+    },
+    scopes:{
+      createEvent:{
+        attributes:{
+          exclude:['createdAt', 'updatedAt', 'previewImage']
+        }
+      }
+    }
   });
   return Event;
 };
