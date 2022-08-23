@@ -56,7 +56,7 @@ module.exports = (sequelize, DataTypes) => {
       ),
       User.hasMany(
         models.Attendee,
-        {foreignKey:'userId',onDelete:'CASCADE', hooks:true}
+        {foreignKey:'userId',onDelete:'CASCADE', hooks:true, as: 'Attendance'}
       ),
       User.belongsToMany(
         models.Event,

@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const sequelize = require("sequelize");
 const {requireAuth} = require('../../utils/auth');
-const { Event, Group, Attendee, Venue,Image,Membership } = require('../../db/models');
+const { Event, Group, Attendee, Venue,Image,Membership,User } = require('../../db/models');
 const { check, body } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
 
@@ -233,5 +233,92 @@ router.delete('/:eventId', requireAuth, async (req,res,next)=>{
         err.message = "Event couldn't be found"
         return next(err);
     }
+})
+//get all attendees of an event
+router.get('/:eventId/attendees', async (req,res,next)=>{
+    const eventId = req.params.eventId
+    const event = await Event.findByPk(eventId)
+    const {id}= req.user
+    if (event){
+        const {groupId}= event
+        const membership = await Membership.findOne({where:{memberId:id, groupId}})
+        if (membership){
+            const {status}= membership
+            if(status === 'host' || status === 'co-host'){
+                const Attendees = await User.findAll({
+                    attributes:['id', 'firstName', 'lastName'],
+                    include:{
+                        model: Attendee,
+                        as: 'Attendance',
+                        attributes:['status'],
+                        where:{eventId},
+                    }
+                })
+                return res.json({Attendees})
+            }
+        }
+            const Attendees = await User.findAll({
+                attributes:['id', 'firstName', 'lastName'],
+                include:{
+                    model: Attendee,
+                    as: 'Attendance',
+                    attributes:['status'],
+                    where:{eventId, status:['member', 'waitlist']},
+                }
+            })
+            return res.json({Attendees})
+    }
+    else{
+        const err = new Error("Event couldn't be found");
+        err.status = 404;
+        err.message = "Event couldn't be found"
+        return next(err);
+    }
+})
+//request attendance for an event
+router.post('/:eventId/attendees',requireAuth, async(req,res,next)=>{
+    const eventId = req.params.eventId
+    const {user} = req
+    const {id} = user
+    const event = await Event.findByPk(eventId)
+    if(event){
+        const{groupId} = event
+        const membership = await Membership.findOne({where:{memberId:id,groupId, status:['member','co-host','host']}})
+        if(membership){
+            const attendee = await Attendee.findOne({where:{userId:id,eventId}})
+            if(attendee){
+                const {status} = attendee
+                if(status === 'pending'){
+                    const err = new Error("Failed");
+                    err.status = 400;
+                    err.message = "Attendance has already been requested"
+                    return next(err);
+                }
+                else if(status === 'member' || status === "waitlist"){
+                    const err = new Error("Failed");
+                    err.status = 400;
+                    err.message = "User is already an attendee of the event"
+                    return next(err);
+                }
+            }else{
+                const newAttendee = await Attendee.create({userId:id,eventId,status:'pending'})
+                const {id} = newAttendee
+                const response = await Attendee.findByPk(id)
+                res.json(response)
+            }
+        }
+        else{
+            const err = new Error("Forbidden");
+            err.status = 403;
+            err.message = "Forbidden"
+            return next(err);
+        }
+    }else{
+        const err = new Error("Event couldn't be found");
+        err.status = 404;
+        err.message = "Event couldn't be found"
+        return next(err);
+    }
+
 })
 module.exports = router;
