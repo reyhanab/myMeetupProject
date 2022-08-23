@@ -77,10 +77,8 @@ module.exports = (sequelize, DataTypes) => {
     startDate: {
       type:DataTypes.DATE,
       validate:{
-        // dateValidator(value) {
-        //   if (!validator.isAfter(value)) {
-        //     throw new Error("invalid start date");
-        //   }
+        // isDate:true,
+        // isAfter: Date.now()
         isAfter: new Date().toDateString()
         // dateValidator(value){
         //   if (new Date(value).isBefore(new Date())){
@@ -92,21 +90,20 @@ module.exports = (sequelize, DataTypes) => {
     endDate:{
       type:DataTypes.DATE,
       validate:{
-        // isAfter: new Date().toDateString()
+      //   // isAfter: new Date().toDateString()
         dateValidator(value){
           if (new Date(value).toISOString() < new Date(this.startDate).toISOString()){
             throw new Error("invalid end date");
           }
         }
-     
-    }
-  },
+      }
+      },
     previewImage:{
       type:DataTypes.STRING,
       allowNull:true
     }
 
-}, {
+  }, {
     sequelize,
     modelName: 'Event',
     defaultScope:{

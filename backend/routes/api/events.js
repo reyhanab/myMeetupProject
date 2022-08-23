@@ -9,13 +9,6 @@ const { handleValidationErrors } = require('../../utils/validation');
 const validateEvent = [
     check('venueId')
       .exists({ checkFalsy: true })
-      .custom(value => {
-        return Venue.findByPk(value).then(venue => {
-          if (!venue) {
-            return Promise.reject("Venue does not exist");
-          }
-        })
-      })
       .withMessage("Venue does not exist"),
     check('name')
       .exists({ checkFalsy: true })
@@ -38,11 +31,16 @@ const validateEvent = [
         .withMessage("Description is required"),
     check('startDate')
         .exists({ checkFalsy: true })
-        .isAfter(new Date().toDateString())
+        .isAfter()
         .withMessage("Start date must be in the future"),
     check('endDate')
         .exists({ checkFalsy: true })
-        .isAfter(this.startDate)
+        .custom((value, {req} )=>{
+            if (new Date(value) < new Date(req.body.startDate)){
+               return false
+              }
+              return true
+        })
         .withMessage("End date is less than start date"),
     handleValidationErrors
   ];
@@ -73,6 +71,13 @@ router.get('/', async (req,res)=>{
             }
         ]
     })
+    for (let event of Events){
+        const {startDate, endDate} = event
+        const startDateObj = new Date(startDate).toLocaleString('sv')
+        const endDateObj = new Date(endDate).toLocaleString('sv')
+        event.dataValues.startDate = startDateObj
+        event.dataValues.endDate = endDateObj
+    }
     res.json({Events})
 })
 //get details of an event
@@ -109,6 +114,11 @@ router.get('/:eventId', async (req,res,next)=>{
         ]
     })
     if (event){
+        const {startDate, endDate} = event
+        const startDateObj = new Date(startDate).toLocaleString('sv')
+        const endDateObj = new Date(endDate).toLocaleString('sv')
+        event.dataValues.startDate = startDateObj
+        event.dataValues.endDate = endDateObj
         res.json(event)
     }else{
         const err = new Error("Event couldn't be found");
@@ -156,6 +166,14 @@ router.put('/:eventId', requireAuth,validateEvent, async (req,res, next)=>{
     const eventId = req.params.eventId
     const {user} = req
     const event = await Event.scope('createEvent').findByPk(eventId)
+    const {venueId} = req.body
+    const venue = await Venue.findByPk(venueId)
+    if (!venue){
+        const err = new Error("Venue couldn't be found");
+        err.status = 404;
+        err.message = "Venue couldn't be found"
+        return next(err);
+    }
     if (event){
         const{groupId} = event
         const {id} = user
@@ -165,15 +183,18 @@ router.put('/:eventId', requireAuth,validateEvent, async (req,res, next)=>{
             if (status === 'host'|| status === "co-host"){
             await event.update(req.body)
             const response = await Event.scope('createEvent').findByPk(eventId)
+            const {startDate, endDate} = response
+            const startDateObj = new Date(startDate).toLocaleString('sv')
+            const endDateObj = new Date(endDate).toLocaleString('sv')
+            response.dataValues.startDate = startDateObj
+            response.dataValues.endDate = endDateObj
             return res.json(response)
             }
         }
-        else{
-            const err = new Error("Forbidden");
-            err.status = 403;
-            err.message = "Forbidden"
-            return next(err);
-        }
+        const err = new Error("Forbidden");
+        err.status = 403;
+        err.message = "Forbidden"
+        return next(err);
     }
     else{
         const err = new Error("Event couldn't be found");

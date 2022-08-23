@@ -52,7 +52,7 @@ module.exports = (sequelize, DataTypes) => {
       ),
       User.hasMany(
         models.Membership,
-        {foreignKey:'memberId',onDelete:'CASCADE', hooks:true}
+        {foreignKey:'memberId',onDelete:'CASCADE', hooks:true, as: 'Membership'}
       ),
       User.hasMany(
         models.Attendee,
