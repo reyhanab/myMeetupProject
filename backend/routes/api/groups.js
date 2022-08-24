@@ -20,7 +20,7 @@ const validateGroup = [
       .isIn(['Online','In person'])
       .withMessage("Type must be 'Online' or 'In person'"),
     check('private')
-        .exists({ checkFalsy: true })
+        .exists()
         .isBoolean()
         .withMessage('Private must be a boolean'),
     check('city')
@@ -111,7 +111,19 @@ const validateGroup = [
   ]
 //get all groups
 router.get('/', async (req,res)=>{
-    const Groups = await Group.findAll()
+    const Groups = await Group.findAll({
+        group: ['Group.id'],
+        attributes:{
+            include:[[
+                sequelize.fn("COUNT", sequelize.col("Memberships.id")),
+                "numMembers"
+            ]]
+        },
+        include:
+            {   model:Membership,
+                attributes:[]
+            }
+    })
     res.json({Groups})
 })
 //get details of a group
@@ -394,28 +406,39 @@ router.get('/:groupId/memberships', async (req,res,next)=>{
 
                     include:{
                         model: Membership,
-                        as: 'Membership',
-                        attributes:['status'],
+
+                        attributes:[],
                         where:{groupId},
                         // group: ['status']
                         // raw:true
                     }
-
                 })
+                for (const user of Members){
+                    const {id} = user
+                    const membership = await Membership.findOne({where:{memberId:id, groupId},
+                    attributes:['status']})
+                    user.dataValues.Membership = membership
+                }
                 return res.json({Members})
 
             }
         }
                 const Members = await User.findAll({
                     attributes:['id', 'firstName', 'lastName'],
-                    include:{
-                        model: Membership,
-                        as: 'Membership',
-                        attributes:['status'],
-                        where:{groupId, status:['co-host','member']},
+                    // include:{
+                    //     model: Membership,
+                    //     as: 'Membership',
+                    //     attributes:['status'],
+                    //     where:{groupId, status:['co-host','member']},
 
-                    }
+                    // }
                 })
+                for (const user of Members){
+                    const {id} = user
+                    const membership = await Membership.findOne({where:{memberId:id, groupId},
+                    attributes:['status']})
+                    user.dataValues.Membership = membership
+                }
                 return res.json({Members})
 
 

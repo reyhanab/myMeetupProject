@@ -41,11 +41,18 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'Attendee',
-    defaultScope:{
-      attributes:{
-        include:['userId','eventId','status' ]
-      }
-    }
+    // defaultScope:{
+    //   attributes:{
+    //     exclude:['createdAt', 'updatedAt', 'EventId', 'UserId']
+    //   }
+    // },
+    // scopes:{
+    //   updateAttendee:{
+    //     attributes:{
+    //       exclude:['createdAt', 'updatedAt', 'EventId', 'UserId']
+    //     }
+    //   }
+    // }
   });
   return Attendee;
 };

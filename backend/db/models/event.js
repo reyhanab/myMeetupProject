@@ -18,10 +18,10 @@ module.exports = (sequelize, DataTypes) => {
         models.Venue,
         {foreignKey:'venueId'}
       ),
-      Event.belongsToMany(
-        models.User,
-        {through:models.Attendee}
-      ),
+      // Event.belongsToMany(
+      //   models.User,
+      //   {through:models.Attendee}
+      // ),
       Event.hasMany(
         models.Attendee,
         {foreignKey:'eventId',onDelete:'CASCADE', hooks:true}

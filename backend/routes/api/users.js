@@ -52,7 +52,7 @@ const validateSignup = [
 );
 
 // Get the Current User
-router.get('/:userId',[restoreUser,requireAuth],async (req, res,next) => {
+router.get('/:userId',requireAuth,async (req, res,next) => {
   const { user } = req;
   if (user) {
     const {id, firstName, lastName, email} = user

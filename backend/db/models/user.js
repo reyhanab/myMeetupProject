@@ -52,16 +52,16 @@ module.exports = (sequelize, DataTypes) => {
       ),
       User.hasMany(
         models.Membership,
-        {foreignKey:'memberId',onDelete:'CASCADE', hooks:true, as: 'Membership'}
+        {foreignKey:'memberId',onDelete:'CASCADE', hooks:true, }
       ),
       User.hasMany(
         models.Attendee,
-        {foreignKey:'userId',onDelete:'CASCADE', hooks:true, as: 'Attendance'}
+        {foreignKey:'userId',onDelete:'CASCADE', hooks:true, }
       ),
-      User.belongsToMany(
-        models.Event,
-        {through:models.Attendee}
-      ),
+      // User.belongsToMany(
+      //   models.Event,
+      //   {through:models.Attendee}
+      // ),
       User.hasMany(
         models.Image,
         {foreignKey:'userId',onDelete:'CASCADE', hooks:true}
