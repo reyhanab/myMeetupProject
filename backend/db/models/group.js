@@ -48,7 +48,7 @@ module.exports = (sequelize, DataTypes) => {
       }
     },
     about:{
-      type:DataTypes.STRING,
+      type:DataTypes.TEXT,
       allowNull:false,
       validate:{
         len:[50,1024]
