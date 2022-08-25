@@ -12,7 +12,7 @@ router.delete('/:imageId', requireAuth, async (req,res,next)=>{
     const image = await Image.findByPk(imageId, {
         attributes:['id','userId', 'imagableId','url']
     })
-    console.log(image)
+    
     if(image){
         const {userId} = image
         if(userId == id){
