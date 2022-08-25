@@ -17,19 +17,29 @@ const fields=[
     status:'host'
   },
   {
-    memberId: 1,
-    groupId:3,
-    status:'member'
+    memberId: 4,
+    groupId:4,
+    status:'host'
   },
   {
-    memberId: 2,
-    groupId:1,
-    status:'member'
+    memberId: 5,
+    groupId:5,
+    status:'host'
   },
   {
     memberId: 3,
     groupId:2,
     status:'co-host'
+  },
+  {
+    memberId: 4,
+    groupId:1,
+    status:'member'
+  },
+  {
+    memberId: 5,
+    groupId:4,
+    status:'member'
   }
 ]
 module.exports = {

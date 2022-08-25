@@ -15,6 +15,16 @@ const fields = [
     userId:3,
     eventId:1,
     status:'waitlist'
+  },
+  {
+    userId:4,
+    eventId:2,
+    status:'member'
+  },
+  {
+    userId:5,
+    eventId:4,
+    status:'member'
   }
 ]
 module.exports = {

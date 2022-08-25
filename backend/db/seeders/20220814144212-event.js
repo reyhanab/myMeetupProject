@@ -3,7 +3,7 @@ const {Event} = require('../models')
 const fields = [
   {
     groupId:1,
-    venueId:2,
+    venueId:1,
     name:'Sandboarding / Lake Michigan',
     description:'We will spend the first half the day Sandboarding on the sand dunes of Lake Michigan. The cost to rent a Sandboard for 4 hours is $25.',
     type:'Online',
@@ -14,7 +14,7 @@ const fields = [
   },
   {
     groupId:2,
-    venueId:1,
+    venueId:2,
     name:'Friday Night Brewery Series - Drafting Table Brewing Company',
     description:"Let's get together for some drinks.",
     type:'In person',
@@ -26,7 +26,29 @@ const fields = [
   {
     groupId:3,
     venueId:3,
-    name:'Book Club! Midnight Library by Matt Haig',
+    name:'Book Club 1! Midnight Library by Matt Haig',
+    description:"How it works: We just meet once at the end! All are welcome, even if you haven't finished (or started) the book",
+    type:'In person',
+    capacity:50,
+    price:0,
+    startDate:"2022-10-17 20:00:00",
+    endDate:"2022-10-17 22:00:00"
+  },
+  {
+    groupId:4,
+    venueId:4,
+    name:'Book Club 2! Midnight Library',
+    description:"How it works: We just meet once at the end! All are welcome, even if you haven't finished (or started) the book",
+    type:'In person',
+    capacity:50,
+    price:0,
+    startDate:"2022-10-17 20:00:00",
+    endDate:"2022-10-17 22:00:00"
+  },
+  {
+    groupId:5,
+    venueId:5,
+    name:'Book Club 3!',
     description:"How it works: We just meet once at the end! All are welcome, even if you haven't finished (or started) the book",
     type:'In person',
     capacity:50,

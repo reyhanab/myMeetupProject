@@ -28,6 +28,24 @@ const fields = [{
   private:true,
   city:'Utica',
   state:'MI'
+},
+{
+  organizerId: 4,
+  name: '20s & 30s New Friends',
+  about:"We're just people who like to have fun and meet new faces. We do all kinds of things from sports to bar-hopping to arcades. It's laid back, has cool people, and encourages you to get off your",
+  type:'Online',
+  private:false,
+  city:'Rochester',
+  state:'MI'
+},
+{
+  organizerId: 5,
+  name: 'Trailblaze Challenge Hikes',
+  about:"Welcome experienced hikers, and those who are interested in trying it out! We invite you to join us to learn more about hiking, experience Michigan trails with a group leader and learn a bit",
+  type:'In person',
+  private:true,
+  city:'Detroit',
+  state:'MI'
 }]
 module.exports = {
   async up (queryInterface, Sequelize) {

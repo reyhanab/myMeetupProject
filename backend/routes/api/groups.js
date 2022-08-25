@@ -131,6 +131,14 @@ router.get('/', async (req,res)=>{
                 attributes:[]
             }
     })
+
+    for (let group of Groups){
+        const {createdAt, updatedAt} = group
+        const createdAtObj = new Date(createdAt).toLocaleString('sv')
+        const updatedAtObj = new Date(updatedAt).toLocaleString('sv')
+        group.dataValues.createdAt = createdAtObj
+        group.dataValues.updatedAt = updatedAtObj
+    }
     res.json({Groups})
 })
 //get details of a group
@@ -167,6 +175,13 @@ router.get('/:groupId', async (req,res,next)=>{
             }
         ]
     })
+
+        const {createdAt, updatedAt} = group
+        const createdAtObj = new Date(createdAt).toLocaleString('sv')
+        const updatedAtObj = new Date(updatedAt).toLocaleString('sv')
+        group.dataValues.createdAt = createdAtObj
+        group.dataValues.updatedAt = updatedAtObj
+
         res.json(group)
     }
     else {
@@ -183,6 +198,11 @@ router.post('/',requireAuth, validateGroup, async (req,res,next)=>{
     const newGroup = await user.createGroup(req.body)
     const {id}= user
     await newGroup.createMembership({memberId:id, status:'host'})
+    const {createdAt, updatedAt} = newGroup
+        const createdAtObj = new Date(createdAt).toLocaleString('sv')
+        const updatedAtObj = new Date(updatedAt).toLocaleString('sv')
+        newGroup.dataValues.createdAt = createdAtObj
+        newGroup.dataValues.updatedAt = updatedAtObj
     res.json(newGroup)
 })
 //add an image to a group
@@ -228,6 +248,11 @@ router.put('/:groupId', requireAuth,validateGroup, async (req,res, next)=>{
         const {organizerId} = group
         if (id === organizerId){
             await group.update(req.body)
+            const {createdAt, updatedAt} = group
+            const createdAtObj = new Date(createdAt).toLocaleString('sv')
+            const updatedAtObj = new Date(updatedAt).toLocaleString('sv')
+            group.dataValues.createdAt = createdAtObj
+            group.dataValues.updatedAt = updatedAtObj
             res.json(group)
         }
         else{
@@ -356,6 +381,7 @@ router.get('/:groupId/events', async (req,res,next)=>{
                 }
             ]
         })
+        
         res.json({Events})
     }
     else{

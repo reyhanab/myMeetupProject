@@ -104,6 +104,13 @@ router.post('/signup', validateSignup,async (req, res,next) => {
       })
       group.dataValues.numMembers = countMembers
      }
+     for (let group of Groups){
+      const {createdAt, updatedAt} = group
+      const createdAtObj = new Date(createdAt).toLocaleString('sv')
+      const updatedAtObj = new Date(updatedAt).toLocaleString('sv')
+      group.dataValues.createdAt = createdAtObj
+      group.dataValues.updatedAt = updatedAtObj
+  }
      res.json({Groups})
     }
   })
