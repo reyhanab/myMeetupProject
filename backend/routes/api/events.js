@@ -49,11 +49,46 @@ const validateAttendee =[
     .not().isIn(['pending'])
     .withMessage("Cannot change a attendance status to 'pending'"),
     handleValidationErrors
-]
+];
+const validateQuery = [
+    check('page')
+        .isInt({min:0})
+        .optional("nullable")
+        .withMessage("Page must be greater than or equal to 0"),
+    check('size')
+        .isInt({min:0})
+        .optional("nullable")
+        .withMessage("Size must be greater than or equal to 0"),
+    check('name')
+        .isString()
+        .optional("nullable")
+        .withMessage("Name must be a string"),
+    check('type')
+        .isIn(['Online', 'In person'])
+        .optional("nullable")
+        .withMessage("Type must be 'Online' or 'In Person'"),
+    check('startDate')
+        .isDate()
+        .optional("nullable")
+        .withMessage("Start date must be a valid datetime"),
+    handleValidationErrors
+];
 //get all events
-router.get('/', async (req,res)=>{
+router.get('/',validateQuery, async (req,res)=>{
+
+    const size = req.query.size || 20
+    const page = req.query.page || 0
+    // const {Op} = require('sequelize')
+
     const Events = await Event.findAll({
-        group:['Group.id'],
+        // where:{
+        //     [Op.or]:[
+        //         {name : `${req.query.name || ""}`},
+        //         {type : `${req.query.type || ""}`},
+        //         {startDate : `${req.query.startDate || ""}`}
+        //     ]
+        // },
+        group:['Event.id'],
         attributes:{
             include:[[
                 sequelize.fn("COUNT", sequelize.col("Attendees.id")),
@@ -74,8 +109,12 @@ router.get('/', async (req,res)=>{
                 model:Venue,
                 attributes:['id', 'city','state']
             }
-        ]
+        ],
+        limit : size,
+        offset : size * (page-1),
+        subQuery:false
     })
+
     for (let event of Events){
         const {startDate, endDate} = event
         const startDateObj = new Date(startDate).toLocaleString('sv')
@@ -273,7 +312,7 @@ router.get('/:eventId/attendees', async (req,res,next)=>{
                 attributes:['id', 'firstName', 'lastName'],
                 include:{
                     model: Attendee,
-                    
+
                     attributes:['status'],
                     where:{eventId, status:['member', 'waitlist']},
                 }

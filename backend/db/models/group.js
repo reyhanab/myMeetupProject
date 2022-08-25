@@ -3,7 +3,7 @@ const {Model,} = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Group extends Model {
 
-  
+
     static associate(models) {
       Group.hasMany(
         models.Membership,
@@ -20,7 +20,7 @@ module.exports = (sequelize, DataTypes) => {
           as:'Images',
           constraints:false,
           scope: {
-            imagableType: 'Group'
+            imagableType: 'group'
           }
         }
       ),

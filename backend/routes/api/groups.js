@@ -58,6 +58,13 @@ const validateGroup = [
   const validateEvent = [
     check('venueId')
       .exists({ checkFalsy: true })
+      .custom((value, {req}) =>{
+        return Venue.findOne({where:{id:value, groupId: req.params.groupId}}).then(venue=>{
+            if (!venue){
+                return Promise.reject("Venue does not exist");
+            }
+        })
+      })
       .withMessage("Venue does not exist"),
     check('name')
       .exists({ checkFalsy: true })

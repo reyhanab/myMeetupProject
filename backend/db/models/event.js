@@ -31,7 +31,7 @@ module.exports = (sequelize, DataTypes) => {
         { foreignKey:'imagableId',
           constraints:false,
           scope: {
-            imagableType: 'Event'
+            imagableType: 'event'
           }
         }
       )

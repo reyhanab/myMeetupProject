@@ -42,27 +42,34 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'Image',
-    defaultScope: {
-      attributes: {
-        exclude: ["userId",'imagableType', "createdAt", "updatedAt"]
+    // defaultScope: {
+    //   attributes: {
+    //     include: ['id','userId', 'imagableId','url']
+    //   }
+    // },
+    scopes:{
+      addImage:{
+        attributes: {
+          exclude: ['userId','imagableType', "createdAt", "updatedAt"]
+        }
       }
     }
   });
-  
-  Image.addHook("afterFind", findResult => {
-    if (!Array.isArray(findResult)) findResult = [findResult];
-    for (const instance of findResult) {
-      if (instance.imagableType === "group" && instance.group !== undefined) {
-        instance.imagable = instance.group;
-      } else if (instance.imagableType === "event" && instance.event !== undefined) {
-        instance.imagable = instance.event;
-      }
-      delete instance.group;
-      delete instance.dataValues.group;
-      delete instance.event;
-      delete instance.dataValues.event;
-    }
-  });
+
+  // Image.addHook("afterFind", findResult => {
+  //   if (!Array.isArray(findResult)) findResult = [findResult];
+  //   for (const instance of findResult) {
+  //     if (instance.imagableType === "group" && instance.group !== undefined) {
+  //       instance.imagable = instance.group;
+  //     } else if (instance.imagableType === "event" && instance.event !== undefined) {
+  //       instance.imagable = instance.event;
+  //     }
+  //     delete instance.group;
+  //     delete instance.dataValues.group;
+  //     delete instance.event;
+  //     delete instance.dataValues.event;
+  //   }
+  // });
   return Image;
 };
 
