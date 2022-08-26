@@ -46,13 +46,13 @@ module.exports = (sequelize, DataTypes) => {
     //     exclude:['createdAt', 'updatedAt', 'EventId', 'UserId']
     //   }
     // },
-    // scopes:{
-    //   updateAttendee:{
-    //     attributes:{
-    //       exclude:['createdAt', 'updatedAt', 'EventId', 'UserId']
-    //     }
-    //   }
-    // }
+    scopes:{
+      requestAttendee:{
+        attributes:{
+          exclude:['createdAt', 'updatedAt', 'id']
+        }
+      }
+    }
   });
   return Attendee;
 };

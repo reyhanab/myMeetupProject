@@ -58,13 +58,13 @@ const validateGroup = [
   const validateEvent = [
     check('venueId')
       .exists({ checkFalsy: true })
-      .custom((value, {req}) =>{
-        return Venue.findOne({where:{id:value, groupId: req.params.groupId}}).then(venue=>{
-            if (!venue){
-                return Promise.reject("Venue does not exist");
-            }
-        })
-      })
+    //   .custom((value, {req}) =>{
+    //     return Venue.findOne({where:{id:value, groupId: req.params.groupId}}).then(venue=>{
+    //         if (!venue){
+    //             return Promise.reject("Venue does not exist");
+    //         }
+    //     })
+    //   })
       .withMessage("Venue does not exist"),
     check('name')
       .exists({ checkFalsy: true })
@@ -120,6 +120,7 @@ const validateGroup = [
 router.get('/', async (req,res)=>{
     const Groups = await Group.findAll({
         group: ['Group.id'],
+        order:['id'],
         attributes:{
             include:[[
                 sequelize.fn("COUNT", sequelize.col("Memberships.id")),
@@ -154,7 +155,8 @@ router.get('/:groupId', async (req,res,next)=>{
             ]],
             exclude:['previewImage']
         },
-        group: ["Images.id", 'Venues.id'],
+        group: ['Group.id','Images.id', 'Venues.id'],
+        // group: ['Group.id'],
         include:[
             {   model:Membership,
                 attributes:[]
@@ -194,10 +196,11 @@ router.get('/:groupId', async (req,res,next)=>{
 })
 //create a group
 router.post('/',requireAuth, validateGroup, async (req,res,next)=>{
-    const {user}= req
-    const newGroup = await user.createGroup(req.body)
-    const {id}= user
+    const {id}= req.user
+    const {name,about,type,private,city,state} = req.body
+    const newGroup = await Group.scope('editResponse').create({organizerId:id,name,about,type,private,city,state })
     await newGroup.createMembership({memberId:id, status:'host'})
+
     const {createdAt, updatedAt} = newGroup
         const createdAtObj = new Date(createdAt).toLocaleString('sv')
         const updatedAtObj = new Date(updatedAt).toLocaleString('sv')
@@ -279,6 +282,10 @@ router.delete('/:groupId', requireAuth, async (req,res,next)=>{
         const {organizerId} = group
         if (id === organizerId){
             await group.destroy()
+            const images = await Image.findAll({where:{imagableId:req.params.groupId, imagableType:'group'}})
+            for (let image of images){
+                await image.destroy()
+            }
             res.send({
                 "message": "Successfully deleted",
                 "statusCode": 200
@@ -381,7 +388,7 @@ router.get('/:groupId/events', async (req,res,next)=>{
                 }
             ]
         })
-        
+
         res.json({Events})
     }
     else{
@@ -397,6 +404,22 @@ router.post('/:groupId/events', requireAuth,validateEvent, async (req,res,next)=
     const groupId = req.params.groupId
     const group = await Group.findByPk(groupId)
     if (group){
+        const {venueId} = req.body
+        const venue = await Venue.findByPk(venueId)
+        if (!venue){
+            const err = new Error("Venue couldn't be found");
+            err.status = 404;
+            err.message = "Venue couldn't be found"
+            return next(err);
+        }
+        const {groupId} = venue
+        if(groupId != req.params.groupId){
+            const err = new Error("Venue doesn't belong to this group");
+            err.status = 404;
+            err.message = "Venue doesn't belong to this group"
+            return next(err);
+        }
+
         const {id} = user
         const membership = await Membership.findOne({where:{memberId:id, groupId}})
         if (membership){
@@ -439,11 +462,8 @@ router.get('/:groupId/memberships', async (req,res,next)=>{
 
                     include:{
                         model: Membership,
-
                         attributes:[],
                         where:{groupId},
-                        // group: ['status']
-                        // raw:true
                     }
                 })
                 for (const user of Members){
@@ -458,13 +478,12 @@ router.get('/:groupId/memberships', async (req,res,next)=>{
         }
                 const Members = await User.findAll({
                     attributes:['id', 'firstName', 'lastName'],
-                    // include:{
-                    //     model: Membership,
-                    //     as: 'Membership',
-                    //     attributes:['status'],
-                    //     where:{groupId, status:['co-host','member']},
+                    include:{
+                        model: Membership,
+                        attributes:[],
+                        where:{groupId, status:['co-host','member','host']},
 
-                    // }
+                    }
                 })
                 for (const user of Members){
                     const {id} = user
@@ -535,7 +554,11 @@ router.put('/:groupId/memberships',requireAuth,validateMembership, async (req,re
                 const {status} = userMembership
                 if (status === 'co-host'|| status === 'host'){
                     await membership.update(req.body)
-                    return res.json(membership)
+                    const {id} = membership
+                    const response = await Membership.findByPk(id, {
+                        attributes:['id','memberId','groupId','status']
+                    })
+                    return res.json(response)
                 }
             }
             else if (status === 'co-host'){
@@ -543,7 +566,11 @@ router.put('/:groupId/memberships',requireAuth,validateMembership, async (req,re
                 const {status} = userMembership
                 if (status === 'host'){
                     await membership.update(req.body)
-                    return res.json(membership)
+                    const {id} = membership
+                    const response = await Membership.findByPk(id, {
+                        attributes:['id','memberId','groupId','status']
+                    })
+                    return res.json(response)
                 }
             }
             const err = new Error("Forbidden");

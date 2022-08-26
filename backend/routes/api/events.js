@@ -45,6 +45,16 @@ const validateEvent = [
     handleValidationErrors
   ];
 const validateAttendee =[
+    check('userId')
+    .exists({checkFalsy:true})
+    .custom(value =>{
+        return User.findOne({where:{id:value}}).then(user => {
+            if (!user) {
+              return Promise.reject("User couldn't be found");
+            }
+          })
+    })
+    .withMessage("User couldn't be found"),
     check('status')
     .not().isIn(['pending'])
     .withMessage("Cannot change a attendance status to 'pending'"),
@@ -78,17 +88,18 @@ router.get('/',validateQuery, async (req,res)=>{
 
     const size = req.query.size || 20
     const page = req.query.page || 0
-    // const {Op} = require('sequelize')
+    const {Op} = require('sequelize')
 
     const Events = await Event.findAll({
         // where:{
         //     [Op.or]:[
         //         {name : `${req.query.name || ""}`},
         //         {type : `${req.query.type || ""}`},
-        //         {startDate : `${req.query.startDate || ""}`}
+        //         {startDate : `${req.query.startDate || ""}`},
+        //         {}
         //     ]
         // },
-        group:['Event.id'],
+        group:['Event.id','Group.id'],
         attributes:{
             include:[[
                 sequelize.fn("COUNT", sequelize.col("Attendees.id")),
@@ -128,7 +139,7 @@ router.get('/',validateQuery, async (req,res)=>{
 router.get('/:eventId', async (req,res,next)=>{
     const eventId = req.params.eventId
     const event = await Event.findByPk(eventId, {
-        group:['Images.id'],
+        group:['Event.id','Images.id'],
         attributes:{
             include:[[
                 sequelize.fn("COUNT", sequelize.col("Attendees.id")),
@@ -210,17 +221,26 @@ router.put('/:eventId', requireAuth,validateEvent, async (req,res, next)=>{
     const eventId = req.params.eventId
     const {user} = req
     const event = await Event.scope('createEvent').findByPk(eventId)
-    const {venueId} = req.body
-    const venue = await Venue.findByPk(venueId)
-    if (!venue){
-        const err = new Error("Venue couldn't be found");
-        err.status = 404;
-        err.message = "Venue couldn't be found"
-        return next(err);
-    }
     if (event){
         const{groupId} = event
+        const eventGroupId = groupId
         const {id} = user
+        const {venueId} = req.body
+        const venue = await Venue.findByPk(venueId)
+        if (!venue){
+            const err = new Error("Venue couldn't be found");
+            err.status = 404;
+            err.message = "Venue couldn't be found"
+            return next(err);
+        }else{
+            const {groupId} = venue
+            if(groupId != eventGroupId){
+                const err = new Error("Venue doesn't belong to this group");
+                err.status = 404;
+                err.message = "Venue doesn't belong to this group"
+                return next(err);
+            }
+        }
         const membership = await Membership.findOne({where:{memberId:id, groupId}})
         if (membership){
             const {status}= membership
@@ -260,6 +280,10 @@ router.delete('/:eventId', requireAuth, async (req,res,next)=>{
             const {status}= membership
             if (status === 'host'|| status === "co-host"){
             await event.destroy()
+            const images = await Image.findAll({where:{imagableId:eventId, imagableType:'event'}})
+            for (let image of images){
+                await image.destroy()
+            }
             return res.send({
                 "message": "Successfully deleted"
               })
@@ -293,11 +317,9 @@ router.get('/:eventId/attendees', async (req,res,next)=>{
                     attributes:['id', 'firstName', 'lastName'],
                     include :{
                         model:Attendee,
-                        as: 'Attendance',
                         attributes:[],
                         where:{eventId}
                     }
-
                 })
                 for (const user of Attendees){
                     const {id} = user
@@ -312,11 +334,16 @@ router.get('/:eventId/attendees', async (req,res,next)=>{
                 attributes:['id', 'firstName', 'lastName'],
                 include:{
                     model: Attendee,
-
-                    attributes:['status'],
+                    attributes:[],
                     where:{eventId, status:['member', 'waitlist']},
                 }
             })
+            for (const user of Attendees){
+                const {id} = user
+                const attendee = await Attendee.findOne({where:{userId:id, eventId},
+                attributes:['status']})
+                user.dataValues.Attendance = attendee
+            }
             return res.json({Attendees})
     }
     else{
@@ -331,6 +358,7 @@ router.post('/:eventId/attendees',requireAuth, async(req,res,next)=>{
     const eventId = req.params.eventId
     const {user} = req
     const {id} = user
+    const userId = id
     const event = await Event.findByPk(eventId)
     if(event){
         const{groupId} = event
@@ -352,9 +380,9 @@ router.post('/:eventId/attendees',requireAuth, async(req,res,next)=>{
                     return next(err);
                 }
             }else{
-                const newAttendee = await Attendee.create({userId:id,eventId,status:'pending'})
+                const newAttendee = await Attendee.create({userId,eventId,status:'pending'})
                 const {id} = newAttendee
-                const response = await Attendee.findByPk(id)
+                const response = await Attendee.scope('requestAttendee').findByPk(id)
                 res.json(response)
             }
         }
@@ -387,7 +415,14 @@ router.put('/:eventId/attendees', requireAuth,validateAttendee, async (req,res, 
                     const attendee = await Attendee.findOne({where:{userId,eventId},
                     attributes:['id','userId', 'eventId','status','createdAt','updatedAt']})
                     if (attendee){
-                        const {id} = attendee
+                        const {id, status} = attendee
+                        if (status === 'member'){
+                            const err = new Error("Failed");
+                            err.status = 400;
+                            err.message = "User is already an attendee of the event"
+                            return next(err);
+                        }
+
                         await attendee.update({status})
                         const response = await Attendee.findByPk(id, {
                             attributes:['id', 'userId','eventId','status']

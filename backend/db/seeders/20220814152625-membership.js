@@ -40,6 +40,11 @@ const fields=[
     memberId: 5,
     groupId:4,
     status:'member'
+  },
+  {
+    memberId: 1,
+    groupId:4,
+    status:'pending'
   }
 ]
 module.exports = {
