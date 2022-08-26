@@ -155,7 +155,7 @@ router.get('/:groupId', async (req,res,next)=>{
             ]],
             exclude:['previewImage']
         },
-        group: ['Group.id','Images.id', 'Venues.id'],
+        group: ['Group.id','Images.id', 'Venues.id', 'Organizer.id'],
         // group: ['Group.id'],
         include:[
             {   model:Membership,
@@ -196,17 +196,25 @@ router.get('/:groupId', async (req,res,next)=>{
 })
 //create a group
 router.post('/',requireAuth, validateGroup, async (req,res,next)=>{
-    const {id}= req.user
-    const {name,about,type,private,city,state} = req.body
-    const newGroup = await Group.scope('editResponse').create({organizerId:id,name,about,type,private,city,state })
+    const {user}= req
+    const {id} = user
+    const newGroup = await user.createGroup(req.body)
     await newGroup.createMembership({memberId:id, status:'host'})
-
-    const {createdAt, updatedAt} = newGroup
+    if(newGroup){
+        const {id} = newGroup
+        const response = await Group.findByPk(id, {
+            attributes:{
+                exclude:['createdAt', 'updatedAt', 'previewImage']
+            }
+        })
+        const {createdAt, updatedAt} = response
         const createdAtObj = new Date(createdAt).toLocaleString('sv')
         const updatedAtObj = new Date(updatedAt).toLocaleString('sv')
-        newGroup.dataValues.createdAt = createdAtObj
-        newGroup.dataValues.updatedAt = updatedAtObj
-    res.json(newGroup)
+        response.dataValues.createdAt = createdAtObj
+        response.dataValues.updatedAt = updatedAtObj
+        res.json(response)
+    }
+
 })
 //add an image to a group
 router.post('/:groupId/images', requireAuth,validateImage, async (req,res,next)=>{
@@ -365,7 +373,7 @@ router.get('/:groupId/events', async (req,res,next)=>{
     if (group){
         const Events = await Event.findAll({
             where:{groupId},
-            group:['Group.id'],
+            group:['Event.id','Group.id', 'Venue.id'],
             attributes:{
                 include:[[
                     sequelize.fn("COUNT", sequelize.col("Attendees.id")),

@@ -99,7 +99,7 @@ router.get('/',validateQuery, async (req,res)=>{
         //         {}
         //     ]
         // },
-        group:['Event.id','Group.id'],
+        group:['Event.id','Group.id','Venue.id'],
         attributes:{
             include:[[
                 sequelize.fn("COUNT", sequelize.col("Attendees.id")),
@@ -139,7 +139,7 @@ router.get('/',validateQuery, async (req,res)=>{
 router.get('/:eventId', async (req,res,next)=>{
     const eventId = req.params.eventId
     const event = await Event.findByPk(eventId, {
-        group:['Event.id','Images.id'],
+        group:['Event.id','Images.id','Group.id', 'Venue.id'],
         attributes:{
             include:[[
                 sequelize.fn("COUNT", sequelize.col("Attendees.id")),
