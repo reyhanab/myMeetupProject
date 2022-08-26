@@ -204,7 +204,7 @@ router.post('/',requireAuth, validateGroup, async (req,res,next)=>{
         const {id} = newGroup
         const response = await Group.findByPk(id, {
             attributes:{
-                exclude:['createdAt', 'updatedAt', 'previewImage']
+                exclude:['previewImage']
             }
         })
         const {createdAt, updatedAt} = response
