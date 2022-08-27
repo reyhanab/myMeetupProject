@@ -566,15 +566,18 @@ router.put('/:groupId/memberships',requireAuth,validateMembership, async (req,re
         if (membership){
             if (status === 'member'){
                 const userMembership = await Membership.findOne({where:{memberId:id,groupId}})
-                const {status} = userMembership
-                if (status === 'co-host'|| status === 'host'){
-                    await membership.update(req.body)
-                    const {id} = membership
-                    const response = await Membership.findByPk(id, {
-                        attributes:['id','memberId','groupId','status']
-                    })
-                    return res.json(response)
+                if (userMembership){
+                    const {status} = userMembership
+                    if (status === 'co-host'|| status === 'host'){
+                        await membership.update(req.body)
+                        const {id} = membership
+                        const response = await Membership.findByPk(id, {
+                            attributes:['id','memberId','groupId','status']
+                        })
+                        return res.json(response)
+                    }
                 }
+
             }
             else if (status === 'co-host'){
                 const userMembership = await Membership.findOne({where:{memberId:id,groupId}})
@@ -613,22 +616,29 @@ router.delete('/:groupId/memberships', requireAuth,validateMembership, async (re
     const group = await Group.findByPk(groupId)
     if (group){
         const userMembership = await Membership.findOne({where:{memberId:id, groupId}})
-        const {status} = userMembership
-        if (status === 'host' || id === memberId){
-            const membership = await Membership.findOne({where:{memberId, groupId}})
-            if (membership){
-                await membership.destroy()
-                return res.send({
-                    "message": "Successfully deleted membership from group"
-                  })
-            }
-            else{
-                const err = new Error("Faild");
-                err.status = 404;
-                err.message = "Membership does not exist for this User"
-                return next(err);
+        if(userMembership){
+            const {status} = userMembership
+            if (status === 'host' || id === memberId){
+                const membership = await Membership.findOne({where:{memberId, groupId}})
+                if (membership){
+                    await membership.destroy()
+                    return res.send({
+                        "message": "Successfully deleted membership from group"
+                      })
+                }
+                else{
+                    const err = new Error("Faild");
+                    err.status = 404;
+                    err.message = "Membership does not exist for this User"
+                    return next(err);
+                }
             }
         }
+        const err = new Error("Forbidden");
+        err.status = 403;
+        err.message = "Forbidden"
+        return next(err);
+
     }
     else{
         const err = new Error("Group couldn't be found");

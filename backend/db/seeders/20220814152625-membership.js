@@ -45,7 +45,24 @@ const fields=[
     memberId: 1,
     groupId:4,
     status:'pending'
-  }
+  },
+  {
+    memberId: 1,
+    groupId:5,
+    status:'pending'
+  },
+  {
+    memberId: 1,
+    groupId:3,
+    status:'member'
+  },
+  {
+    memberId: 2,
+    groupId:5,
+    status:'member'
+  },
+ 
+
 ]
 module.exports = {
   async up (queryInterface, Sequelize) {

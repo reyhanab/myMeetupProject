@@ -35,6 +35,16 @@ const fields = [
     userId:5,
     eventId:4,
     status:'pending'
+  },
+  {
+    userId:4,
+    eventId:1,
+    status:'pending'
+  },
+  {
+    userId:1,
+    eventId:3,
+    status:'member'
   }
 ]
 module.exports = {

@@ -425,7 +425,7 @@ router.put('/:eventId/attendees', requireAuth,validateAttendee, async (req,res, 
                             return next(err);
                         }
 
-                        await attendee.update({status})
+                        await attendee.update({status:'member'})
                         const response = await Attendee.findByPk(id, {
                             attributes:['id', 'userId','eventId','status']
                         })

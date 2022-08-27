@@ -50,6 +50,12 @@ const validateSignup = [
     return res.json(user);
   }
 );
+//log out
+router.delete('/logout',(_req, res) => {
+  res.clearCookie('token');
+  return res.json({ message: 'success' });
+}
+);
 
 // Get the Current User
 router.get('/:userId',requireAuth,async (req, res,next) => {
