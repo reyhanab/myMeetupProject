@@ -396,6 +396,13 @@ router.get('/:groupId/events', async (req,res,next)=>{
                 }
             ]
         })
+        for (let event of Events){
+            const {startDate, endDate} = event
+            const startDateObj = new Date(startDate).toLocaleString('sv')
+            const endDateObj = new Date(endDate).toLocaleString('sv')
+            event.dataValues.startDate = startDateObj
+            event.dataValues.endDate = endDateObj
+        }
 
         res.json({Events})
     }

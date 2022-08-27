@@ -88,6 +88,7 @@ router.get('/',validateQuery, async (req,res)=>{
 
     const size = req.query.size || 20
     const page = req.query.page || 0
+
     const {Op} = require('sequelize')
 
     const Events = await Event.findAll({
@@ -122,7 +123,8 @@ router.get('/',validateQuery, async (req,res)=>{
             }
         ],
         limit : size,
-        offset : size * (page-1),
+        // offset : size * (page-1),
+        offset: page > 0 ? (size * (page-1)) : 0,
         subQuery:false
     })
 
