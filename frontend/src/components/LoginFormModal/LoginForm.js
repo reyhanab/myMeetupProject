@@ -12,10 +12,6 @@ function LoginForm(){
     const [errors, setErrors] = useState([])
     const sessionUser = useSelector(state=>state.session.user)
 
-    // if (sessionUser)return (
-    //     <Redirect to="/" />
-    //   );
-
     const onSubmit = (e)=>{
         e.preventDefault();
         setErrors([])

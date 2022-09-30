@@ -6,13 +6,18 @@ import './Navigation.css';
 import LoginForm from '../LoginFormModal/LoginForm';
 import LoginFormModal from '../LoginFormModal';
 import SignupFormModal from '../SignupFormModal';
+import logo from './images/logo.png'
+
 
 function Navigation (isLoaded){
     const sessionUser = useSelector(state => state.session.user)
     let sessionLinks;
     if(sessionUser){
         sessionLinks = (
-            <ProfileButton user={sessionUser}/>
+            <>
+            <NavLink className='startGroup' to='/start/group'>Start a new group!</NavLink>
+            <ProfileButton className='profileButton' user={sessionUser}/>
+            </>
         )
     }else{
         sessionLinks = (
@@ -23,12 +28,15 @@ function Navigation (isLoaded){
         )
     }
     return (
-        <ul>
-            <li>
-                <NavLink exact to='/'>Home Page</NavLink>
+
+            <div className='nav'>
+                <NavLink exact to='/'>
+                    <img className='logo' src={logo}/>
+                </NavLink>
                 {isLoaded && sessionLinks}
-            </li>
-        </ul>
+            </div>
+
+
     )
 }
 export default Navigation;
