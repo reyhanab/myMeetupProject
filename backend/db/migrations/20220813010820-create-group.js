@@ -18,7 +18,7 @@ module.exports = {
         onDelete:'cascade'
       },
       name: {
-        type: Sequelize.STRING(30),
+        type: Sequelize.STRING(60),
         allowNull:false
       },
       about: {
@@ -34,7 +34,7 @@ module.exports = {
         allowNull:false
       },
       city: {
-        type: Sequelize.STRING(30),
+        type: Sequelize.STRING(60),
         allowNull:false
       },
       state: {
