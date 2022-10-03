@@ -1,19 +1,22 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import { editGroup } from "../../store/group";
 
 
+
 function EditGroupPage(){
     const {groupId} = useParams()
+    const groups = useSelector(state=> state.group)
+    const group = groups[groupId]
     const history = useHistory()
     const dispatch = useDispatch()
-    const [name, setName] = useState('');
-    const [about, setAbout] = useState('');
-    const [type, setType] = useState('Online');
-    const [privateBool, setPrivateBool] = useState(false);
-    const [city, setCity] = useState('');
-    const [state, setState] = useState('');
+    const [name, setName] = useState(group?.name);
+    const [about, setAbout] = useState(group?.about);
+    const [type, setType] = useState(group?.type);
+    const [privateBool, setPrivateBool] = useState(group?.private);
+    const [city, setCity] = useState(group?.city);
+    const [state, setState] = useState(group?.state);
     const [errors, setErrors] = useState([])
 
     const handleSubmit = async (e)=>{

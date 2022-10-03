@@ -8,7 +8,7 @@ module.exports = {
         email: 'user1@user.io',
         firstName: 'Reyhaneh',
         lastName: 'Abdollahi',
-        password: bcrypt.hashSync('password')
+        password: bcrypt.hashSync('password1')
       },
       {
         email: 'user2@user.io',
@@ -21,6 +21,18 @@ module.exports = {
         firstName: 'Alice',
         lastName: 'Smith',
         password: bcrypt.hashSync('password3')
+      },
+      {
+        email: 'user4@user.io',
+        firstName: 'Don',
+        lastName: 'Hall',
+        password: bcrypt.hashSync('password4')
+      },
+      {
+        email: 'user5@user.io',
+        firstName: 'Steve',
+        lastName: 'Young',
+        password: bcrypt.hashSync('password5')
       }
     ], {validate:true})
   },
@@ -28,7 +40,7 @@ module.exports = {
   async down (queryInterface, Sequelize) {
     const Op = Sequelize.Op;
     await queryInterface.bulkDelete('Users', {
-      email: { [Op.in]: ['demo@user.io', 'user1@user.io', 'user2@user.io'] }
+      email: { [Op.in]: ['user1@user.io', 'user2@user.io', 'user3@user.io', 'user4@user.io', 'user5@user.io'] }
     });
   }
 };

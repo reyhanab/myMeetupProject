@@ -1,0 +1,22 @@
+.group-input-form{
+    display: flex;
+    flex-direction: column;
+    border: 1px solid gray;
+
+}
+.group-div-input{
+    margin: 10px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+}
+.group-label{
+   color: rgb(9, 70, 70);
+   grid-column: 1;
+
+}
+.group-input{
+    grid-column: 2;
+    width: 200px;
+    height: 20px;
+}

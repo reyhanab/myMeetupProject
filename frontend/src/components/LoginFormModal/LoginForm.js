@@ -15,36 +15,42 @@ function LoginForm(){
     const onSubmit = (e)=>{
         e.preventDefault();
         setErrors([])
-        return dispatch(login({email,password})).catch(async (res)=>{
-            const data = await res.json()
-            if(data && data.errors) setErrors(data.errors)
-        })
+        // return dispatch(login({email,password})).catch(async (res)=>{
+        //     const data = await res.json()
+        //     if(data && data.errors) setErrors(data.errors)
+        // })
+        dispatch(login({email,password}))
+        history.push('/')
     }
     return (
-        <form onSubmit={onSubmit}>
+        <form className="login-form" onSubmit={onSubmit}>
             <ul>
                 {errors.map(error=>{
                     <li key={error}>{error}</li>
                 })}
             </ul>
-            <label>
+            <label className="email">
                 Email:
                 <input
+                className="email-input"
                 type='text'
                 value={email}
                 onChange={e=> setEmail(e.target.value)}
                 />
             </label>
-            <label>
+            <label className="password">
                 Password:
                 <input
+                className="password-input"
                 type='password'
                 value={password}
                 onChange={e=>setPassword(e.target.value)}
                 required
                 />
             </label>
-            <button type="submit">Log In</button>
+            <button
+            className="login-form-button"
+            type="submit">Log In</button>
         </form>
     )
 }

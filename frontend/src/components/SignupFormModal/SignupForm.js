@@ -31,13 +31,13 @@ function SignupForm(){
     }
 
     return (
-        <form onSubmit={onSubmit}>
+        <form className="signup-form" onSubmit={onSubmit}>
             <ul>
                 {errors.map(error=>{
                     <li key={error}>{error}</li>
                 })}
             </ul>
-            <label>
+            <label className="firstName">
                 FirstName:
                 <input
                 type='text'
@@ -45,7 +45,7 @@ function SignupForm(){
                 onChange={e=> setFirstName(e.target.value)}
                 />
             </label>
-            <label>
+            <label className="lastName">
                 lastName:
                 <input
                 type='text'
@@ -53,7 +53,7 @@ function SignupForm(){
                 onChange={e=> setLastName(e.target.value)}
                 />
             </label>
-            <label>
+            <label className="email-signup">
                 Email:
                 <input
                 type='email'
@@ -61,7 +61,7 @@ function SignupForm(){
                 onChange={e=> setEmail(e.target.value)}
                 />
             </label>
-            <label>
+            <label className="password-signup">
                 Password:
                 <input
                 type='password'
@@ -69,7 +69,7 @@ function SignupForm(){
                 onChange={e=> setPassword(e.target.value)}
                 />
             </label>
-            <label>
+            <label className="confirm-password">
                 Confirm Password:
                 <input
                 type='password'
@@ -77,7 +77,8 @@ function SignupForm(){
                 onChange={e=> setConfirmPassword(e.target.value)}
                 />
             </label>
-            <button type="submit">Sign up</button>
+            <button className="signup-form-button" type="submit">Sign up</button>
+
         </form>
     )
 }

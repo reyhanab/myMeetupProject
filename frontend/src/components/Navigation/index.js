@@ -11,12 +11,13 @@ import logo from './images/logo.png'
 
 function Navigation (isLoaded){
     const sessionUser = useSelector(state => state.session.user)
+    const depthLevel = 0;
     let sessionLinks;
     if(sessionUser){
         sessionLinks = (
             <>
             <NavLink className='startGroup' to='/start/group'>Start a new group!</NavLink>
-            <ProfileButton className='profileButton' user={sessionUser}/>
+            <ProfileButton className='profileButton' user={sessionUser} depthLevel={depthLevel}/>
             </>
         )
     }else{

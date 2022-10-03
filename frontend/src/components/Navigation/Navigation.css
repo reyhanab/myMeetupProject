@@ -1,6 +1,6 @@
 .nav{
     display: grid;
-    grid-template-columns: 10% 70% 15% 5%;
+    grid-template-columns: 10% 65% 15% 10%;
     border-bottom: solid 1px rgb(215, 211, 211);
     padding: 10px;
     padding-top: 12px;
@@ -27,3 +27,29 @@
     height: 50px;
 
 }
+.login-link{
+    text-decoration: none;
+    color: rgb(83, 81, 81);
+    grid-column: 3;
+    margin-left: 40px;
+    font-weight: bold;
+    font-size: 15px;
+    padding-top: 10px;
+}
+ .signup-link{
+    text-decoration: none;
+    grid-column: 4;
+    color: rgb(83, 81, 81);
+    font-weight: bold;
+    font-size: 15px;
+   padding-top: 10px;
+ }
+ .profile-dropdown{
+
+ }
+ .login-link:hover{
+    color:rgba(254, 5, 5, 0.984);
+ }
+ .signup-link:hover{
+    color:rgba(254, 5, 5, 0.984);
+ }

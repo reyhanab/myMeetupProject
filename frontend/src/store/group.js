@@ -89,6 +89,7 @@ const groupReducer = (state = initialState,action)=>{
             return {...state, [action.payload.id]: action.payload}
         default:
             return state
+
     }
 }
 

@@ -1,0 +1,21 @@
+.group-image-background{
+    filter: opacity(30%);
+    position: fixed;
+    z-index: 0;
+    width:100%;
+    height: 100%;
+    object-fit: contain;
+
+}
+.group-detail-div{
+    margin-top: 200px;
+    margin-left: 40px;
+    position: fixed;
+    z-index: 1;
+}
+.edit-delete-div{
+    margin-left: 40px;
+    margin-top: 680px;
+    position: fixed;
+    z-index: 1;
+}
