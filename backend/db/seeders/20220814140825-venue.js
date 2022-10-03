@@ -1,23 +1,9 @@
 'use strict';
 const {Venue} = require ('../models')
-<<<<<<< HEAD
-const fields = [
-  {
-    groupId: 1,
-    address: "49438 North Trail",
-    city: "Royal Oak",
-    state:"MI",
-    lat:4.7645358,
-    lng:15.573032
-  },
-  {
-  groupId: 2,
-  address: "14741 23 mile Road",
-=======
+
 const fields = [{
   groupId: 1,
   address: "14741 13 mile Road",
->>>>>>> dev
   city: "Royal Oak",
   state:"MI",
   lat:37.7645358,
@@ -26,25 +12,15 @@ const fields = [{
 {
   groupId: 2,
   address: "12032 Red Arrow Hwy",
-<<<<<<< HEAD
-  city: "Utica",
-=======
   city: "Royal Oak",
->>>>>>> dev
   state:"MI",
   lat:56.7645358,
   lng:122.573032
 },
 {
-<<<<<<< HEAD
-  groupId: 4,
-  address: "49438 South Trail",
-  city: "Rochester",
-=======
   groupId: 3,
   address: "49438 Hall Rd",
   city: "Utica",
->>>>>>> dev
   state:"MI",
   lat:13.7645358,
   lng:15.573032

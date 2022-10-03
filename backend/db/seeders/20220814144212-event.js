@@ -28,15 +28,6 @@ const fields = [
   {
     groupId:3,
     venueId:3,
-<<<<<<< HEAD
-    name:'Book Club 1! Midnight Library by Matt Haig',
-    description:"How it works: We just meet once at the end! All are welcome, even if you haven't finished (or started) the book",
-    type:'In person',
-    capacity:50,
-    price:0,
-    startDate:"2022-10-17 20:00:00",
-    endDate:"2022-10-17 22:00:00"
-=======
     name:'Friday Night Out',
     description:"Let's get together for some drinks.",
     type:'In person',
@@ -45,20 +36,10 @@ const fields = [
     startDate:"2022-11-19 20:00:00",
     endDate:"2022-11-19 22:00:00",
     previewImage:"http://localhost:8080/events/drinks.jpg"
->>>>>>> dev
   },
   {
     groupId:4,
     venueId:4,
-<<<<<<< HEAD
-    name:'Book Club 2! Midnight Library',
-    description:"How it works: We just meet once at the end! All are welcome, even if you haven't finished (or started) the book",
-    type:'In person',
-    capacity:50,
-    price:0,
-    startDate:"2022-10-17 20:00:00",
-    endDate:"2022-10-17 22:00:00"
-=======
     name:'Yoga Tour To India',
     description:"Yoga tours by India provide a unique life-changing experience this tour for travelers in a very customize and colorful way this tour is mainly for yoga enthusiasts. Delhi, Jaipur, Fatehpur Sikri, Agra & Varanasi are the covering destination of this tour to make this tour more wonderful, to see the Glimpses of the river Ganges.",
     type:'In person',
@@ -67,16 +48,11 @@ const fields = [
     startDate:"2022-10-17 20:00:00",
     endDate:"2022-10-24 22:00:00",
     previewImage:"http://localhost:8080/events/india.jpg"
->>>>>>> dev
   },
   {
     groupId:5,
     venueId:5,
-<<<<<<< HEAD
-    name:'Book Club 3!',
-=======
     name:'Book Club! Midnight Library by Matt Haig',
->>>>>>> dev
     description:"How it works: We just meet once at the end! All are welcome, even if you haven't finished (or started) the book",
     type:'In person',
     capacity:50,

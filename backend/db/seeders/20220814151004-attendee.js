@@ -17,14 +17,6 @@ const fields = [
     status:'waitlist'
   },
   {
-<<<<<<< HEAD
-    userId:4,
-    eventId:4,
-    status:'member'
-  },
-  {
-    userId:5,
-=======
     userId:1,
     eventId:2,
     status:'member'
@@ -36,33 +28,12 @@ const fields = [
   },
   {
     userId:3,
->>>>>>> dev
     eventId:5,
     status:'member'
   },
   {
-<<<<<<< HEAD
-    userId:1,
-    eventId:4,
-    status:'pending'
-  },
-  {
-    userId:5,
-    eventId:4,
-    status:'pending'
-  },
-  {
-    userId:4,
-    eventId:1,
-    status:'pending'
-  },
-  {
-    userId:1,
-    eventId:3,
-=======
     userId:3,
     eventId:5,
->>>>>>> dev
     status:'member'
   }
 ]

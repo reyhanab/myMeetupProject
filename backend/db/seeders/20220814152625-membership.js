@@ -17,65 +17,6 @@ const fields=[
     status:'host'
   },
   {
-    memberId: 4,
-    groupId:4,
-    status:'host'
-  },
-  {
-    memberId: 5,
-    groupId:5,
-    status:'host'
-  },
-  {
-    memberId: 3,
-    groupId:2,
-    status:'co-host'
-  },
-  {
-    memberId: 4,
-    groupId:1,
-    status:'member'
-  },
-  {
-    memberId: 5,
-    groupId:4,
-    status:'member'
-  },
-  {
-    memberId: 1,
-    groupId:4,
-    status:'pending'
-  },
-  {
-    memberId: 1,
-    groupId:5,
-    status:'pending'
-  },
-  {
-    memberId: 1,
-    groupId:3,
-    status:'member'
-  },
-  {
-    memberId: 2,
-    groupId:5,
-    status:'member'
-  },
-<<<<<<< HEAD
- 
-
-=======
-  {
-    memberId: 2,
-    groupId:3,
-    status:'member'
-  },
-  {
-    memberId: 3,
-    groupId:2,
-    status:'co-host'
-  },
-  {
     memberId: 1,
     groupId:4,
     status:'host'
@@ -96,26 +37,28 @@ const fields=[
     status:'host'
   },
   {
-    memberId: 2,
+    memberId: 3,
+    groupId:2,
+    status:'co-host'
+  },
+  {
+    memberId: 4,
+    groupId:1,
+    status:'member'
+  },
+  {
+    memberId: 5,
     groupId:4,
     status:'member'
   },
+
   {
-    memberId: 3,
+    memberId: 2,
     groupId:5,
     status:'member'
   },
-  {
-    memberId: 1,
-    groupId:2,
-    status:'member'
-  },
-  {
-    memberId: 3,
-    groupId:1,
-    status:'member'
-  }
->>>>>>> dev
+
+
 ]
 module.exports = {
   async up (queryInterface, Sequelize) {
