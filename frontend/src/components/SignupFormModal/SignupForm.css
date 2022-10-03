@@ -1,0 +1,46 @@
+.signup-form {
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    width: 500px;
+    height: 300px;
+}
+.firstName{
+    grid-row: 2;
+    align-self: center;
+    justify-self: center;
+}
+.lastName{
+    grid-row: 3;
+    align-self: center;
+    justify-self: center;
+}
+.email-signup{
+    grid-row: 4;
+    align-self: center;
+    justify-self: center;
+
+}
+.password-signup{
+    grid-row: 5;
+    align-self: center;
+    justify-self: center;
+}
+.confirm-password{
+    grid-row: 6;
+    align-self: center;
+    justify-self: center;
+}
+.signup-form-button{
+    grid-row:7 ;
+    align-self: center;
+    justify-self: center;
+    margin-top: 20px;
+    background-color:white;
+    color: red;
+    width: 100px;
+    height: 40px;
+    font-weight: bold;
+    font-size: 15px;
+    border-radius: 10%;
+    border-color: red;
+}

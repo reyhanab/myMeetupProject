@@ -1,0 +1,31 @@
+.your-groups{
+    margin-left: 20px;
+}
+.your-groups-container{
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+.group-div{
+    border: 2px solid rgb(226, 222, 222);
+    border-radius: 5%;
+    margin: 20px;
+   justify-content:space-around;
+   align-items: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.group-name{
+    padding: 20px;
+    text-decoration: none;
+    color: rgb(125, 71, 14);
+
+    font-weight: bold;
+    align-self: center;
+}
+.group-image{
+    width:200px;
+    height:200px;
+    border-radius: 10%;
+    margin: 10px;
+}

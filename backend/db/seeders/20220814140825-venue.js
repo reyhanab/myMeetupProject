@@ -1,5 +1,6 @@
 'use strict';
 const {Venue} = require ('../models')
+<<<<<<< HEAD
 const fields = [
   {
     groupId: 1,
@@ -12,23 +13,38 @@ const fields = [
   {
   groupId: 2,
   address: "14741 23 mile Road",
+=======
+const fields = [{
+  groupId: 1,
+  address: "14741 13 mile Road",
+>>>>>>> dev
   city: "Royal Oak",
   state:"MI",
   lat:37.7645358,
   lng:-122.473032
 },
 {
-  groupId: 3,
+  groupId: 2,
   address: "12032 Red Arrow Hwy",
+<<<<<<< HEAD
   city: "Utica",
+=======
+  city: "Royal Oak",
+>>>>>>> dev
   state:"MI",
   lat:56.7645358,
   lng:122.573032
 },
 {
+<<<<<<< HEAD
   groupId: 4,
   address: "49438 South Trail",
   city: "Rochester",
+=======
+  groupId: 3,
+  address: "49438 Hall Rd",
+  city: "Utica",
+>>>>>>> dev
   state:"MI",
   lat:13.7645358,
   lng:15.573032
@@ -40,7 +56,40 @@ const fields = [
   state:"MI",
   lat:-10.7645358,
   lng:15.573032
-}]
+},
+{
+  groupId: 4,
+  address: "2648 Berry Gordy Jr. Boulevard",
+  city: "Detroit",
+  state:"MI",
+  lat:4.7645358,
+  lng:15.573032
+},
+{
+  groupId: 5,
+  address: "49438 Pontiac Trail",
+  city: "Detroit",
+  state:"MI",
+  lat:4.7645358,
+  lng:15.573032
+},
+{
+  groupId: 6,
+  address: "9321 Rosa Parks Blvd",
+  city: "Detroit",
+  state:"MI",
+  lat:4.7645358,
+  lng:15.573032
+},
+{
+  groupId: 7,
+  address: "18125 E 10 Mile Rd, Roseville",
+  city: "St.Clair Shores",
+  state:"MI",
+  lat:4.7645358,
+  lng:15.573032
+},
+]
 module.exports = {
   async up (queryInterface, Sequelize) {
     // await queryInterface.bulkInsert('Venues', fields, {validate:true})

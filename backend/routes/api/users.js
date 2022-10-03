@@ -57,6 +57,14 @@ router.delete('/logout',(_req, res) => {
 }
 );
 
+// Log out
+router.delete('/',(_req, res) => {
+  res.clearCookie('token');
+  return res.json({ message: 'success' });
+}
+);
+
+
 // Get the Current User
 router.get('/:userId',requireAuth,async (req, res,next) => {
   const { user } = req;
