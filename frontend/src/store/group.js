@@ -5,7 +5,7 @@ const GET_GROUPS = 'user/groups'
 const EDIT_GROUP = 'group/edit'
 const DELETE_GROUP = 'group/delete'
 
-export const deleteGroupAction = (id)=>{
+export const deleteGroup = (id)=>{
     return {
         type: DELETE_GROUP,
         payload:id
@@ -31,12 +31,16 @@ export const getGroups = (groups)=>{
     }
 }
 export const loadGroups = ()=>async dispatch =>{
-    if(localStorage.getItem('userId')){
-        const userId = localStorage.getItem('userId')
-        const response = await csrfFetch(`/api/users/${userId}/groups`)
-        const data = await response.json()
-        dispatch(getGroups(data))
-    }
+    // if(localStorage.getItem('userId')){
+    //     const userId = localStorage.getItem('userId')
+    //     const response = await csrfFetch(`/api/users/${userId}/groups`)
+    //     const data = await response.json()
+    //     dispatch(getGroups(data))
+    // }
+    const response = await csrfFetch(`/api/groups`)
+    const data = await response.json()
+    dispatch(getGroups(data))
+
 }
 export const createGroup = (group)=> async dispatch =>{
     const response = await csrfFetch('/api/groups', {
@@ -66,7 +70,7 @@ export const deleteGroupThunk = (id) => async dispatch =>{
         method:'DELETE'
     })
     if (response.ok){
-        dispatch(deleteGroupAction(id))
+        dispatch(deleteGroup(id))
     }
 }
 

@@ -9,9 +9,13 @@ import GroupDetailPage from "./components/GroupDetailForm";
 import { loadGroups } from "./store/group";
 import EditGroupPage from "./components/EditGroupForm";
 import Homepage from "./components/HomePage";
-import { loadAllEvents, loadEvents} from "./store/event";
+import { loadAllEvents, loadEvent} from "./store/event";
 import EventsPage from "./components/EventsForm";
 import EventDetailPage from "./components/EventDetailForm";
+import CreateEventPage from "./components/CreateEventForm";
+import GroupEventsPage from "./components/GroupEventsForm";
+import EditEventPage from "./components/EditEventForm";
+
 
 function App() {
   const dispatch = useDispatch()
@@ -30,6 +34,9 @@ function App() {
   useEffect(()=>{
     dispatch(loadAllEvents())
   },[dispatch])
+//   useEffect(()=>{
+//     dispatch(loadEvents())
+// },[dispatch])
 
   return (
     <>
@@ -37,7 +44,7 @@ function App() {
 
         {/* {isLoaded && ( */}
           <Switch>
-          <Route exact path='/'>
+            <Route exact path='/'>
               <Homepage />
             </Route>
             <Route path='/start/group'>
@@ -49,8 +56,17 @@ function App() {
             <Route path='/groups/:groupId/edit'>
                 <EditGroupPage />
             </Route>
+            <Route path='/groups/:groupId/event'>
+              <CreateEventPage />
+            </Route>
+            {/* <Route path='/groups/:groupId/events'>
+              <GroupEventsPage />
+            </Route> */}
             <Route path='/groups/:groupId'>
               <GroupDetailPage />
+            </Route>
+            <Route path='/events/:eventId/edit'>
+              <EditEventPage />
             </Route>
             <Route path='/events/:eventId'>
               <EventDetailPage />

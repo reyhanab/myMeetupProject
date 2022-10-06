@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory, useParams } from "react-router-dom";
+import { useHistory, useParams, Redirect  } from "react-router-dom";
 import { editGroup } from "../../store/group";
 
 
@@ -25,24 +25,11 @@ function EditGroupPage(){
         const payload = {
             name, about,type, private:privateBool, city,state
         }
-        // return dispatch(createGroup(payload)).catch(async (res)=>{
-        //     const data = await res.json()
-        //     if(data && data.errors) setErrors(data.errors)
-        //     alert(`"${name}" has been created`)
-        //     reset()
-        // })
-        console.log(groupId)
         await dispatch(editGroup(payload, groupId))
-            alert(`"${name}" has been updated`)
-            history.push(`/groups/${groupId}`)
-    }
-    const reset = ()=>{
-        setName('');
-        setAbout('');
-        setType('Online');
-        setPrivateBool(false);
-        setCity('');
-        setState('');
+        alert(`"${name}" has been updated`)
+        history.push(`/groups/${groupId}`)
+        // history.push('/')
+
     }
 
     return(

@@ -84,6 +84,18 @@ const fields = [
     startDate:"2022-10-18 10:00:00",
     endDate:"2022-10-19 15:00:00",
     previewImage:"http://localhost:8080/events/rock-climbing.jpg"
+  },
+  {
+    groupId:8,
+    venueId:8,
+    name:'Chat, meet people, and make friends',
+    description:"This meeting is avalable in 10,000 cities in 195 countries Over seven Continent around the world.ATTENDEES UNDER THE AGE OF 18 MUST HAVE A GUARDIAN WITH THEM",
+    type:'Online',
+    capacity:50,
+    price:0,
+    startDate:"2022-10-18 10:00:00",
+    endDate:"2022-10-19 15:00:00",
+    previewImage:"http://localhost:8080/events/international.png"
   }
 ]
 module.exports = {

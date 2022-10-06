@@ -70,6 +70,16 @@ const fields = [{
   city:'Saint Clair Shores',
   state:'Michigan',
   previewImage: 'http://localhost:8080/groups/rock-climbing.jpg'
+},
+{
+  organizerId: 1,
+  name: 'The international friends',
+  about:"THE PURPOSE OF THE GROUP.LEARNING it keeps the brain active; learning boosts the connections within your brain, and your brain can then apply that learning to other areas or problems. So, the more you learn, the better you get at learning! The purpose of learning is learning being prepared for their future and reaching their fullest potential as lifelong learners",
+  type:'In person',
+  private:true,
+  city:'Detroit',
+  state:'Michigan',
+  previewImage: 'http://localhost:8080/groups/international-friends.jpg'
 }
 ]
 module.exports = {

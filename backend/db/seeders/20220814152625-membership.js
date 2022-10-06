@@ -37,6 +37,11 @@ const fields=[
     status:'host'
   },
   {
+    memberId: 1,
+    groupId:8,
+    status:'host'
+  },
+  {
     memberId: 3,
     groupId:2,
     status:'co-host'

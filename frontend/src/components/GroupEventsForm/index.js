@@ -1,18 +1,16 @@
-import { useSelector, useDispatch } from "react-redux";
-import { NavLink, useLocation } from "react-router-dom";
-import './EventsPage.css'
+import { useSelector,useDispatch  } from "react-redux";
+import { NavLink } from "react-router-dom";
 import { useEffect } from "react";
-import { loadAllEvents } from "../../store/event";
+import { loadEvents } from "../../store/event";
 
-function EventsPage(){
 
-    // const location = useLocation()
-    // const dispatch = useDispatch()
+
+function GroupEventsPage(){
+    const dispatch = useDispatch()
 
     // useEffect(()=>{
-    //     dispatch(loadAllEvents())
-    // },[dispatch, location.key])
-
+    //     dispatch(loadEvents())
+    // },[dispatch])
 
     const events = useSelector(state=> state.event)
     if (events.event){
@@ -30,7 +28,7 @@ function EventsPage(){
                             <NavLink className='group-name group' to={`/events/${event.id}`}>{event.name}
                             <img className="group-image group" src={event.previewImage} />
                             </NavLink>
-                            {/* <NavLink key={i} to={`/groups/${group.id}`} >{group.name}</NavLink> */}
+
                         </div>
                     ))
                 }
@@ -40,6 +38,4 @@ function EventsPage(){
     )
 
 }
-export default EventsPage;
-
-
+export default GroupEventsPage;

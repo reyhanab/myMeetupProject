@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 import { createGroup } from "../../store/group";
 import './CreateGroupPage.css'
 
@@ -7,6 +8,7 @@ import './CreateGroupPage.css'
 function CreateGroupPage(){
 
     const dispatch = useDispatch()
+    const history = useHistory()
     const [name, setName] = useState('');
     const [about, setAbout] = useState('');
     const [type, setType] = useState('In person');
@@ -29,12 +31,12 @@ function CreateGroupPage(){
         // })
         const result = await dispatch(createGroup(payload))
             alert(`"${name}" has been created`)
-            reset()
+            history.push('/')
     }
     const reset = ()=>{
         setName('');
         setAbout('');
-        setType('Online');
+        setType('In person');
         setPrivateBool(false);
         setCity('');
         setState('');

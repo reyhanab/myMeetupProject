@@ -24,22 +24,23 @@
     grid-template-columns: 1fr 1fr 1fr;
     margin-left: 50px;
     width: 800px;
-    height: 290px;
+    height: 320px;
     border: 2px solid rgb(228, 227, 227);
     border-radius: 15px;
 }
 .group-image-preview{
     grid-row: 1;
-    width:200px;
-    height:200px;
+    width:180px;
+    height:180px;
     border-radius: 10%;
+
     margin: 30px;
 }
 .name-group-preview{
     text-decoration: none;
     color: rgb(125, 71, 14);
     grid-row: 2;
-    margin-top: 40px;
+    margin-top: 15px;
     margin-left: 40px;
     font-weight: bold;
 }
@@ -68,6 +69,7 @@
 .your-events{
     grid-row: 1;
     align-self: center;
+    margin-left: 30px;
 }
 .see-all-events{
     grid-row: 1;

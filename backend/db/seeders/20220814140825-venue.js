@@ -26,7 +26,7 @@ const fields = [{
   lng:15.573032
 },
 {
-  groupId: 5,
+  groupId: 4,
   address: "49438 Pontiac Trail",
   city: "Detroit",
   state:"MI",
@@ -34,7 +34,7 @@ const fields = [{
   lng:15.573032
 },
 {
-  groupId: 4,
+  groupId: 5,
   address: "2648 Berry Gordy Jr. Boulevard",
   city: "Detroit",
   state:"MI",
@@ -42,16 +42,8 @@ const fields = [{
   lng:15.573032
 },
 {
-  groupId: 5,
-  address: "49438 Pontiac Trail",
-  city: "Detroit",
-  state:"MI",
-  lat:4.7645358,
-  lng:15.573032
-},
-{
   groupId: 6,
-  address: "9321 Rosa Parks Blvd",
+  address: "49438 Pontiac Trail",
   city: "Detroit",
   state:"MI",
   lat:4.7645358,
@@ -61,6 +53,14 @@ const fields = [{
   groupId: 7,
   address: "18125 E 10 Mile Rd, Roseville",
   city: "St.Clair Shores",
+  state:"MI",
+  lat:4.7645358,
+  lng:15.573032
+},
+{
+  groupId: 8,
+  address: "4563 E 6 Mile Rd",
+  city: "Detroit",
   state:"MI",
   lat:4.7645358,
   lng:15.573032

@@ -6,6 +6,7 @@ const { Group, Image, User, Venue,Membership, Attendee, Event } = require('../..
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
 
+
 const validateGroup = [
     check('name')
       .exists({ checkFalsy: true })
@@ -56,16 +57,9 @@ const validateGroup = [
     handleValidationErrors
   ];
   const validateEvent = [
-    check('venueId')
-      .exists({ checkFalsy: true })
-    //   .custom((value, {req}) =>{
-    //     return Venue.findOne({where:{id:value, groupId: req.params.groupId}}).then(venue=>{
-    //         if (!venue){
-    //             return Promise.reject("Venue does not exist");
-    //         }
-    //     })
-    //   })
-      .withMessage("Venue does not exist"),
+    // check('venueId')
+    //   .exists({ checkFalsy: true })
+    //   .withMessage("Venue does not exist"),
     check('name')
       .exists({ checkFalsy: true })
       .isLength({min:5})
@@ -79,7 +73,7 @@ const validateGroup = [
       .isInt()
       .withMessage("Capacity must be an integer"),
     check('price')
-        .exists({ checkFalsy: true })
+        .exists()
         .isDecimal()
         .withMessage("Price is invalid"),
     check('description')
@@ -419,21 +413,21 @@ router.post('/:groupId/events', requireAuth,validateEvent, async (req,res,next)=
     const groupId = req.params.groupId
     const group = await Group.findByPk(groupId)
     if (group){
-        const {venueId} = req.body
-        const venue = await Venue.findByPk(venueId)
-        if (!venue){
-            const err = new Error("Venue couldn't be found");
-            err.status = 404;
-            err.message = "Venue couldn't be found"
-            return next(err);
-        }
-        const {groupId} = venue
-        if(groupId != req.params.groupId){
-            const err = new Error("Venue doesn't belong to this group");
-            err.status = 404;
-            err.message = "Venue doesn't belong to this group"
-            return next(err);
-        }
+        // const {venueId} = req.body
+        // const venue = await Venue.findByPk(venueId)
+        // if (!venue){
+        //     const err = new Error("Venue couldn't be found");
+        //     err.status = 404;
+        //     err.message = "Venue couldn't be found"
+        //     return next(err);
+        // }
+        // const {groupId} = venue
+        // if(groupId != req.params.groupId){
+        //     const err = new Error("Venue doesn't belong to this group");
+        //     err.status = 404;
+        //     err.message = "Venue doesn't belong to this group"
+        //     return next(err);
+        // }
 
         const {id} = user
         const membership = await Membership.findOne({where:{memberId:id, groupId}})
