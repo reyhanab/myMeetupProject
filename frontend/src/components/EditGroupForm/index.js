@@ -114,6 +114,7 @@ function EditGroupPage(){
                         className="group-input"
                         id='private'
                         onChange={()=>setPrivateBool(!privateBool)}
+                        checked= {privateBool === true}
                     />
                     </label>
                 </div>

@@ -65,7 +65,7 @@ const fields = [
     groupId:6,
     venueId:6,
     name:'Cycling in Eastern Serbia',
-    description:"Join us in a virtual cycling tour in the Eastern Serbia and explore the slopes of Kucajske Mountain, history of coal mining in a tiny village of Resavica and visit fortified monastery Manasija with its Resavska School. It is a family friendly cycling tour 50km long. The area which we explore is the least populated region of Serbia, covered mainly with dense forests and undulated meadows. Before we jump on the saddles we will visit Resavica village and its unique mining museum. The Senjski mine is founded in 1853 and it is the oldest active black coal mine in Serbia. One of the peculiarity of this mine is the fact that the engine which powers the elevator which takes the miners into the underground shaft is the original steam engine constructed in Graz, Austria in 1872",
+    description:"Join us in a virtual cycling tour in the Eastern Serbia and explore the slopes of Kucajske Mountain, history of coal mining in a tiny village of Resavica and visit fortified monastery Manasija with its Resavska School. It is a family friendly cycling tour 50km long. The area which we explore is the least populated region of Serbia, covered mainly with dense forests and undulated meadows. ",
     type:'Online',
     capacity:50,
     price:0,

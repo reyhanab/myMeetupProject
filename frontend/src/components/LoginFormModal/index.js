@@ -8,7 +8,7 @@ function LoginFormModal(){
 
     return (
         <>
-            <Link className="login-link" onClick={()=>setShowModal(true)}>Log In</Link>
+            <h2 className="login-link" onClick={()=>setShowModal(true)}>Log In</h2>
             {showModal && (
                 <Modal onClose={()=> setShowModal(false)}>
                     <LoginForm />

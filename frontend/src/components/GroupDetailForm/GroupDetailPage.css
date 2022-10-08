@@ -1,6 +1,7 @@
 .group-detail-form{
     display: flex;
     flex-direction: column;
+
 }
 .group-image-background{
     filter: opacity(30%);
@@ -12,47 +13,67 @@
 
 }
 .group-detail-div{
+    border: 1px solid rgb(154, 151, 151);
+
+    border-radius: 5%;
+    padding: 20px;
+    color:rgb(73, 11, 11);
+    display: flex;
+    flex-direction: column;
+    width:800px;
+    height: 500px;
+    text-align: justify;
     margin-top: 50px;
     margin-left: 40px;
     position: fixed;
     z-index: 1;
+    font-family: Arial, Helvetica, sans-serif;
 }
 .edit-delete-div{
     display: flex;
     flex-direction: column;
     margin-left: 40px;
-    margin-top: 600px;
+    margin-top: 610px;
     position: fixed;
     z-index: 1;
 }
 .edit-link{
     text-decoration: none;
     margin: 10px;
-    border: 1px solid gray;
+    border: 5px solid black;
     text-align: center;
-    background-color: rgb(249, 243, 243);
-    color:black;
-    width:120px;
-    height: 20px;
-    border-radius: 5px;
-}
-.delete-link{
-    margin: 10px;
-    background-color: rgb(249, 243, 243);
-    border: 1px solid gray;
+    background-color:black ;
+    color:white;
     width:120px;
     height: 20px;
     font-size: 15px;
+    align-self: center;
     border-radius: 5px;
+}
+.delete-link{
+    text-decoration: none;
+    margin: 10px;
+    border: 5px solid black;
+    text-align: center;
+    background-color: black;
+    color:white;
+    width:131px;
+    height: 31px;
+    font-size: 15px;
+    align-self: center;
+    border-radius: 5px;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
 }
 .create-event-link{
     text-decoration: none;
     margin: 10px;
-    border: 1px solid gray;
+    border: 5px solid black;
     text-align: center;
-    background-color: rgb(249, 243, 243);
-    color:black;
+    background-color: black;
+    color:white;
     width:120px;
     height: 20px;
+    font-size: 15px;
+    align-self: center;
     border-radius: 5px;
 }

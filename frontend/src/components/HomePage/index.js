@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink, useHistory } from "react-router-dom";
+import { Link, NavLink, useHistory } from "react-router-dom";
 import { useEffect } from "react";
 import { loadAllEvents } from "../../store/event";
 import './HomePage.css'
@@ -48,6 +48,18 @@ function Homepage(){
                         {(eventsArr[0]) ? <NavLink className='name-event-preview' to={`/events/${eventsArr[0]?.id}`}>{eventsArr[0]?.name}</NavLink>: ''}
                         {(eventsArr[1]) ? <NavLink className='name-event-preview' to={`/events/${eventsArr[1]?.id}`}>{eventsArr[1]?.name}</NavLink>: ''}
                         {(eventsArr[2]) ? <NavLink className='name-event-preview' to={`/events/${eventsArr[2]?.id}`}>{eventsArr[2]?.name}</NavLink>: ''}
+                    </div>
+                </div>
+                <div className="footer">
+                    <div className="about-link">
+                        <a target="_blank" rel="noopener noreferrer" className="about" href='https://github.com/reyhanab/myMeetupProject'>
+                            {/* <img className='github-icon'src="http://localhost:8080/github.png" /> */}
+                        Github</a>
+                    {/* </div>
+                    <div className="about-link"> */}
+                        <a target="_blank" rel="noopener noreferrer"  className="about" href='https://www.linkedin.com/in/reyhaneh-abdollahi-408895110/'>
+                            {/* <img className='linkedIn-icon'src='http://localhost:8080/linkedIn.png' /> */}
+                        LinkedIn</a>
                     </div>
                 </div>
             </form>

@@ -25,6 +25,14 @@ function LoginForm(){
         })
         history.push('/')
     }
+    const demoLogin = (e)=>{
+        e.preventDefault();
+        setErrors([])
+        email = 'user1@user.io'
+        password = 'password1'
+        dispatch(login({email,password}))
+        history.push('/')
+    }
     return (
         <form  onSubmit={onSubmit}>
                 {errors.length>0 && (
@@ -38,30 +46,39 @@ function LoginForm(){
                 )
                 }
             <div className="login-form">
-                <label className="email">
-                    Email:
-                    <input
-                    className="email-input"
-                    type='text'
-                    value={email}
-                    required
-                    onChange={e=> setEmail(e.target.value)}
-                    />
-                </label>
-                <label className="password">
-                    Password:
-                    <input
-                    className="password-input"
-                    type='password'
-                    value={password}
-                    onChange={e=>setPassword(e.target.value)}
-                    required
-                    />
-                </label>
+                <div className="email">
+                    <label>
+                        Email:
+                        <input
+                        className="email-input"
+                        type='text'
+                        value={email}
+                        required
+                        onChange={e=> setEmail(e.target.value)}
+                        />
+                    </label>
+                </div>
+                <div className="password">
+                    <label >
+                        Password:
+                        <input
+                        className="password-input"
+                        type='password'
+                        value={password}
+                        onChange={e=>setPassword(e.target.value)}
+                        required
+                        />
+                    </label>
+                </div>
                 <button
                 className="login-form-button"
                 // disabled={errors.length>0? true : false}
                 type="submit">Log In</button>
+                <button
+                className="demo-login-form-button"
+                type="submit"
+                onChange={demoLogin}
+                >Demo Log In</button>
             </div>
         </form>
     )

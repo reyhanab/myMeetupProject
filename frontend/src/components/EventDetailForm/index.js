@@ -55,11 +55,11 @@ function EventDetailPage(){
                 <div className="group-detail-div">
                     <h2 >{event?.name}</h2>
                     <h3>{event?.description}</h3>
-                    <h3>Capacity: {event?.capacity} </h3>
-                    <h3>Price: ${event?.price}</h3>
-                    <h3>Number of Attendees: {event?.numAttending}</h3>
-                    <h3>StartDate: {event?.startDate}</h3>
-                    <h3>EndDate: {event?.endDate}</h3>
+                    <h4>Capacity: {event?.capacity} </h4>
+                    <h4>Price: ${event?.price}</h4>
+                    <h4>Number of Attendees: {event?.numAttending}</h4>
+                    <h4>Starts: {event?.startDate}</h4>
+                    <h4>Ends: {event?.endDate}</h4>
                 </div>
                 {editDeleteEvent}
             </form>

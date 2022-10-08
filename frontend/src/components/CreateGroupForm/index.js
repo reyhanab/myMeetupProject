@@ -111,6 +111,7 @@ function CreateGroupPage(){
                         type='checkbox'
                         id='private'
                         onChange={()=>setPrivateBool(!privateBool)}
+                        checked= {privateBool === true}
                         />
                         </label>
                     </div>

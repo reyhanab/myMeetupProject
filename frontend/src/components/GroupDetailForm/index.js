@@ -64,14 +64,14 @@ function GroupDetailPage(){
             </div>
             <div className="group-detail-div">
                 <h2 >{group?.name}</h2>
-                <h2>{group?.city}, {group?.state}</h2>
+                <h3>{group?.city}, {group?.state}</h3>
                 <h3>{group?.about}</h3>
                 <h3>Number of Members:{group?.numMembers}</h3>
+                {
+                   (group?.private == 1)? <h3>Private, {group?.type}</h3> : <h3>Public, {group?.type}</h3>
+                }
             </div>
                 {organizerLinks}
-            {/* <div className="show-events-div">
-                <NavLink to={`/groups/${groupId}/events`}>Show Events</NavLink>
-            </div> */}
         </form>
     )
 }

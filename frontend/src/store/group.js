@@ -31,12 +31,6 @@ export const getGroups = (groups)=>{
     }
 }
 export const loadGroups = ()=>async dispatch =>{
-    // if(localStorage.getItem('userId')){
-    //     const userId = localStorage.getItem('userId')
-    //     const response = await csrfFetch(`/api/users/${userId}/groups`)
-    //     const data = await response.json()
-    //     dispatch(getGroups(data))
-    // }
     const response = await csrfFetch(`/api/groups`)
     const data = await response.json()
     dispatch(getGroups(data))

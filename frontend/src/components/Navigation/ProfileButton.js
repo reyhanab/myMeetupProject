@@ -39,11 +39,11 @@ function ProfileButton({depthLevel}) {
       <i className="fa-solid fa-user"></i>
       </button> */}
       <img
-      src={profile}
-      className="profile"
-      aria-expanded={dropdown ? "true" : "false"}
-      onClick={()=>setDropdown((prev)=> !prev)}
-      {...depthLevel > 0 ? <span>&raquo;</span> : <span className="arrow" />}
+        src={profile}
+        className="profile"
+        aria-expanded={dropdown ? "true" : "false"}
+        onClick={()=>setDropdown((prev)=> !prev)}
+        // {...depthLevel > 0 ? <span>&raquo;</span> : <span className="arrow" />}
       />
       <Dropdown dropdown={dropdown} depthLevel={depthLevel}/>
       {/* {showMenu && (

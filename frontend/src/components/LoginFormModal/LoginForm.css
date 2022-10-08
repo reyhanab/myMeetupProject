@@ -3,19 +3,23 @@
     justify-content: center;
     grid-template-rows: 1fr 1fr 1fr ;
     /* grid-template-columns: 15% 70% 15%; */
-    width: 400px;
-    height: 180px;
+    width: 470px;
+    height: 220px;
     border:1px solid white ;
     border-radius: 40%;
 }
 .email{
     margin-top: 20px;
     align-self: center;
+    justify-self: center;
+    margin-left:70px;
     grid-row: 1;
 }
 
 .password{
     margin-top: 20px;
+    margin-left:70px;
+    justify-self: center;
     align-self: center;
     grid-row: 2;
 }
@@ -31,14 +35,30 @@
     grid-row:3;
     background-color:white;
     color: red;
-    justify-self: center;
-    width: 100px;
+    /* justify-self: center; */
+    width: 120px;
     height: 40px;
-
+    margin-left: 40px;
     font-weight: bold;
     font-size: 15px;
     border-radius: 10%;
     border-color: red;
+}
+.demo-login-form-button{
+    margin-top: 20px;
+    align-self: center;
+    grid-row:3;
+    background-color:white;
+    color: red;
+    /* justify-self: center; */
+    width: 120px;
+    height: 40px;
+    margin-right: 40px;
+    font-weight: bold;
+    font-size: 15px;
+    border-radius: 10%;
+    border-color: red;
+
 }
 .login-error{
     margin-left: 20px;
