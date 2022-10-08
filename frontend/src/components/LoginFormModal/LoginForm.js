@@ -27,14 +27,13 @@ function LoginForm(){
     }
     const demoLogin = (e)=>{
         e.preventDefault();
-        setErrors([])
-        email = 'user1@user.io'
-        password = 'password1'
-        dispatch(login({email,password}))
+        const demoEmail = 'user1@user.io'
+        const demoPassword = 'password1'
+        dispatch(login({email:demoEmail,password:demoPassword}))
         history.push('/')
     }
     return (
-        <form  onSubmit={onSubmit}>
+        <form>
                 {errors.length>0 && (
                     <div className="login-error">Errrors:
                         <ul>
@@ -72,12 +71,14 @@ function LoginForm(){
                 </div>
                 <button
                 className="login-form-button"
+                onClick={onSubmit}
                 // disabled={errors.length>0? true : false}
                 type="submit">Log In</button>
+
                 <button
                 className="demo-login-form-button"
                 type="submit"
-                onChange={demoLogin}
+                onClick={demoLogin}
                 >Demo Log In</button>
             </div>
         </form>
