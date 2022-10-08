@@ -29,6 +29,10 @@
     z-index: 1;
     font-family: Arial, Helvetica, sans-serif;
 }
+.group-detail{
+    justify-self: center;
+    
+}
 .edit-delete-div{
     display: flex;
     flex-direction: column;

@@ -63,12 +63,12 @@ function GroupDetailPage(){
                 <img className='group-image-background' src={group?.previewImage}/>
             </div>
             <div className="group-detail-div">
-                <h2 >{group?.name}</h2>
-                <h3>{group?.city}, {group?.state}</h3>
-                <h3>{group?.about}</h3>
-                <h3>Number of Members:{group?.numMembers}</h3>
+                <h2 className="group-detail">{group?.name}</h2>
+                <h3 className="group-detail">{group?.city}, {group?.state}</h3>
+                <h3 className="group-detail">{group?.about}</h3>
+                <h3 className="group-detail">Number of Members:{group?.numMembers}</h3>
                 {
-                   (group?.private == 1)? <h3>Private, {group?.type}</h3> : <h3>Public, {group?.type}</h3>
+                   (group?.private == 1)? <h3 className="group-detail">Private, {group?.type}</h3> : <h3 className="group-detail">Public, {group?.type}</h3>
                 }
             </div>
                 {organizerLinks}
