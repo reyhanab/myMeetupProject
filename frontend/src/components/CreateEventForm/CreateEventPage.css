@@ -1,0 +1,17 @@
+.event-input-form{
+    display: flex;
+    flex-direction: column;
+    margin-left: 40px;
+    position:  fixed;
+    z-index: 1;
+
+}
+.create-event-image-background{
+    filter: opacity(30%);
+    position: fixed;
+    z-index: 0;
+    width:100%;
+    height: 100%;
+    object-fit: cover;
+    background-size: 100%;
+}

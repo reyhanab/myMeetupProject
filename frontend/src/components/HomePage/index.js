@@ -14,6 +14,9 @@ function Homepage(){
     useEffect(()=>{
         dispatch(loadAllEvents())
     },[dispatch, location.key])
+    useEffect(()=>{
+        dispatch(loadGroups())
+    },[dispatch, location.key])
 
     const sessionUser = useSelector(state => state.session.user)
     const groupsArr = Object.values(useSelector(state=> state.group))
@@ -30,9 +33,9 @@ function Homepage(){
                         <img className="group-image-preview" src={groupsArr[0]?.previewImage} />
                         <img className="group-image-preview" src={groupsArr[1]?.previewImage} />
                         <img className="group-image-preview" src={groupsArr[2]?.previewImage} />
-                        <NavLink className='name-group-preview' to={`/groups/${groupsArr[0]?.id}`}>{groupsArr[0]?.name}</NavLink>
-                        <NavLink className='name-group-preview' to={`/groups/${groupsArr[1]?.id}`}>{groupsArr[1]?.name}</NavLink>
-                        <NavLink className='name-group-preview' to={`/groups/${groupsArr[2]?.id}`}>{groupsArr[2]?.name}</NavLink>
+                        {(groupsArr[0])?<NavLink className='name-group-preview' to={`/groups/${groupsArr[0]?.id}`}>{groupsArr[0]?.name}</NavLink>:''}
+                        {(groupsArr[1])?<NavLink className='name-group-preview' to={`/groups/${groupsArr[1]?.id}`}>{groupsArr[1]?.name}</NavLink>:''}
+                        {(groupsArr[2])?<NavLink className='name-group-preview' to={`/groups/${groupsArr[2]?.id}`}>{groupsArr[2]?.name}</NavLink>:''}
                     </div>
                 </div>
                 <div className="events-container">

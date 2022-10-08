@@ -25,79 +25,125 @@ function EditGroupPage(){
         const payload = {
             name, about,type, private:privateBool, city,state
         }
-        await dispatch(editGroup(payload, groupId))
-        alert(`"${name}" has been updated`)
-        history.push(`/groups/${groupId}`)
-        // history.push('/')
+        // await dispatch(editGroup(payload, groupId))
+        // alert(`"${name}" has been updated`)
+        // history.push(`/groups/${groupId}`)
+        // // history.push('/')
+        dispatch(editGroup(payload, groupId))
+        .then(()=>{
+            alert(`"${name}" has been Updated`)
+            history.push(`/groups/${groupId}`)
+        })
+        .catch(async (res)=>{
+            const data = await res.json()
+            if(data && data.errors) {
+                const errorsArr = Object.values(data.errors)
+                setErrors(errorsArr)
+            }
+        })
+
 
     }
 
     return(
         <form onSubmit={handleSubmit}>
+              <div>
+                <img className="create-group-image-background" src={group?.previewImage}/>
+            </div>
             <h1>Update your group</h1>
-            <label>
-                Name:
-                <input
-                type='text'
-                value={name}
-                onChange={e=> setName(e.target.value)}
-                />
-            </label>
-            <label>
-                About:
-                <textarea
-                type='text'
-                value={about}
-                onChange={e=> setAbout(e.target.value)}
-                />
-            </label>
-            <label>
-                Type:
-                <select
-                    onChange= {e=> setType(e.target.value)}
-                    value={type}
-                >
-                    <option
-                    key='Online'
-                    value='Online'>
-                        Online
-                    </option>
-                    <option
-                    key='In person'
-                    value='In person'>
-                        In person
-                    </option>
-                </select>
-            </label>
-            <input
-            type='checkbox'
-            id='private'
-            onChange={()=>setPrivateBool(!privateBool)}
-            />
-            <label htmlFor="private">
-                Private
-            </label>
-            <label>
-                City:
-                <input
-                type='text'
-                value={city}
-                onChange={e=> setCity(e.target.value)}
-                />
-            </label>
-            <label>
-                State:
-                <input
-                type='text'
-                value={state}
-                onChange={e=> setState(e.target.value)}
-                />
-            </label>
-            <button type="submit" disabled={errors.length ? true : false}>Submit</button>
+                {errors.length>0 && (
+                    <div className="create-group-error">Errrors:
+                        <ul>
+                            {errors.map(error=>{
+                                return <li key={error}>{error}</li>
+                            })}
+                        </ul>
+                    </div>
+                )
+                }
+            <div className="input-form">
+                <div className="div-input">
+                    <label className="group-label">
+                        Name:
+                        <input
+                        type='text'
+                        className="group-input"
+                        value={name}
+                        onChange={e=> setName(e.target.value)}
+                        />
+                    </label>
+                </div>
+                <div className="div-input">
+                <label className="group-label">
+                    About:
+                    <textarea
+                    type='text'
+                    value={about}
+                    className="group-input"
+                    onChange={e=> setAbout(e.target.value)}
+                    />
+                </label>
+                </div>
+                <div  className="div-input">
+                <label className="group-label">
+                    Type:
+                    <select
+                        onChange= {e=> setType(e.target.value)}
+                        value={type}
+                        className="group-input"
+                    >
+                        <option
+                        key='Online'
+                        value='Online'>
+                            Online
+                        </option>
+                        <option
+                        key='In person'
+                        value='In person'>
+                            In person
+                        </option>
+                    </select>
+                </label>
+                </div>
+                <div className="div-input">
+
+                    <label className="group-label" htmlFor="private">
+                        Private
+                        <input
+                        type='checkbox'
+                        className="group-input"
+                        id='private'
+                        onChange={()=>setPrivateBool(!privateBool)}
+                    />
+                    </label>
+                </div>
+                <div className="div-input">
+                    <label className="group-label">
+                        City:
+                        <input
+                        type='text'
+                        className="group-input"
+                        value={city}
+                        onChange={e=> setCity(e.target.value)}
+                        />
+                    </label>
+                </div>
+                <div className="div-input">
+                    <label className="group-label">
+                        State:
+                        <input
+                        type='text'
+                        className="group-input"
+                        value={state}
+                        onChange={e=> setState(e.target.value)}
+                        />
+                    </label>
+                </div>
+                <button className="submit-button" type="submit">Submit</button>
+            </div>
 
         </form>
     )
-
 }
 
 export default EditGroupPage;

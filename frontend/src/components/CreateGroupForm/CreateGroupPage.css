@@ -1,11 +1,13 @@
-.group-input-form{
+.input-form{
     display: flex;
     flex-direction: column;
-    border: 1px solid gray;
+    margin-left: 40px;
+    position:  fixed;
+    z-index: 1;
 
 }
-.group-div-input{
-    margin: 10px;
+.div-input{
+    margin: 12px;
     display: grid;
     grid-template-columns: 1fr 1fr;
 
@@ -13,10 +15,38 @@
 .group-label{
    color: rgb(9, 70, 70);
    grid-column: 1;
-
+   width:200px;
+   font-weight: bold;
+   font-size: 18px;
 }
 .group-input{
     grid-column: 2;
-    width: 200px;
-    height: 20px;
+    width: 100%;
+    border-radius: 5px;
+    border:1px solid gray
+
+}
+.create-group-error{
+    color:red;
+    margin-left: 20px;
+}
+.submit-button{
+    background-color: rgb(241, 233, 233) ;
+    border: 1px rgb(154, 151, 151) solid;
+    margin: 12px;
+    height: 30px;
+    width: 210px;
+    border-radius: 5px;
+    font-weight: bold;
+    color:rgb(9, 70, 70);
+    font-size: 18px;
+}
+.create-group-image-background{
+    filter: opacity(30%);
+    position: fixed;
+    z-index: 0;
+    width:100%;
+    height: 100%;
+    object-fit: cover;
+    background-size: 100%;
 }

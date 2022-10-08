@@ -39,5 +39,9 @@
     font-size: 15px;
     border-radius: 10%;
     border-color: red;
-
+}
+.login-error{
+    margin-left: 20px;
+    margin-top: 20px;
+    color: red;
 }

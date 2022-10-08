@@ -44,3 +44,8 @@
     border-radius: 10%;
     border-color: red;
 }
+.signup-error{
+    margin-left: 20px;
+    margin-top: 20px;
+    color: red;
+}

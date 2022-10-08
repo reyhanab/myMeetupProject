@@ -22,10 +22,10 @@ function Dropdown ({dropdown, depthLevel}){
         <ul
         ref={ref}
         className={`dropdown ${dropdownClass} ${dropdown ? "show" : ""}`}>
-          <li>{user.firstName}{ user.lastName}</li>
-          <li>{user.email}</li>
+          <li className="dropdown-submenu">{user.firstName}{ user.lastName}</li>
+          <li className="dropdown-submenu">{user.email}</li>
           <li>
-            <button onClick={logout}>Log Out</button>
+            <button className="dropdown-submenu logout-button" onClick={logout}>Log Out</button>
           </li>
         </ul>
     )

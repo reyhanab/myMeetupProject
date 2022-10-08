@@ -1,7 +1,7 @@
 import React,{ useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { login } from "../../store/session"
-import { useHistory, Redirect } from "react-router-dom"
+import { useHistory } from "react-router-dom"
 import './LoginForm.css'
 
 function LoginForm(){
@@ -10,47 +10,59 @@ function LoginForm(){
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [errors, setErrors] = useState([])
-    const sessionUser = useSelector(state=>state.session.user)
 
     const onSubmit = (e)=>{
         e.preventDefault();
         setErrors([])
-        // return dispatch(login({email,password})).catch(async (res)=>{
-        //     const data = await res.json()
-        //     if(data && data.errors) setErrors(data.errors)
-        // })
-        dispatch(login({email,password}))
+        dispatch(login({email,password})).catch(async (res)=>{
+            const data = await res.json()
+            console.log(data)
+            let errorsArr =[]
+            if(data && data.message) {
+                errorsArr.push(data.message)
+                setErrors(errorsArr)
+            }
+        })
         history.push('/')
     }
     return (
-        <form className="login-form" onSubmit={onSubmit}>
-            <ul>
-                {errors.map(error=>{
-                    <li key={error}>{error}</li>
-                })}
-            </ul>
-            <label className="email">
-                Email:
-                <input
-                className="email-input"
-                type='text'
-                value={email}
-                onChange={e=> setEmail(e.target.value)}
-                />
-            </label>
-            <label className="password">
-                Password:
-                <input
-                className="password-input"
-                type='password'
-                value={password}
-                onChange={e=>setPassword(e.target.value)}
-                required
-                />
-            </label>
-            <button
-            className="login-form-button"
-            type="submit">Log In</button>
+        <form  onSubmit={onSubmit}>
+                {errors.length>0 && (
+                    <div className="login-error">Errrors:
+                        <ul>
+                            {errors.map(error=>{
+                            return   <li key={error}>{error}</li>
+                            })}
+                        </ul>
+                    </div>
+                )
+                }
+            <div className="login-form">
+                <label className="email">
+                    Email:
+                    <input
+                    className="email-input"
+                    type='text'
+                    value={email}
+                    required
+                    onChange={e=> setEmail(e.target.value)}
+                    />
+                </label>
+                <label className="password">
+                    Password:
+                    <input
+                    className="password-input"
+                    type='password'
+                    value={password}
+                    onChange={e=>setPassword(e.target.value)}
+                    required
+                    />
+                </label>
+                <button
+                className="login-form-button"
+                // disabled={errors.length>0? true : false}
+                type="submit">Log In</button>
+            </div>
         </form>
     )
 }

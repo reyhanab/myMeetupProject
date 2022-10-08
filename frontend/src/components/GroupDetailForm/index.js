@@ -26,7 +26,7 @@ function GroupDetailPage(){
     useEffect(()=>{
         dispatch(loadGroups())
     },[dispatch, location.key])
-    
+
     useEffect(()=>{
         dispatch(loadAllEvents())
     },[dispatch, location.key])
@@ -50,9 +50,9 @@ function GroupDetailPage(){
         organizerLinks = (
             <>
                 <div className="edit-delete-div">
-                    <NavLink to={`/groups/${groupId}/edit`}>Edit</NavLink>
-                    <button onClick={(e)=>deleteGroup(e,groupId)}>Delete</button>
-                    <NavLink to={`/groups/${groupId}/event`}>Create Event</NavLink>
+                    <NavLink className='edit-link' to={`/groups/${groupId}/edit`}>Edit Group</NavLink>
+                    <button className ='delete-link' onClick={(e)=>deleteGroup(e,groupId)}>Delete Group</button>
+                    <NavLink className='create-event-link' to={`/groups/${groupId}/event`}>Create Event</NavLink>
                 </div>
             </>
         )
@@ -64,10 +64,9 @@ function GroupDetailPage(){
             </div>
             <div className="group-detail-div">
                 <h2 >{group?.name}</h2>
+                <h2>{group?.city}, {group?.state}</h2>
                 <h3>{group?.about}</h3>
-                <h2>Number of Members:{group?.numMembers}</h2>
-                <h2>City:{group?.city}</h2>
-                <h2>State:{group?.state}</h2>
+                <h3>Number of Members:{group?.numMembers}</h3>
             </div>
                 {organizerLinks}
             {/* <div className="show-events-div">

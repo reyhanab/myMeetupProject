@@ -35,8 +35,8 @@ function EventDetailPage(){
     if (userId === organizerId){
         editDeleteEvent = (
             <div className="edit-delete-div">
-                <NavLink to={`/events/${eventId}/edit`}>Edit</NavLink>
-                <button onClick={(e)=>deleteEvent(e,eventId)}>Delete</button>
+                <NavLink className='edit-link' to={`/events/${eventId}/edit`}>Edit</NavLink>
+                <button className="delete-link" onClick={(e)=>deleteEvent(e,eventId)}>Delete</button>
             </div>
         )
     }
