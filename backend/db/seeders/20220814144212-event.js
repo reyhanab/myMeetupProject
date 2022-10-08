@@ -11,7 +11,7 @@ const fields = [
     price:0,
     startDate:"2022-10-19 10:00:00",
     endDate:"2022-10-19 17:00:00",
-    previewImage:"http://localhost:8080/events/sandboarding.jpg"
+    previewImage:"https://image.shutterstock.com/image-photo/group-black-friends-hangout-fun-260nw-1966775425.jpg"
   },
   {
     groupId:2,
@@ -23,7 +23,7 @@ const fields = [
     price:0,
     startDate:"2022-11-19 20:00:00",
     endDate:"2022-11-19 22:00:00",
-    previewImage:"http://localhost:8080/events/brewery.jpg"
+    previewImage:"https://image.shutterstock.com/image-photo/group-black-friends-hangout-fun-260nw-1966775425.jpg"
   },
   {
     groupId:3,
@@ -35,7 +35,7 @@ const fields = [
     price:0,
     startDate:"2022-11-19 20:00:00",
     endDate:"2022-11-19 22:00:00",
-    previewImage:"http://localhost:8080/events/drinks.jpg"
+    previewImage:"https://image.shutterstock.com/image-photo/group-black-friends-hangout-fun-260nw-1966775425.jpg"
   },
   {
     groupId:4,
@@ -47,7 +47,7 @@ const fields = [
     price:500,
     startDate:"2022-10-17 20:00:00",
     endDate:"2022-10-24 22:00:00",
-    previewImage:"http://localhost:8080/events/india.jpg"
+    previewImage:"https://image.shutterstock.com/image-photo/group-black-friends-hangout-fun-260nw-1966775425.jpg"
   },
   {
     groupId:5,
@@ -59,7 +59,7 @@ const fields = [
     price:0,
     startDate:"2022-10-17 20:00:00",
     endDate:"2022-10-17 22:00:00",
-    previewImage:"http://localhost:8080/events/bookclub.jpg"
+    previewImage:"https://image.shutterstock.com/image-photo/group-black-friends-hangout-fun-260nw-1966775425.jpg"
   },
   {
     groupId:6,
@@ -71,7 +71,7 @@ const fields = [
     price:0,
     startDate:"2022-10-18 20:00:00",
     endDate:"2022-10-19 22:00:00",
-    previewImage:"http://localhost:8080/events/cycling.jpg"
+    previewImage:"https://image.shutterstock.com/image-photo/group-black-friends-hangout-fun-260nw-1966775425.jpg"
   },
   {
     groupId:7,
@@ -83,7 +83,7 @@ const fields = [
     price:0,
     startDate:"2022-10-18 10:00:00",
     endDate:"2022-10-19 15:00:00",
-    previewImage:"http://localhost:8080/events/rock-climbing.jpg"
+    previewImage:"https://image.shutterstock.com/image-photo/group-black-friends-hangout-fun-260nw-1966775425.jpg"
   },
   {
     groupId:8,
@@ -95,7 +95,7 @@ const fields = [
     price:0,
     startDate:"2022-10-18 10:00:00",
     endDate:"2022-10-19 15:00:00",
-    previewImage:"http://localhost:8080/events/international.png"
+    previewImage:"https://image.shutterstock.com/image-photo/group-black-friends-hangout-fun-260nw-1966775425.jpg"
   }
 ]
 module.exports = {

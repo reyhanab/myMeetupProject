@@ -9,7 +9,7 @@ const fields = [{
   private:true,
   city:'Royal Oak',
   state:'Michigan',
-  previewImage: 'http://localhost:8080/groups/metro-detroit.jpg'
+  previewImage: 'https://previews.123rf.com/images/pressmaster/pressmaster1609/pressmaster160900828/65108522-group-of-happy-young-friends-having-hangout-in-outdoor-cafe.jpg?fj=1'
 },
 {
   organizerId: 2,
@@ -19,7 +19,7 @@ const fields = [{
   private:true,
   city:'Royal Oak',
   state:'Michigan',
-  previewImage: 'http://localhost:8080/groups/weekenders.jpg'
+  previewImage: 'https://previews.123rf.com/images/pressmaster/pressmaster1609/pressmaster160900828/65108522-group-of-happy-young-friends-having-hangout-in-outdoor-cafe.jpg?fj=1'
 },
 {
   organizerId: 3,
@@ -29,7 +29,7 @@ const fields = [{
   private:true,
   city:'Utica',
   state:'Michigan',
-  previewImage:"http://localhost:8080/groups/ladies-night.jpg"
+  previewImage:"https://previews.123rf.com/images/pressmaster/pressmaster1609/pressmaster160900828/65108522-group-of-happy-young-friends-having-hangout-in-outdoor-cafe.jpg?fj=1"
 },
 {
   organizerId: 1,
@@ -39,7 +39,7 @@ const fields = [{
   private:true,
   city:'Detroit',
   state:'Michigan',
-  previewImage: 'http://localhost:8080/groups/travel.jpg'
+  previewImage: 'https://previews.123rf.com/images/pressmaster/pressmaster1609/pressmaster160900828/65108522-group-of-happy-young-friends-having-hangout-in-outdoor-cafe.jpg?fj=1'
 },
 {
   organizerId: 1,
@@ -49,7 +49,7 @@ const fields = [{
   private:true,
   city:'Detroit',
   state:'Michigan',
-  previewImage: 'http://localhost:8080/groups/afro.jpg'
+  previewImage: 'https://previews.123rf.com/images/pressmaster/pressmaster1609/pressmaster160900828/65108522-group-of-happy-young-friends-having-hangout-in-outdoor-cafe.jpg?fj=1'
 },
 {
   organizerId: 1,
@@ -59,7 +59,7 @@ const fields = [{
   private:true,
   city:'Detroit',
   state:'Michigan',
-  previewImage: 'http://localhost:8080/groups/cycling.jpg'
+  previewImage: 'https://previews.123rf.com/images/pressmaster/pressmaster1609/pressmaster160900828/65108522-group-of-happy-young-friends-having-hangout-in-outdoor-cafe.jpg?fj=1'
 },
 {
   organizerId: 1,
@@ -69,7 +69,7 @@ const fields = [{
   private:true,
   city:'Saint Clair Shores',
   state:'Michigan',
-  previewImage: 'http://localhost:8080/groups/rock-climbing.jpg'
+  previewImage: 'https://previews.123rf.com/images/pressmaster/pressmaster1609/pressmaster160900828/65108522-group-of-happy-young-friends-having-hangout-in-outdoor-cafe.jpg?fj=1'
 },
 {
   organizerId: 1,
@@ -79,7 +79,7 @@ const fields = [{
   private:true,
   city:'Detroit',
   state:'Michigan',
-  previewImage: 'http://localhost:8080/groups/international-friends.jpg'
+  previewImage: 'https://previews.123rf.com/images/pressmaster/pressmaster1609/pressmaster160900828/65108522-group-of-happy-young-friends-having-hangout-in-outdoor-cafe.jpg?fj=1'
 }
 ]
 module.exports = {

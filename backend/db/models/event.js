@@ -99,7 +99,7 @@ module.exports = (sequelize, DataTypes) => {
       }
       },
     previewImage:{
-      type:DataTypes.STRING,
+      type:DataTypes.TEXT,
       allowNull:true
     }
 

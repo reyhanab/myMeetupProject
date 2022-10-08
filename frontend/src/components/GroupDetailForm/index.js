@@ -34,9 +34,8 @@ function GroupDetailPage(){
 
     const deleteGroup = (e, groupId) =>{
         e.preventDefault()
-        console.log(groupEvents)
-        dispatch(deleteGroupThunk(groupId))
         groupEvents.map(event=> {dispatch(deleteEventThunk(event.id))})
+        dispatch(deleteGroupThunk(groupId))
         alert('Group has been deleted')
         history.push('/')
     }
