@@ -11,7 +11,7 @@ const fields = [
     price:0,
     startDate:"2022-10-19 10:00:00",
     endDate:"2022-10-19 17:00:00",
-    previewImage:"https://image.shutterstock.com/image-photo/group-black-friends-hangout-fun-260nw-1966775425.jpg"
+    previewImage:"https://www.google.com/url?sa=i&url=https%3A%2F%2Fdabuka.de%2Fitinerary%2Fsandboarding-in-kusur-al-arab-fayoum%2F&psig=AOvVaw03DqyPW_b8N8Qf8V5z6CdF&ust=1665421279581000&source=images&cd=vfe&ved=0CAwQjRxqFwoTCJD3_e_P0_oCFQAAAAAdAAAAABAU"
   },
   {
     groupId:2,
@@ -23,7 +23,7 @@ const fields = [
     price:0,
     startDate:"2022-11-19 20:00:00",
     endDate:"2022-11-19 22:00:00",
-    previewImage:"https://image.shutterstock.com/image-photo/group-black-friends-hangout-fun-260nw-1966775425.jpg"
+    previewImage:"https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.thedrinksbusiness.com%2F2020%2F04%2Fthe-10-largest-craft-breweries-in-the-us-2020%2F&psig=AOvVaw04Tz4M2MU_JUoecFDJyuf3&ust=1665421455474000&source=images&cd=vfe&ved=0CAwQjRxqFwoTCPCK68PQ0_oCFQAAAAAdAAAAABAJ"
   },
   {
     groupId:3,
@@ -35,7 +35,7 @@ const fields = [
     price:0,
     startDate:"2022-11-19 20:00:00",
     endDate:"2022-11-19 22:00:00",
-    previewImage:"https://image.shutterstock.com/image-photo/group-black-friends-hangout-fun-260nw-1966775425.jpg"
+    previewImage:"https://www.google.com/url?sa=i&url=http%3A%2F%2Flandyachtlimos.com%2Flimoservice%2Ftag%2Fladies-night-out&psig=AOvVaw3yU_mJceZJ8OfpH762niVY&ust=1665421499612000&source=images&cd=vfe&ved=0CAwQjRxqFwoTCPjH-NjQ0_oCFQAAAAAdAAAAABAF"
   },
   {
     groupId:4,
@@ -47,7 +47,7 @@ const fields = [
     price:500,
     startDate:"2022-10-17 20:00:00",
     endDate:"2022-10-24 22:00:00",
-    previewImage:"https://image.shutterstock.com/image-photo/group-black-friends-hangout-fun-260nw-1966775425.jpg"
+    previewImage:"https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.tourmyindia.com%2Fblog%2Fyoga-destinations-india-rejuvenate%2F&psig=AOvVaw3ZaGzmT_pWezT0h1IYUCXx&ust=1665421542221000&source=images&cd=vfe&ved=0CAwQjRxqFwoTCIDDnu3Q0_oCFQAAAAAdAAAAABAF"
   },
   {
     groupId:5,
@@ -59,7 +59,7 @@ const fields = [
     price:0,
     startDate:"2022-10-17 20:00:00",
     endDate:"2022-10-17 22:00:00",
-    previewImage:"https://image.shutterstock.com/image-photo/group-black-friends-hangout-fun-260nw-1966775425.jpg"
+    previewImage:"https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.clipartlogo.com%2Ffree%2Fbook-club.html&psig=AOvVaw3l2IoP2WWR5BdlOrdV0r6L&ust=1665421670183000&source=images&cd=vfe&ved=0CAwQjRxqFwoTCPjSparR0_oCFQAAAAAdAAAAABAO"
   },
   {
     groupId:6,
@@ -71,7 +71,7 @@ const fields = [
     price:0,
     startDate:"2022-10-18 20:00:00",
     endDate:"2022-10-19 22:00:00",
-    previewImage:"https://image.shutterstock.com/image-photo/group-black-friends-hangout-fun-260nw-1966775425.jpg"
+    previewImage:"https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.outsideonline.com%2Foutdoor-adventure%2Fbiking%2Feverything-you-always-wanted-to-know-about-gravel-cycling-but-were-afraid-to-ask%2F&psig=AOvVaw1_DLRQGLJ-92rtSVd78Lg5&ust=1665421744622000&source=images&cd=vfe&ved=0CAwQjRxqFwoTCOCnys3R0_oCFQAAAAAdAAAAABAE"
   },
   {
     groupId:7,
@@ -83,7 +83,7 @@ const fields = [
     price:0,
     startDate:"2022-10-18 10:00:00",
     endDate:"2022-10-19 15:00:00",
-    previewImage:"https://image.shutterstock.com/image-photo/group-black-friends-hangout-fun-260nw-1966775425.jpg"
+    previewImage:"https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.yelp.com%2Fbiz%2Fplanet-rock-madison-heights-madison-heights%3Fstart%3D20&psig=AOvVaw3fxpvMAwXCq3qYX6aUVST7&ust=1665423388681000&source=images&cd=vfe&ved=0CAwQjRxqFwoTCOjg293X0_oCFQAAAAAdAAAAABAF"
   },
   {
     groupId:8,
@@ -95,7 +95,7 @@ const fields = [
     price:0,
     startDate:"2022-10-18 10:00:00",
     endDate:"2022-10-19 15:00:00",
-    previewImage:"https://image.shutterstock.com/image-photo/group-black-friends-hangout-fun-260nw-1966775425.jpg"
+    previewImage:"https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.vectorstock.com%2Froyalty-free-vector%2Finternational-friends-multiethnic-friendship-vector-30239564&psig=AOvVaw2c3hNS9G_z8netztgYKOSB&ust=1665423446533000&source=images&cd=vfe&ved=0CAwQjRxqFwoTCPj-l_nX0_oCFQAAAAAdAAAAABAF"
   }
 ]
 module.exports = {

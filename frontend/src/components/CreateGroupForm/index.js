@@ -16,7 +16,7 @@ function CreateGroupPage(){
     const [city, setCity] = useState('');
     const [state, setState] = useState('');
     const [errors, setErrors] = useState([])
-    const previewImage = 'http://localhost:8080/groups/default-group.jpg'
+    const previewImage = 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fclipart.world%2Ffriends-clipart%2Fdownload-clipart-group-of-friends%2F&psig=AOvVaw1MpRJLor5kdytVjyyh_Uf_&ust=1665423501988000&source=images&cd=vfe&ved=0CAwQjRxqFwoTCNjixZPY0_oCFQAAAAAdAAAAABAO'
 
     const handleSubmit = (e)=>{
         e.preventDefault()
@@ -46,7 +46,7 @@ function CreateGroupPage(){
             <form onSubmit={handleSubmit}>
 
                 <div>
-                    <img className='create-group-image-background' src='http://localhost:8080/groups/default-group.jpg'/>
+                    <img className='create-group-image-background' src={previewImage}/>
                 </div>
                 <h1>Start a new group</h1>
                 {errors.length>0 && (

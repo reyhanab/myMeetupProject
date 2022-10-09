@@ -16,7 +16,7 @@ function CreateEventPage(){
     const [startDate, setStartDate] = useState('');
     const [endDate, setEndDate] = useState('')
     const [errors, setErrors] = useState([])
-    const previewImage = 'http://localhost:8080/events/default-event.jpg'
+    const previewImage = 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.istockphoto.com%2Fillustrations%2Ffriends-talking&psig=AOvVaw1CR1oUPj9zmUdfYpiQpi-3&ust=1665423717689000&source=images&cd=vfe&ved=0CAwQjRxqFwoTCIDvx_rY0_oCFQAAAAAdAAAAABBH'
 
     const dispatch = useDispatch()
     const history = useHistory()
@@ -46,7 +46,7 @@ function CreateEventPage(){
 
             <form onSubmit={handleSubmit} >
                 <div>
-                    <img className='create-event-image-background' src='http://localhost:8080/events/default-event.jpg'/>
+                    <img className='create-event-image-background' src={previewImage}/>
                 </div>
                 <h1>Create Event</h1>
                 {errors.length>0 && (
