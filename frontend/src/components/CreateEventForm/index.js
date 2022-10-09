@@ -16,7 +16,7 @@ function CreateEventPage(){
     const [startDate, setStartDate] = useState('');
     const [endDate, setEndDate] = useState('')
     const [errors, setErrors] = useState([])
-    const previewImage = 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.istockphoto.com%2Fillustrations%2Ffriends-talking&psig=AOvVaw1CR1oUPj9zmUdfYpiQpi-3&ust=1665423717689000&source=images&cd=vfe&ved=0CAwQjRxqFwoTCIDvx_rY0_oCFQAAAAAdAAAAABBH'
+    const previewImage = 'https://clipart.world/wp-content/uploads/2021/05/Free-Group-of-Friends-clipart.png'
 
     const dispatch = useDispatch()
     const history = useHistory()
