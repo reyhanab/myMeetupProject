@@ -9,7 +9,7 @@ const fields = [{
   private:true,
   city:'Royal Oak',
   state:'Michigan',
-  previewImage: 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.muscleandfitness.com%2Fworkouts%2Fworkout-tips%2F5-outdoor-activities-fire-your-metabolism-and-calm-your-mind%2F&psig=AOvVaw0UIvYN1oaTZhGqny74syIi&ust=1665420016652000&source=images&cd=vfe&ved=0CAwQjRxqFwoTCODJ9pXL0_oCFQAAAAAdAAAAABAE'
+  previewImage:'https://www.muscleandfitness.com/wp-content/uploads/2017/08/Female-kayaking-in-cavernous-river.jpg?quality=86&strip=all'
 },
 {
   organizerId: 2,
@@ -19,7 +19,7 @@ const fields = [{
   private:true,
   city:'Royal Oak',
   state:'Michigan',
-  previewImage: 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.visitvirginiabeach.com%2Fexplore%2Foutdoor-activities%2F&psig=AOvVaw0UIvYN1oaTZhGqny74syIi&ust=1665420016652000&source=images&cd=vfe&ved=0CAwQjRxqFwoTCODJ9pXL0_oCFQAAAAAdAAAAABAJ'
+  previewImage: 'https://www.aaastateofplay.com/media/page-images/free-guides/Parks-Over-Pinterest--Getting-Teens-to-Spend-More-Time-Outdoors.jpg'
 },
 {
   organizerId: 3,
@@ -29,7 +29,7 @@ const fields = [{
   private:true,
   city:'Utica',
   state:'Michigan',
-  previewImage:"https://www.google.com/url?sa=i&url=https%3A%2F%2Fsecretmiami.com%2Fbest-ladies-night-miami%2F&psig=AOvVaw09J0meUrl6uo2ICfm7537p&ust=1665420558979000&source=images&cd=vfe&ved=0CAwQjRxqFwoTCJjisZjN0_oCFQAAAAAdAAAAABAE"
+  previewImage:"https://www.milwaukeemag.com/wp-content/uploads/2018/01/GettyImages-499366540.jpg"
 },
 {
   organizerId: 1,
@@ -39,7 +39,7 @@ const fields = [{
   private:true,
   city:'Detroit',
   state:'Michigan',
-  previewImage: 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.langschwander.com%2Fnews%2F2016%2F12%2F14%2Fwhy-its-essential-you-travel-how-travel-tourism-boost-global-economics&psig=AOvVaw3buuryToTcqCnKmAEASdpY&ust=1665420617039000&source=images&cd=vfe&ved=0CAwQjRxqFwoTCLCe8bPN0_oCFQAAAAAdAAAAABAE'
+  previewImage: 'https://www.traveloffpath.com/wp-content/uploads/2022/05/Travel-Demand-is-Back-to-Pre-Pandemic-Levels-and-What-it-Means-To-You-This-Summer.jpg'
 },
 {
   organizerId: 1,
@@ -49,7 +49,7 @@ const fields = [{
   private:true,
   city:'Detroit',
   state:'Michigan',
-  previewImage: 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.pinterest.com%2Fpin%2F283515739030619621%2F&psig=AOvVaw3ArKnOZjcNyVokR0SBCBBx&ust=1665420651697000&source=images&cd=vfe&ved=0CAwQjRxqFwoTCJiOxsTN0_oCFQAAAAAdAAAAABAR'
+  previewImage: 'https://nfg-sofun.s3.amazonaws.com/uploads/ui_configuration/main_logo/339/welcome_logo_logoAO.png'
 },
 {
   organizerId: 1,
@@ -59,7 +59,7 @@ const fields = [{
   private:true,
   city:'Detroit',
   state:'Michigan',
-  previewImage: 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fcentro-innato.com%2Fajuste-quiropractico%2F%3Fen%3D5.3.1594027.1.25.85.starting%2Bout%2Broad%2Bcycling&psig=AOvVaw25iBS7K0osHFayKQqtHXCW&ust=1665420700945000&source=images&cd=vfe&ved=0CAwQjRxqFwoTCPjcg9zN0_oCFQAAAAAdAAAAABAI'
+  previewImage: 'https://images.immediate.co.uk/production/volatile/sites/21/2019/11/Cannondale-CAAD13-Force-eTap-AXS-01-eea8773.jpg?quality=90&resize=620,413'
 },
 {
   organizerId: 1,
@@ -69,7 +69,7 @@ const fields = [{
   private:true,
   city:'Saint Clair Shores',
   state:'Michigan',
-  previewImage: 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fnbpt.metrorock.com%2F&psig=AOvVaw2yqf2Pi94bbBlwE0Wlmpvb&ust=1665420755828000&source=images&cd=vfe&ved=0CAwQjRxqFwoTCNDwlPbN0_oCFQAAAAAdAAAAABAE'
+  previewImage: 'https://images.squarespace-cdn.com/content/v1/60ccc2e5d0ca337c05d2aec2/2dc167ff-4fb7-4634-8fcd-db4262e7ccde/laura_leading1.jpeg'
 },
 {
   organizerId: 1,
@@ -79,7 +79,7 @@ const fields = [{
   private:true,
   city:'Detroit',
   state:'Michigan',
-  previewImage: 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.alamy.com%2Fmeeting-international-friends-students-from-different-countries-together-greet-each-other-in-their-native-language-worldwide-company-employees-at-image424756838.html&psig=AOvVaw0QJiaRaDEG-1NFvdirTBTC&ust=1665421149236000&source=images&cd=vfe&ved=0CAwQjRxqFwoTCIjh4bHP0_oCFQAAAAAdAAAAABAE'
+  previewImage: 'https://thumbs.dreamstime.com/b/young-friends-all-around-world-standing-posing-photo-happy-international-friendship-vector-cartoon-illustration-90481934.jpg'
 }
 ]
 module.exports = {

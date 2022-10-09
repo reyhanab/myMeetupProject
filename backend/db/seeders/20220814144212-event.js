@@ -11,7 +11,7 @@ const fields = [
     price:0,
     startDate:"2022-10-19 10:00:00",
     endDate:"2022-10-19 17:00:00",
-    previewImage:"https://www.google.com/url?sa=i&url=https%3A%2F%2Fdabuka.de%2Fitinerary%2Fsandboarding-in-kusur-al-arab-fayoum%2F&psig=AOvVaw03DqyPW_b8N8Qf8V5z6CdF&ust=1665421279581000&source=images&cd=vfe&ved=0CAwQjRxqFwoTCJD3_e_P0_oCFQAAAAAdAAAAABAU"
+    previewImage:"https://desertexpeditions.com.pe/wp-content/uploads/2017/04/SANDBOARD-LIMA-PERU-2.jpg"
   },
   {
     groupId:2,
@@ -23,7 +23,7 @@ const fields = [
     price:0,
     startDate:"2022-11-19 20:00:00",
     endDate:"2022-11-19 22:00:00",
-    previewImage:"https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.thedrinksbusiness.com%2F2020%2F04%2Fthe-10-largest-craft-breweries-in-the-us-2020%2F&psig=AOvVaw04Tz4M2MU_JUoecFDJyuf3&ust=1665421455474000&source=images&cd=vfe&ved=0CAwQjRxqFwoTCPCK68PQ0_oCFQAAAAAdAAAAABAJ"
+    previewImage:"https://p2d7x8x2.stackpathcdn.com/content/uploads/2020/03/iStock-1040303026-640x425.jpg"
   },
   {
     groupId:3,
@@ -35,7 +35,7 @@ const fields = [
     price:0,
     startDate:"2022-11-19 20:00:00",
     endDate:"2022-11-19 22:00:00",
-    previewImage:"https://www.google.com/url?sa=i&url=http%3A%2F%2Flandyachtlimos.com%2Flimoservice%2Ftag%2Fladies-night-out&psig=AOvVaw3yU_mJceZJ8OfpH762niVY&ust=1665421499612000&source=images&cd=vfe&ved=0CAwQjRxqFwoTCPjH-NjQ0_oCFQAAAAAdAAAAABAF"
+    previewImage:"https://www.citymyway.com/Upload/citymyway/35029_1561149943_46202194037.jpeg"
   },
   {
     groupId:4,
@@ -47,7 +47,7 @@ const fields = [
     price:500,
     startDate:"2022-10-17 20:00:00",
     endDate:"2022-10-24 22:00:00",
-    previewImage:"https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.tourmyindia.com%2Fblog%2Fyoga-destinations-india-rejuvenate%2F&psig=AOvVaw3ZaGzmT_pWezT0h1IYUCXx&ust=1665421542221000&source=images&cd=vfe&ved=0CAwQjRxqFwoTCIDDnu3Q0_oCFQAAAAAdAAAAABAF"
+    previewImage:"https://byo-storage.s3.ap-south-1.amazonaws.com/public/og-images/vwN8hJ0ZNqTuMPFftKdJVoHQxSgfxoAgIZj4QRiS.jpg"
   },
   {
     groupId:5,
@@ -59,7 +59,7 @@ const fields = [
     price:0,
     startDate:"2022-10-17 20:00:00",
     endDate:"2022-10-17 22:00:00",
-    previewImage:"https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.clipartlogo.com%2Ffree%2Fbook-club.html&psig=AOvVaw3l2IoP2WWR5BdlOrdV0r6L&ust=1665421670183000&source=images&cd=vfe&ved=0CAwQjRxqFwoTCPjSparR0_oCFQAAAAAdAAAAABAO"
+    previewImage:"https://image.cnbcfm.com/api/v1/image/104702698-GettyImages-583816330-book-club.jpg?v=1532563764"
   },
   {
     groupId:6,
@@ -71,7 +71,7 @@ const fields = [
     price:0,
     startDate:"2022-10-18 20:00:00",
     endDate:"2022-10-19 22:00:00",
-    previewImage:"https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.outsideonline.com%2Foutdoor-adventure%2Fbiking%2Feverything-you-always-wanted-to-know-about-gravel-cycling-but-were-afraid-to-ask%2F&psig=AOvVaw1_DLRQGLJ-92rtSVd78Lg5&ust=1665421744622000&source=images&cd=vfe&ved=0CAwQjRxqFwoTCOCnys3R0_oCFQAAAAAdAAAAABAE"
+    previewImage:"https://i.guim.co.uk/img/media/e81bc0125b1c4bc950c5515f6c0e454df8b3c7a5/0_555_8368_5019/master/8368.jpg?width=620&quality=85&auto=format&fit=max&s=d37382ce42c5db509ed58fc244e00b68"
   },
   {
     groupId:7,
@@ -83,7 +83,7 @@ const fields = [
     price:0,
     startDate:"2022-10-18 10:00:00",
     endDate:"2022-10-19 15:00:00",
-    previewImage:"https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.yelp.com%2Fbiz%2Fplanet-rock-madison-heights-madison-heights%3Fstart%3D20&psig=AOvVaw3fxpvMAwXCq3qYX6aUVST7&ust=1665423388681000&source=images&cd=vfe&ved=0CAwQjRxqFwoTCOjg293X0_oCFQAAAAAdAAAAABAF"
+    previewImage:"https://images.squarespace-cdn.com/content/v1/5949198746c3c411a954cea6/1635477158940-AG16SLTKZKCLO70NQL9E/FC0BF2E1-9900-4556-BB05-4A120BFC481E.jpeg?format=1000w"
   },
   {
     groupId:8,
@@ -95,7 +95,7 @@ const fields = [
     price:0,
     startDate:"2022-10-18 10:00:00",
     endDate:"2022-10-19 15:00:00",
-    previewImage:"https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.vectorstock.com%2Froyalty-free-vector%2Finternational-friends-multiethnic-friendship-vector-30239564&psig=AOvVaw2c3hNS9G_z8netztgYKOSB&ust=1665423446533000&source=images&cd=vfe&ved=0CAwQjRxqFwoTCPj-l_nX0_oCFQAAAAAdAAAAABAF"
+    previewImage:"https://clipart.world/wp-content/uploads/2021/05/Download-Clipart-Group-of-Friends.png"
   }
 ]
 module.exports = {
