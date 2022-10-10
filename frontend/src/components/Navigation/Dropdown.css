@@ -5,7 +5,7 @@
     display:flex;
     flex-direction: column;
     position: relative;
-    margin-left: 700px;
+    margin-left: 950px;
 }
 .dropdown-submenu{
 
@@ -17,5 +17,8 @@
   z-index: 1;
 }
 .logout-button{
-    width:80px
+    width:80px;
+    height:20px;
+    border: 1px solid gray;
+    border-radius: 10%;
 }
