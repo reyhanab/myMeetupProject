@@ -1,6 +1,6 @@
 'use strict';
 const {Event} = require('../models')
-let options = {};
+let options = {validate:true};
 if (process.env.NODE_ENV === 'production') {
   options.schema = process.env.SCHEMA;  // define your schema in options object
 }
@@ -104,7 +104,7 @@ const fields = [
 ]
 module.exports = {
   async up (queryInterface, Sequelize) {
-    await Event.bulkCreate(fields, {validate:true}, options)
+    await Event.bulkCreate(fields,  options)
 
     // for (let item of fields){
     //   // const {groupId,venueId,name,description,type,capacity,price,startDate,endDate} = item

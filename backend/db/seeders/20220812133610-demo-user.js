@@ -1,9 +1,10 @@
 'use strict';
 const bcrypt = require('bcryptjs')
 
-let options = {};
+let options = {validate : true};
 if (process.env.NODE_ENV === 'production') {
-  options.schema = process.env.SCHEMA;  // define your schema in options object
+  options.schema = process.env.SCHEMA;  // define your schema in options object]
+  options.validate = true
 }
 module.exports = {
   async up (queryInterface, Sequelize) {
@@ -38,7 +39,7 @@ module.exports = {
         lastName: 'Young',
         password: bcrypt.hashSync('password5')
       }
-    ], {validate:true}, options)
+    ],  options)
   },
 
   async down (queryInterface, Sequelize) {
