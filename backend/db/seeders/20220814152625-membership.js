@@ -74,7 +74,7 @@ module.exports = {
     // await queryInterface.bulkInsert('Memberships', fields, {validate:true})
     for (let item of fields){
       const {memberId,groupId,status} = item
-      await Membership.create({memberId,groupId,status}, options)
+      await Membership.create({memberId,groupId,status})
     }
   },
 

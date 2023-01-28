@@ -1,5 +1,5 @@
 'use strict';
-let options = {validate :true, tablename:"Groups"};
+let options = {validate :true, tablename:"groups"};
 if (process.env.NODE_ENV === 'production') {
   options.schema = process.env.SCHEMA;  // define your schema in options object
 }
@@ -87,7 +87,7 @@ const fields = [{
 ]
 module.exports = {
   async up (queryInterface, Sequelize) {
-    await Group.bulkCreate(fields, options)
+    await Group.bulkCreate(fields)
     // for (let item of fields){
     //   const {organizerId,name,about,type,private,city,state} = item;
     //   await Group.create({organizerId,name,about,type,private,city,state})
@@ -96,6 +96,6 @@ module.exports = {
 
   async down (queryInterface, Sequelize) {
     const Op = Sequelize.Op;
-    await queryInterface.bulkDelete('Groups', options)
+    await queryInterface.bulkDelete('Groups')
   }
 };

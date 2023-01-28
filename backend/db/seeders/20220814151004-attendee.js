@@ -46,7 +46,7 @@ module.exports = {
   //  await queryInterface.bulkInsert('Attendees', fields, {validate:true})
   for (let item of fields){
     const {userId,eventId,status} = item
-    await Attendee.create({userId,eventId,status}, options)
+    await Attendee.create({userId,eventId,status})
   }
   },
 

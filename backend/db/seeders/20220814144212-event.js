@@ -104,7 +104,7 @@ const fields = [
 ]
 module.exports = {
   async up (queryInterface, Sequelize) {
-    await Event.bulkCreate(fields,  options)
+    await Event.bulkCreate(fields)
 
     // for (let item of fields){
     //   // const {groupId,venueId,name,description,type,capacity,price,startDate,endDate} = item

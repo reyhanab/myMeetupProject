@@ -74,7 +74,7 @@ module.exports = {
     // await queryInterface.bulkInsert('Venues', fields, {validate:true})
     for (let item of fields){
       const {groupId,address,city,state,lat,lng} = item
-      await Venue.create({groupId,address,city,state,lat,lng}, options)
+      await Venue.create({groupId,address,city,state,lat,lng})
     }
   },
 

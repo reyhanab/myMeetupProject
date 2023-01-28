@@ -53,7 +53,7 @@ module.exports = {
   async up (queryInterface, Sequelize) {
     for (let item of fields){
       const {userId,imagableId,imagableType,url} = item
-      await Image.create({userId,imagableId,imagableType,url}, options)
+      await Image.create({userId,imagableId,imagableType,url})
     }
   },
 
