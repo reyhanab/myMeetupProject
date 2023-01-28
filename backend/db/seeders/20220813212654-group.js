@@ -1,5 +1,5 @@
 'use strict';
-let options = {validate :true};
+let options = {validate :true, tablename:"Groups"};
 if (process.env.NODE_ENV === 'production') {
   options.schema = process.env.SCHEMA;  // define your schema in options object
 }
