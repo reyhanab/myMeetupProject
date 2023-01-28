@@ -5,7 +5,7 @@ let options = {validate : true, tablename : "users"};
 if (process.env.NODE_ENV === 'production') {
   options.schema = process.env.SCHEMA;  // define your schema in options object]
 }
-fields= [
+const fields= [
   {
     email: 'user1@user.io',
     firstName: 'Reyhaneh',
