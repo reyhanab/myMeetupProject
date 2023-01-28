@@ -1,4 +1,8 @@
 'use strict';
+let options = {};
+if (process.env.NODE_ENV === 'production') {
+  options.schema = process.env.SCHEMA;  // define your schema in options object
+}
 const {Attendee} = require('../models')
 const fields = [
   {
@@ -42,11 +46,11 @@ module.exports = {
   //  await queryInterface.bulkInsert('Attendees', fields, {validate:true})
   for (let item of fields){
     const {userId,eventId,status} = item
-    await Attendee.create({userId,eventId,status})
+    await Attendee.create({userId,eventId,status}, options)
   }
   },
 
   async down (queryInterface, Sequelize) {
-    await queryInterface.bulkDelete('Attendees')
+    await queryInterface.bulkDelete('Attendees', options)
   }
 };

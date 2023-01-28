@@ -4,21 +4,22 @@
 .show{
     display:flex;
     flex-direction: column;
-    position: relative;
-    margin-left: 950px;
+    position: absolute;
+    margin-top: 80px;
+    z-index: 1;
 }
 .dropdown-submenu{
 
-  /* position: absolute; */
-  background-color: #f9f9f9;
-  /* min-width: 160px; */
-  /* box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); */
-  /* padding: 12px 16px; */
-  z-index: 1;
+    border-bottom: 1px solid gray;
+    padding: 10px;
+
 }
 .logout-button{
     width:80px;
-    height:20px;
+    height:35px;
     border: 1px solid gray;
     border-radius: 10%;
+}
+.logout-button:hover{
+    cursor: pointer;
 }

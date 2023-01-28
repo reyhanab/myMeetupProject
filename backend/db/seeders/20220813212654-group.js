@@ -1,5 +1,8 @@
 'use strict';
-
+let options = {};
+if (process.env.NODE_ENV === 'production') {
+  options.schema = process.env.SCHEMA;  // define your schema in options object
+}
 const {Group} = require('../models')
 const fields = [{
   organizerId: 1,
@@ -84,7 +87,7 @@ const fields = [{
 ]
 module.exports = {
   async up (queryInterface, Sequelize) {
-    await Group.bulkCreate(fields,{validate:true})
+    await Group.bulkCreate(fields,{validate:true}, options)
     // for (let item of fields){
     //   const {organizerId,name,about,type,private,city,state} = item;
     //   await Group.create({organizerId,name,about,type,private,city,state})
@@ -93,6 +96,6 @@ module.exports = {
 
   async down (queryInterface, Sequelize) {
     const Op = Sequelize.Op;
-    await queryInterface.bulkDelete('Groups')
+    await queryInterface.bulkDelete('Groups', options)
   }
 };

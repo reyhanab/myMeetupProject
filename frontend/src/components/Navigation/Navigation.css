@@ -1,14 +1,14 @@
 .nav{
-    display: grid;
-    grid-template-columns: 10% 65% 15% 10%;
+    display: flex;
+    align-items: center;
     border-bottom: solid 1px rgb(215, 211, 211);
     padding: 10px;
     padding-top: 12px;
+    position: relative;
 
 }
 .logo{
     padding-left: 20px;
-    grid-column: 1;
     width: 110px;
     height: 40px;
 }
@@ -19,8 +19,7 @@
     font-weight: bold;
     padding-top: 12px;
     padding-right: 5px;
-
-
+    margin-bottom: 20px;
 }
 .profile{
     grid-column: 4;
@@ -30,27 +29,40 @@
 }
 .login-link{
     text-decoration: none;
+    margin-right: 30px;
     color: rgb(83, 81, 81);
-    grid-column: 3;
-    margin-left: 40px;
     font-weight: bold;
     font-size: 15px;
     padding-top: 10px;
+
 }
  .signup-link{
     text-decoration: none;
-    grid-column: 4;
     color: rgb(83, 81, 81);
     font-weight: bold;
     font-size: 15px;
-   padding-top: 10px;
+    margin-right: 30px;
+    padding-top: 10px;
  }
- .profile-dropdown{
 
- }
  .login-link:hover{
     color:rgba(254, 5, 5, 0.984);
+    cursor: pointer;
  }
  .signup-link:hover{
     color:rgba(254, 5, 5, 0.984);
+    cursor: pointer;
+ }
+ .log_sign_div{
+    display: flex;
+    margin-left: auto;
+    margin-right: 10px;
+ }
+ .profile_nav{
+    display: flex;
+    margin-left: auto;
+    margin-right: 10px;
+ }
+ .profileButton:hover{
+    cursor: pointer;
  }

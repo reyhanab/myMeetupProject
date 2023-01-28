@@ -1,4 +1,8 @@
 'use strict';
+let options = {};
+if (process.env.NODE_ENV === 'production') {
+  options.schema = process.env.SCHEMA;  // define your schema in options object
+}
 const {Image} = require('../models')
 const fields = [
   {
@@ -49,11 +53,11 @@ module.exports = {
   async up (queryInterface, Sequelize) {
     for (let item of fields){
       const {userId,imagableId,imagableType,url} = item
-      await Image.create({userId,imagableId,imagableType,url})
+      await Image.create({userId,imagableId,imagableType,url}, options)
     }
   },
 
   async down (queryInterface, Sequelize) {
-    await queryInterface.bulkDelete('Image')
+    await queryInterface.bulkDelete('Image', options)
   }
 };

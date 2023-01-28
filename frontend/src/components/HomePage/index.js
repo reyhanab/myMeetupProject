@@ -24,11 +24,10 @@ function Homepage(){
 
     if (sessionUser){
         return (
-            <form>
+            <div >
                 <h2>Welcome, {sessionUser.firstName} 👋</h2>
                 <div className="groups-container">
                     <h3 className="your-groups">Groups</h3>
-                    <NavLink to='/user/groups' className='see-all-groups'>See all groups</NavLink>
                     <div className="groups-prview">
                         <img className="group-image-preview" src={groupsArr[0]?.previewImage} />
                         <img className="group-image-preview" src={groupsArr[1]?.previewImage} />
@@ -37,10 +36,10 @@ function Homepage(){
                         {(groupsArr[1])?<NavLink className='name-group-preview' to={`/groups/${groupsArr[1]?.id}`}>{groupsArr[1]?.name}</NavLink>:''}
                         {(groupsArr[2])?<NavLink className='name-group-preview' to={`/groups/${groupsArr[2]?.id}`}>{groupsArr[2]?.name}</NavLink>:''}
                     </div>
+                    <NavLink to='/user/groups' className='see-all-groups'>See all groups</NavLink>
                 </div>
                 <div className="events-container">
                     <h3 className="your-events">Events</h3>
-                    <NavLink to='/events' className='see-all-events'>See all events</NavLink>
                     <div className="events-prview">
                         <img className="event-image-preview" src={eventsArr[0]?.previewImage} />
                         <img className="event-image-preview" src={eventsArr[1]?.previewImage} />
@@ -49,6 +48,7 @@ function Homepage(){
                         {(eventsArr[1]) ? <NavLink className='name-event-preview' to={`/events/${eventsArr[1]?.id}`}>{eventsArr[1]?.name}</NavLink>: ''}
                         {(eventsArr[2]) ? <NavLink className='name-event-preview' to={`/events/${eventsArr[2]?.id}`}>{eventsArr[2]?.name}</NavLink>: ''}
                     </div>
+                    <NavLink to='/events' className='see-all-events'>See all events</NavLink>
                 </div>
                 <div className="footer">
                     <div className="about-link">
@@ -62,7 +62,7 @@ function Homepage(){
                         LinkedIn</a>
                     </div>
                 </div>
-            </form>
+            </div>
 
         )
     }else{

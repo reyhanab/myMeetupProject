@@ -15,17 +15,18 @@ function Navigation (isLoaded){
     let sessionLinks;
     if(sessionUser){
         sessionLinks = (
-            <>
-            <NavLink className='startGroup' to='/start/group'>Start a new group!</NavLink>
-            <ProfileButton className='profileButton' user={sessionUser} depthLevel={depthLevel}/>
-            </>
+            <p className='profile_nav'>
+                <NavLink className='startGroup' to='/start/group'>Start a new group!</NavLink>
+                <ProfileButton className='profileButton' user={sessionUser} depthLevel={depthLevel}/>
+            </p>
+
         )
     }else{
         sessionLinks = (
-            <>
-            <LoginFormModal />
-            <SignupFormModal />
-            </>
+            <p className='log_sign_div'>
+                <LoginFormModal />
+                <SignupFormModal />
+            </p>
         )
     }
     return (
