@@ -7,18 +7,25 @@
     position: absolute;
     margin-top: 80px;
     z-index: 1;
+    right:30px;
+
 }
 .dropdown-submenu{
 
-    border-bottom: 1px solid gray;
-    padding: 10px;
-
+    /* border-bottom: 1px solid gray; */
+    text-decoration: none;
+    font-weight: 600;
+    background-color: white;
 }
 .logout-button{
-    width:80px;
-    height:35px;
-    border: 1px solid gray;
+    width:100px;
+    height:40px;
+    border: 2px solid rgb(225, 11, 11);
     border-radius: 10%;
+
+    background-color: white;
+    color: red;
+    font-weight: 800;
 }
 .logout-button:hover{
     cursor: pointer;

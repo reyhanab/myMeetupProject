@@ -28,7 +28,7 @@ function Homepage(){
                 <h2>Welcome, {sessionUser.firstName} 👋</h2>
                 <div className="groups-container">
                     <div className="groups">
-                        <h3>Groups</h3>
+                        <h3 className="groups-label">Groups</h3>
                         <NavLink to='/user/groups' className='see-all-groups'>See all groups</NavLink>
                     </div>
                     <div className="groups-prview">
