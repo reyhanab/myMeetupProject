@@ -143,3 +143,22 @@
 .about-link :hover{
     color:red;
 }
+.splash-container{
+    padding-top: 150px;
+    margin:auto;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+
+}
+.splash{
+    width:320px;
+    padding: 20px;
+    text-align: center;
+
+}
+.splash p{
+
+    height: 100px;
+}

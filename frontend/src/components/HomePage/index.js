@@ -79,6 +79,24 @@ function Homepage(){
                     </div>
                     <img className="homepage-image" src='https://secure.meetupstatic.com/next/images/shared/online_events.svg?w=640'></img>
                 </div>
+                <div className="splash-container">
+                    <div className="splash">
+                        <img src="https://secure.meetupstatic.com/next/images/shared/handsUp.svg?w=256"/>
+                        <h2>Join a group</h2>
+                        <p>Do what you love, meet others who love it, find your community. The rest is history!</p>
+                    </div>
+                    <div className="splash">
+                        <img src="https://secure.meetupstatic.com/next/images/shared/ticket.svg?w=256"/>
+                        <h2>Find an event</h2>
+                        <p>Events are happening on just about any topic you can think of, from online gaming and photography to yoga and hiking.</p>
+                    </div>
+                    <div className="splash">
+                        <img src="https://secure.meetupstatic.com/next/images/shared/joinGroup.svg?w=256"/>
+                        <h2>Start a group</h2>
+                        <p>You don’t have to be an expert to gather people together and explore shared interests.</p>
+                    </div>
+
+                </div>
 
             </form>
         )
