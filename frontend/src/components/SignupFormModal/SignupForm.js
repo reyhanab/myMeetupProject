@@ -54,47 +54,47 @@ function SignupForm(){
             <div className="signup-form">
                 <label className="firstName">
                     FirstName:
-                    <input
+                </label>
+                    <input  className="firstName"
                     type='text'
                     value= {firstName}
                     onChange={e=> setFirstName(e.target.value)}
                     />
-                </label>
                 <label className="lastName">
                     lastName:
-                    <input
+                </label>
+                    <input className="lastName"
                     type='text'
                     value= {lastName}
                     onChange={e=> setLastName(e.target.value)}
                     />
-                </label>
                 <label className="email-signup">
                     Email:
-                    <input
+                </label>
+                    <input className="email-signup"
                     type='email'
                     value= {email}
                     required
                     onChange={e=> setEmail(e.target.value)}
                     />
-                </label>
                 <label className="password-signup">
                     Password:
-                    <input
+                </label>
+                    <input  className="password-signup"
                     type='password'
                     value= {password}
                     required
                     onChange={e=> setPassword(e.target.value)}
                     />
-                </label>
                 <label className="confirm-password">
                     Confirm Password:
-                    <input
+                </label>
+                    <input className="confirm-password"
                     type='password'
                     value= {confirmPassword}
                     required
                     onChange={e=> setConfirmPassword(e.target.value)}
                     />
-                </label>
                 <button className="signup-form-button" type="submit">Sign up</button>
             </div>
 
