@@ -17,13 +17,14 @@ function EditGroupPage(){
     const [privateBool, setPrivateBool] = useState(group?.private);
     const [city, setCity] = useState(group?.city);
     const [state, setState] = useState(group?.state);
+    const [previewImage, setPreviewImage] = useState(null)
     const [errors, setErrors] = useState([])
 
     const handleSubmit = async (e)=>{
         e.preventDefault()
         setErrors([])
         const payload = {
-            name, about,type, private:privateBool, city,state
+            name, about,type, private:privateBool, city,state, previewImage
         }
         // await dispatch(editGroup(payload, groupId))
         // alert(`"${name}" has been updated`)
@@ -41,9 +42,12 @@ function EditGroupPage(){
                 setErrors(errorsArr)
             }
         })
-
-
     }
+
+    const updateFile = (e) => {
+        const file = e.target.files[0];
+        if (file) setPreviewImage(file);
+    };
 
     return(
         <form onSubmit={handleSubmit}>
@@ -138,6 +142,11 @@ function EditGroupPage(){
                         value={state}
                         onChange={e=> setState(e.target.value)}
                         />
+                    </label>
+                </div>
+                <div>
+                    <label className="group-label"> Preview Image:
+                        <input className="group-input" type="file" onChange={updateFile} />
                     </label>
                 </div>
                 <button className="submit-button" type="submit">Submit</button>

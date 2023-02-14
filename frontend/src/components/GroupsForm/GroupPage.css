@@ -2,31 +2,39 @@
     margin-left: 20px;
 }
 .your-groups-container{
-    display: grid;
-    grid-template-columns: 50% 50%;
+    display: flex;
+    width:850px;
+    margin:auto ;
+    flex-wrap: wrap;
+
 }
 .group-div{
     border: 2px solid rgb(226, 222, 222);
     border-radius: 5%;
-    margin: 20px;
-   justify-content:space-around;
-   align-items: center;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    margin: 15px;
+    width: 240px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* height: 250px; */
 }
 
 .group-name{
-    padding: 20px;
-    text-decoration: none;
+    padding-left: 8px;
+    padding-right: 8px;
+    text-align: center;
     color: rgb(125, 71, 14);
-
     font-weight: bold;
-    align-self: center;
+    height: 50px;
+    word-break: normal;
 }
 .group-image{
-    width:200px;
-    height:200px;
+    width:150px;
+    height:150px;
     border-radius: 10%;
-    margin: 10px;
+    padding: 10px;
     object-fit: cover;
+
+
 }

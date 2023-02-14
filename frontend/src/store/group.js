@@ -37,21 +37,48 @@ export const loadGroups = ()=>async dispatch =>{
 
 }
 export const createGroup = (group)=> async dispatch =>{
+
+    const { name, about, type, p_private, city, state, previewImage} = group;
+
+    const formData = new FormData();
+    formData.append("name", name);
+    formData.append("about", about);
+    formData.append("type", type);
+    formData.append("city", city);
+    formData.append("state", state);
+
+    if (previewImage) formData.append("previewImage", previewImage);
+    if (!p_private) formData.append("private", false)
+
     const response = await csrfFetch('/api/groups', {
         method:'POST',
-        headers:{'Content-Type': 'application/json'},
-        body: JSON.stringify(group)
+        headers:{'Content-Type': "multipart/form-data"},
+        body: formData,
     })
     const newGroup = await response.json()
+    console.log("enter here")
     if (response.ok){
         dispatch(addGroup(newGroup))
     }
 }
 export const editGroup = (group, groupId)=> async dispatch =>{
+
+    const { name, about, type, p_private, city, state, previewImage} = group;
+
+    const formData = new FormData();
+    formData.append("name", name);
+    formData.append("about", about);
+    formData.append("type", type);
+    formData.append("city", city);
+    formData.append("state", state);
+
+    if (previewImage) formData.append("previewImage", previewImage);
+    if (!p_private) formData.append("private", false)
+
     const response = await csrfFetch(`/api/groups/${groupId}`, {
         method:'PUT',
-        headers:{'Content-Type': 'application/json'},
-        body:JSON.stringify(group)
+        headers:{'Content-Type': 'multipart/form-data'},
+        body:formData
     })
     const editedGroup = await response.json()
     if (response.ok){

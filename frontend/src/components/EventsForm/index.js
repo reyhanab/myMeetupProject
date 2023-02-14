@@ -27,7 +27,8 @@ function EventsPage(){
 
                 {eventsArr?.map((event,i)=>(
                         <div key={i} className='group-div'>
-                            <NavLink className='group-name group' to={`/events/${event.id}`}>{event.name}
+                            <p className='group-name'>{event.name}</p>
+                            <NavLink  to={`/events/${event.id}`}>
                             <img className="group-image group" src={event.previewImage} />
                             </NavLink>
                             {/* <NavLink key={i} to={`/groups/${group.id}`} >{group.name}</NavLink> */}

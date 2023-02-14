@@ -16,7 +16,8 @@ function CreateEventPage(){
     const [startDate, setStartDate] = useState('');
     const [endDate, setEndDate] = useState('')
     const [errors, setErrors] = useState([])
-    const previewImage = 'https://clipart.world/wp-content/uploads/2021/05/Free-Group-of-Friends-clipart.png'
+    const [previewImage, setPreviewImage] = useState(null)
+    const backgroundImage = 'https://clipart.world/wp-content/uploads/2021/05/Free-Group-of-Friends-clipart.png'
 
     const dispatch = useDispatch()
     const history = useHistory()
@@ -41,12 +42,17 @@ function CreateEventPage(){
         })
     }
 
+    const updateFile = (e) => {
+        const file = e.target.files[0];
+        if (file) setPreviewImage(file);
+    };
+
     return (
         <>
 
             <form onSubmit={handleSubmit} >
                 <div>
-                    <img className='create-event-image-background' src={previewImage}/>
+                    <img className='create-event-image-background' src={backgroundImage}/>
                 </div>
                 <h1>Create Event</h1>
                 {errors.length>0 && (
@@ -147,6 +153,11 @@ function CreateEventPage(){
                             value={endDate}
                             onChange={e=> setEndDate(e.target.value)}
                             />
+                        </label>
+                    </div>
+                    <div>
+                        <label className="group-label"> Preview Image:
+                            <input className="group-input" type="file" onChange={updateFile} />
                         </label>
                     </div>
                     <button

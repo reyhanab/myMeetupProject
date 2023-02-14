@@ -16,13 +16,12 @@ function GroupsPage (){
     return (
         <>
             <h2 className="your-groups">Your groups</h2>
-            <form className="your-groups-container">
-
-
+            <div className="your-groups-container">
                     {groupsArr?.map((group,i)=>(
                             <div key={i} className='group-div'>
-                                <NavLink className='group-name group' to={`/groups/${group.id}`}>{group.name}
-                                <img className="group-image group" src={group.previewImage} />
+                                <p className='group-name'>{group.name}</p>
+                                <NavLink to={`/groups/${group.id}`}>
+                                <img className="group-image" src={group.previewImage} />
                                 </NavLink>
                                 {/* <NavLink key={i} to={`/groups/${group.id}`} >{group.name}</NavLink> */}
                             </div>
@@ -30,7 +29,7 @@ function GroupsPage (){
                         ))
                     }
 
-            </form>
+            </div>
         </>
     )
 

@@ -4,7 +4,7 @@
     grid-template-rows: 1fr 1fr 1fr ;
     /* grid-template-columns: 15% 70% 15%; */
     width: 470px;
-    height: 220px;
+    height: 230px;
     border:1px solid white ;
     border-radius: 40%;
 }
@@ -43,6 +43,7 @@
     font-size: 15px;
     border-radius: 10%;
     border-color: red;
+    margin-bottom: 20px;
 }
 .login-form-button:hover{
     cursor: pointer;
@@ -60,6 +61,7 @@
     font-size: 15px;
     border-radius: 10%;
     border-color: red;
+    margin-bottom: 20px;
 
 }
 .demo-login-form-button:hover{
