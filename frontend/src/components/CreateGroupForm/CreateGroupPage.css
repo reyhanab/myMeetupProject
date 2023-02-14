@@ -41,6 +41,9 @@
     color:rgb(9, 70, 70);
     font-size: 18px;
 }
+.submit-button :hover{
+    cursor: pointer;
+}
 .create-group-image-background{
     filter: opacity(30%);
     position: fixed;

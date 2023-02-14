@@ -14,6 +14,7 @@ const isProduction = environment === 'production';
 const app = express();
 app.use(morgan('dev'));
 app.use(cookieParser());
+app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 if (!isProduction) {
@@ -47,7 +48,7 @@ if (!isProduction) {
   app.use((err, _req, _res, next) => {
     // check if error is a Sequelize error:
     if (err instanceof ValidationError) {
-    
+
       err.errors = err.errors.map((e) => e.message);
       err.title = 'Validation error';
     }

@@ -16,7 +16,8 @@ function CreateGroupPage(){
     const [city, setCity] = useState('');
     const [state, setState] = useState('');
     const [errors, setErrors] = useState([])
-    const previewImage = 'https://rcni.com/sites/rcn_nspace/files/Article-images/149701/Groupwork_tile_Stock.jpg'
+    const [previewImage, setPreviewImage] = useState(null)
+    const backgroungImage = 'https://rcni.com/sites/rcn_nspace/files/Article-images/149701/Groupwork_tile_Stock.jpg'
 
     const handleSubmit = (e)=>{
         e.preventDefault()
@@ -40,13 +41,18 @@ function CreateGroupPage(){
 
     }
 
+    const updateFile = (e) => {
+        const file = e.target.files[0];
+        if (file) setPreviewImage(file);
+    };
+
     return(
         <>
 
             <form onSubmit={handleSubmit}>
 
                 <div>
-                    <img className='create-group-image-background' src={previewImage}/>
+                    <img className='create-group-image-background' src={backgroungImage}/>
                 </div>
                 <h1>Start a new group</h1>
                 {errors.length>0 && (
@@ -135,6 +141,11 @@ function CreateGroupPage(){
                             value={state}
                             onChange={e=> setState(e.target.value)}
                             />
+                        </label>
+                    </div>
+                    <div>
+                        <label className="group-label"> Preview Image:
+                            <input className="group-input" type="file" onChange={updateFile} />
                         </label>
                     </div>
                     <button

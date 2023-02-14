@@ -62,10 +62,23 @@ export const loadAllEvents = ()=> async dispatch =>{
 }
 
 export const createEvent = (event, groupId)=> async dispatch =>{
+
+    const { name, type, capacity, price, description, startDate, endDate, previewImage} = event;
+    const formData = new FormData();
+    formData.append("name", name);
+    formData.append("capacity", capacity);
+    formData.append("type", type);
+    formData.append("price", price);
+    formData.append("description", description);
+    formData.append("startDate", startDate);
+    formData.append("endDate", endDate);
+
+    if (previewImage) formData.append("previewImage", previewImage);
+
     const response = await csrfFetch(`/api/groups/${groupId}/events`, {
         method:'POST',
-        headers:{'Content-Type': 'application/json'},
-        body: JSON.stringify(event)
+        headers:{'Content-Type': "multipart/form-data"},
+        body: formData,
     })
     const newEvent = await response.json()
     if (response.ok){
@@ -73,10 +86,23 @@ export const createEvent = (event, groupId)=> async dispatch =>{
     }
 }
 export const editEvent= (event, eventId)=> async dispatch =>{
+
+    const { name, type, capacity, price, description, startDate, endDate, previewImage} = event;
+    const formData = new FormData();
+    formData.append("name", name);
+    formData.append("capacity", capacity);
+    formData.append("type", type);
+    formData.append("price", price);
+    formData.append("description", description);
+    formData.append("startDate", startDate);
+    formData.append("endDate", endDate);
+
+    if (previewImage) formData.append("previewImage", previewImage);
+
     const response = await csrfFetch(`/api/events/${eventId}`, {
         method:'PUT',
-        headers:{'Content-Type': 'application/json'},
-        body:JSON.stringify(event)
+        headers:{'Content-Type': 'multipart/form-data'},
+        body: formData,
     })
     const editedEvent = await response.json()
     if (response.ok){

@@ -5,7 +5,8 @@ const { requireAuth} = require('../../utils/auth');
 const { Group, Image, User, Venue,Membership, Attendee, Event } = require('../../db/models');
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
-
+const {singlePublicFileUpload } = require('../../awsS3')
+const {singleMulterUpload } = require('../../awsS3')
 
 const validateGroup = [
     check('name')
@@ -189,10 +190,22 @@ router.get('/:groupId', async (req,res,next)=>{
 
 })
 //create a group
-router.post('/',requireAuth, validateGroup, async (req,res,next)=>{
+router.post('/', singleMulterUpload("previewImage"),
+requireAuth, validateGroup,
+ async (req,res,next)=>{
     const {user}= req
     const {id} = user
-    const newGroup = await user.createGroup(req.body)
+    const { name, about, type, private, city, state } = req.body;
+    const previewImage = await singlePublicFileUpload(req.file);
+    const newGroup = await user.createGroup({
+        name,
+        about,
+        type,
+        private,
+        city,
+        state,
+        previewImage
+    })
     await newGroup.createMembership({memberId:id, status:'host'})
     if(newGroup){
         const {id} = newGroup
@@ -243,7 +256,7 @@ router.post('/:groupId/images', requireAuth,validateImage, async (req,res,next)=
     }
 })
 //edit a group
-router.put('/:groupId', requireAuth,validateGroup, async (req,res, next)=>{
+router.put('/:groupId', singleMulterUpload("previewImage"), requireAuth, validateGroup, async (req,res, next)=>{
 
     const groupId = req.params.groupId
     const {user} = req
@@ -252,7 +265,17 @@ router.put('/:groupId', requireAuth,validateGroup, async (req,res, next)=>{
         const {id} = user
         const {organizerId} = group
         if (id === organizerId){
-            await group.update(req.body)
+            const { name, about, type, private, city, state } = req.body;
+            const previewImage = await singlePublicFileUpload(req.file);
+            await group.update({
+                name,
+                about,
+                type,
+                private,
+                city,
+                state,
+                previewImage
+            })
             const {createdAt, updatedAt} = group
             const createdAtObj = new Date(createdAt).toLocaleString('sv')
             const updatedAtObj = new Date(updatedAt).toLocaleString('sv')
@@ -408,40 +431,36 @@ router.get('/:groupId/events', async (req,res,next)=>{
     }
 })
 //create an event
-router.post('/:groupId/events', requireAuth,validateEvent, async (req,res,next)=>{
+router.post('/:groupId/events', singleMulterUpload("previewImage"), requireAuth, validateEvent,
+async (req,res,next)=>{
     const {user} = req
     const groupId = req.params.groupId
     const group = await Group.findByPk(groupId)
     if (group){
-        // const {venueId} = req.body
-        // const venue = await Venue.findByPk(venueId)
-        // if (!venue){
-        //     const err = new Error("Venue couldn't be found");
-        //     err.status = 404;
-        //     err.message = "Venue couldn't be found"
-        //     return next(err);
-        // }
-        // const {groupId} = venue
-        // if(groupId != req.params.groupId){
-        //     const err = new Error("Venue doesn't belong to this group");
-        //     err.status = 404;
-        //     err.message = "Venue doesn't belong to this group"
-        //     return next(err);
-        // }
-
         const {id} = user
         const membership = await Membership.findOne({where:{memberId:id, groupId}})
         if (membership){
             const {status}= membership
             if (status === 'host'|| status === "co-host"){
-                const newEvent = await group.createEvent(req.body)
+                const { name, type, capacity,price, description, startDate, endDate } = req.body;
+                const previewImage = await singlePublicFileUpload(req.file);
+                const newEvent = await group.createEvent({
+                    name,
+                    type,
+                    capacity,
+                    price,
+                    description,
+                    startDate,
+                    endDate,
+                    previewImage
+                })
                 const {id} = newEvent
                 const response = await Event.scope('createEvent').findByPk(id)
-                const {startDate, endDate} = response
-                const startDateObj = new Date(startDate).toLocaleString('sv')
-                const endDateObj = new Date(endDate).toLocaleString('sv')
-                response.dataValues.startDate = startDateObj
-                response.dataValues.endDate = endDateObj
+                // const {startDate, endDate} = response
+                // const startDateObj = new Date(startDate).toLocaleString('sv')
+                // const endDateObj = new Date(endDate).toLocaleString('sv')
+                // response.dataValues.startDate = startDateObj
+                // response.dataValues.endDate = endDateObj
                 return res.json(response)
             }
         }

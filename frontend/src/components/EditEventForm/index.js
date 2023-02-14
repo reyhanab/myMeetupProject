@@ -16,6 +16,7 @@ function EditEventPage(){
     const [description, setDescription] = useState(event?.description);
     const [startDate, setStartDate] = useState(event?.startDate);
     const [endDate, setEndDate] = useState(event?.endDate)
+    const [previewImage, setPreviewImage] = useState(event?.previewImage)
     const [errors, setErrors] = useState([])
 
     const dispatch = useDispatch()
@@ -25,7 +26,7 @@ function EditEventPage(){
         e.preventDefault();
         setErrors([]);
         const payload = {
-            venueId,name,type,capacity,price,description,startDate,endDate
+            venueId,name,type,capacity,price,description,startDate,endDate, previewImage
         }
         // await dispatch(editEvent(payload, eventId))
         // alert(`"${name}" has been updated`)
@@ -44,6 +45,10 @@ function EditEventPage(){
             }
         })
     }
+    const updateFile = (e) => {
+        const file = e.target.files[0];
+        if (file) setPreviewImage(file);
+    };
 
     return (
         <>
@@ -150,6 +155,11 @@ function EditEventPage(){
                             value={endDate}
                             onChange={e=> setEndDate(e.target.value)}
                             />
+                        </label>
+                    </div>
+                    <div>
+                        <label className="group-label"> Preview Image:
+                            <input className="group-input" type="file" onChange={updateFile} />
                         </label>
                     </div>
                     <button

@@ -5,6 +5,8 @@ const {requireAuth} = require('../../utils/auth');
 const { Event, Group, Attendee, Venue,Image,Membership,User } = require('../../db/models');
 const { check, body } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
+const {singlePublicFileUpload } = require('../../awsS3')
+const {singleMulterUpload } = require('../../awsS3')
 
  const validateEvent = [
     // check('venueId')
@@ -218,7 +220,7 @@ router.post('/:eventId/images', requireAuth, async (req,res,next)=>{
     }
 })
 //edit an event
-router.put('/:eventId', requireAuth,validateEvent, async (req,res, next)=>{
+router.put('/:eventId',singleMulterUpload("previewImage"), requireAuth,validateEvent, async (req,res, next)=>{
 
     const eventId = req.params.eventId
     const {user} = req
@@ -227,34 +229,29 @@ router.put('/:eventId', requireAuth,validateEvent, async (req,res, next)=>{
         const{groupId} = event
         const eventGroupId = groupId
         const {id} = user
-        // const {venueId} = req.body
-        // const venue = await Venue.findByPk(venueId)
-        // if (!venue){
-        //     const err = new Error("Venue couldn't be found");
-        //     err.status = 404;
-        //     err.message = "Venue couldn't be found"
-        //     return next(err);
-        // }else{
-        //     const {groupId} = venue
-        //     if(groupId != eventGroupId){
-        //         const err = new Error("Venue doesn't belong to this group");
-        //         err.status = 404;
-        //         err.message = "Venue doesn't belong to this group"
-        //         return next(err);
-        //     }
-        // }
         const membership = await Membership.findOne({where:{memberId:id, groupId}})
         if (membership){
             const {status}= membership
             if (status === 'host'|| status === "co-host"){
-            await event.update(req.body)
-            const response = await Event.scope('createEvent').findByPk(eventId)
-            const {startDate, endDate} = response
-            const startDateObj = new Date(startDate).toLocaleString('sv')
-            const endDateObj = new Date(endDate).toLocaleString('sv')
-            response.dataValues.startDate = startDateObj
-            response.dataValues.endDate = endDateObj
-            return res.json(response)
+                const { name, type, capacity,price, description, startDate, endDate } = req.body;
+                const previewImage = await singlePublicFileUpload(req.file);
+                await event.update({
+                    name,
+                    type,
+                    capacity,
+                    price,
+                    description,
+                    startDate,
+                    endDate,
+                    previewImage
+                })
+                const response = await Event.scope('createEvent').findByPk(eventId)
+                // const {startDate, endDate} = response
+                // const startDateObj = new Date(startDate).toLocaleString('sv')
+                // const endDateObj = new Date(endDate).toLocaleString('sv')
+                // response.dataValues.startDate = startDateObj
+                // response.dataValues.endDate = endDateObj
+                return res.json(response)
             }
         }
         const err = new Error("Forbidden");
