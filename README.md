@@ -13,14 +13,14 @@ A website for socializing and joining groups and events based on your interests.
 * [![HTML5][HTML5]][HTML-url]
 * [![CSS][CSS]][CSS-url]
 * [![Javascript][Javascript]][Javascript-url]
-* [![Express][Express]][Express-url]
+* [![Express.js][Express.js]][Express-url]
 * [![React][React.js]][React-url]
 * [![Node.js][Node.js]][Node-url]
 * [![SQLite][SQLite]][SQLite-url]
 * [![NPM][NPM]][NPM-url]
 * [![Git][Git]][Git-url]
 * [![Github][Github]][Github-url]
-* [![Sequelize][Sequelize]][Sequelize-url]
+* [![Sequelize.js][Sequelize.js]][Sequelize-url]
 
 
 <!-- MARKDOWN LINKS & IMAGES -->
