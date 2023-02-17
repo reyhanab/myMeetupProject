@@ -1,7 +1,5 @@
 # myMeetupProject
 
-# Meetup clone
-
 ## Description
 
 A website for socializing and joining groups and events based on your interests. [Live Link](https://meetup-fba7.onrender.com/)
